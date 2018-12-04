@@ -1,0 +1,2 @@
+public class Rate {
+}
