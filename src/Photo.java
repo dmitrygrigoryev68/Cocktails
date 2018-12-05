@@ -1,6 +1,6 @@
-import javafx.scene.image.Image;
-
-import java.io.InputStream;
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 public class Photo extends Image {
 
@@ -9,29 +9,28 @@ public class Photo extends Image {
     private String filename;
 
 
-
-
-    public Photo(String url) {
-        super(url);
+    @Override
+    public int getWidth(ImageObserver observer) {
+        return 0;
     }
 
-    public Photo(String url, boolean backgroundLoading) {
-        super(url, backgroundLoading);
+    @Override
+    public int getHeight(ImageObserver observer) {
+        return 0;
     }
 
-    public Photo(String url, double requestedWidth, double requestedHeight, boolean preserveRatio, boolean smooth) {
-        super(url, requestedWidth, requestedHeight, preserveRatio, smooth);
+    @Override
+    public ImageProducer getSource() {
+        return null;
     }
 
-    public Photo(String url, double requestedWidth, double requestedHeight, boolean preserveRatio, boolean smooth, boolean backgroundLoading) {
-        super(url, requestedWidth, requestedHeight, preserveRatio, smooth, backgroundLoading);
+    @Override
+    public Graphics getGraphics() {
+        return null;
     }
 
-    public Photo(InputStream is) {
-        super(is);
-    }
-
-    public Photo(InputStream is, double requestedWidth, double requestedHeight, boolean preserveRatio, boolean smooth) {
-        super(is, requestedWidth, requestedHeight, preserveRatio, smooth);
+    @Override
+    public Object getProperty(String name, ImageObserver observer) {
+        return null;
     }
 }

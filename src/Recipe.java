@@ -12,6 +12,7 @@ public class Recipe {
     private Comments comments;
     private Long id;
     private int prepTimeMinute;
+    private int cookingTime;
     private Rate rate;
 
 }
