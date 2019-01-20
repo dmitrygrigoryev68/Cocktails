@@ -39,5 +39,5 @@ public class Recipe {
     @ManyToOne( targetEntity = Rate.class )
     private Rate rate;
 
-,
+
 }
