@@ -11,17 +11,17 @@ public class RecipeController {
     @Autowired
     RecipeServiceImpl recipeService;
 
-    @GetMapping( "/recipes/" )
+    @GetMapping( value = "/recipes")
     public void getAllRecipe() {
         recipeService.getAllRecipe();
     }
 
-    @PostMapping( "/recipes/" )
+    @PostMapping( "/recipes" )
     public void creatRecipeController(@RequestBody RecipeWeb recipeWeb) {
         recipeService.creatRecipe(recipeWeb);
     }
 
-    @PutMapping( "/recipes/{id}" )
+    @GetMapping( "/recipes/{id}" )
     public Recipe getRecipeByIdController(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
     }
