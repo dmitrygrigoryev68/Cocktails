@@ -2,6 +2,8 @@ package App.model;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,10 +24,13 @@ public class Recipe {
     @ManyToOne( targetEntity = Person.class )
     private Person author;
     @ElementCollection
+    @LazyCollection( LazyCollectionOption.FALSE)
     private List <Ingredient> ingredients;
     @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List <RecepiSteps> instructions;
     @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List <Taxonomy> tags;
     @ManyToOne( targetEntity = Comments.class )
      private Comments comments;
