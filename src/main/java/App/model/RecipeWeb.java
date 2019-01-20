@@ -3,6 +3,7 @@ package App.model;
 import lombok.Data;
 
 import java.util.List;
+
 @Data
 public class RecipeWeb {
     private String title;

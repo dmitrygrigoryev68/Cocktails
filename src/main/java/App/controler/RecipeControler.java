@@ -4,25 +4,25 @@ import App.model.Recipe;
 import App.model.RecipeWeb;
 import App.service.RecipeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.ws.RequestWrapper;
 
 @RestController
 public class RecipeControler {
     @Autowired
     RecipeServiceImpl recipeService;
-@GetMapping("/recipes/")
+
+    @GetMapping( "/recipes/" )
     public void getAllRecipe() {
-    recipeService.getAllRecipe();
-}
-    @PostMapping("/recipes/")
-    public  void creaitRecipeControler(@RequestBody RecipeWeb recipeWeb) {
-    recipeService.creaitRecipe(recipeWeb);
-}
-@PutMapping("/recipes/{id}")
+        recipeService.getAllRecipe();
+    }
+
+    @PostMapping( "/recipes/" )
+    public void creaitRecipeControler(@RequestBody RecipeWeb recipeWeb) {
+        recipeService.creaitRecipe(recipeWeb);
+    }
+
+    @PutMapping( "/recipes/{id}" )
     public Recipe getRecipeByIdControler(@PathVariable Long id) {
-    return recipeService.getRecipeById(id);
-}
+        return recipeService.getRecipeById(id);
+    }
 }

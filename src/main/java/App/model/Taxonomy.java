@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+
 @Embeddable
 @Entity
 @Data

@@ -1,5 +1,7 @@
 package App.model;
+
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Embeddable

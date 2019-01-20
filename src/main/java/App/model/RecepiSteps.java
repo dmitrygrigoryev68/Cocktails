@@ -11,12 +11,12 @@ import javax.persistence.Id;
 @Data
 public class RecepiSteps {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long stepID;
     private String stepTitle;
     private String stepDescription;
 
-   // private Photo photo;
+    // private Photo photo;
     // private Video video;
     // private Audio audio;
 }
