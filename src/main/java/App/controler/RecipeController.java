@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class RecipeControler {
+public class RecipeController {
     @Autowired
     RecipeServiceImpl recipeService;
 
@@ -17,12 +17,12 @@ public class RecipeControler {
     }
 
     @PostMapping( "/recipes/" )
-    public void creaitRecipeControler(@RequestBody RecipeWeb recipeWeb) {
-        recipeService.creaitRecipe(recipeWeb);
+    public void creatRecipeController(@RequestBody RecipeWeb recipeWeb) {
+        recipeService.creatRecipe(recipeWeb);
     }
 
     @PutMapping( "/recipes/{id}" )
-    public Recipe getRecipeByIdControler(@PathVariable Long id) {
+    public Recipe getRecipeByIdController(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
     }
 }

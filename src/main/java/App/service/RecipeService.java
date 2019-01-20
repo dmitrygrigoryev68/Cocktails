@@ -4,5 +4,5 @@ import App.model.RecipeWeb;
 
 public interface RecipeService {
 
-    void creaitRecipe(RecipeWeb recipeWeb);
+    void creatRecipe(RecipeWeb recipeWeb);
 }

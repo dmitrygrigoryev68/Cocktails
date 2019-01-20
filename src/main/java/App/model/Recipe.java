@@ -23,14 +23,16 @@ public class Recipe {
     private Person author;
     @ElementCollection
     private List <Ingredient> ingredients;
-    @ElementCollection()
+    @ElementCollection
     private List <RecepiSteps> instructions;
     @ElementCollection
     private List <Taxonomy> tags;
-    // private Comments comments;
+    @ManyToOne( targetEntity = Person.class )
+     private Comments comments;
     private int prepTimeMinute;
     private int cookingTime;
-    //private Rate rate;
+    @ManyToOne( targetEntity = Person.class )
+    private Rate rate;
 
 
 }

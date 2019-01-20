@@ -3,7 +3,7 @@ package App.service;
 import App.model.Recipe;
 import App.model.RecipeWeb;
 import App.repository.RecipeRepository;
-import exeption.NotFoundReceptionById;
+import exeption.NotFoundRecipeById;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +22,12 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe getRecipeById(Long id) {
         Optional <Recipe> optionalRecipe = recipeRepository.findById(id);
         if (!optionalRecipe.isPresent()) {
-            throw new NotFoundReceptionById("This recept does not exist");
+            throw new NotFoundRecipeById("This recept does not exist");
         }
         return optionalRecipe.get();
     }
 
-    public void creaitRecipe(RecipeWeb recipeWeb) {
+    public void creatRecipe(RecipeWeb recipeWeb) {
 
         Recipe recipe = new Recipe();
         recipe.setAnnounce(recipeWeb.getAnnounce());
