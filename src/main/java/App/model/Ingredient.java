@@ -1,7 +1,5 @@
 package App.model;
-
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Embeddable
@@ -13,7 +11,6 @@ public class Ingredient {
     private Long id;
     private String name;
     private String descriptions;
-
     // private weightsAndMeasures wam;
 
 }

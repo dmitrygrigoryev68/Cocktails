@@ -1,12 +1,10 @@
 package App.service;
-
 import App.model.Recipe;
 import App.model.RecipeWeb;
 import App.repository.RecipeRepository;
 import exeption.NotFoundReceptionById;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +24,7 @@ public class RecipeServiceImpl implements RecipeService {
        return optionalRecipe.get();
    }
    public void creaitRecipe(RecipeWeb recipeWeb) {
+
        Recipe recipe=new Recipe();
        recipe.setAnnounce(recipeWeb.getAnnounce());
        recipe.setAuthor(recipeWeb.getAuthor());

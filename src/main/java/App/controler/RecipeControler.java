@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.RequestWrapper;
 
-@Controller
+@RestController
 public class RecipeControler {
     @Autowired
     RecipeServiceImpl recipeService;
-@RequestMapping("/recipes/")
+@GetMapping("/recipes/")
     public void getAllRecipe() {
     recipeService.getAllRecipe();
 }
-@PutMapping("/recipes/creayt")
+    @PostMapping("/recipes/")
     public  void creaitRecipeControler(@RequestBody RecipeWeb recipeWeb) {
     recipeService.creaitRecipe(recipeWeb);
 }
-@GetMapping("/recipes/{id}")
+@PutMapping("/recipes/{id}")
     public Recipe getRecipeByIdControler(@PathVariable Long id) {
     return recipeService.getRecipeById(id);
 }

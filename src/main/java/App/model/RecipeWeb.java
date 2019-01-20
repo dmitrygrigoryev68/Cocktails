@@ -14,4 +14,5 @@ public class RecipeWeb {
     private int prepTimeMinute;
     private int cookingTime;
     private Rate rate;
+
 }

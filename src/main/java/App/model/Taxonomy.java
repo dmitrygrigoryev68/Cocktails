@@ -13,7 +13,6 @@ public class Taxonomy {
     @Id
     private Long id;
     private String name;
-
     //private Recipe recipe;
 
 

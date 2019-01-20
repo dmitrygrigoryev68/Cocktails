@@ -10,4 +10,5 @@ import javax.persistence.Id;
 public class Rate {
     @Id
     private long Id;
+
 }

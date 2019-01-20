@@ -1,8 +1,6 @@
 package App.model;
-
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -22,12 +20,10 @@ public class Recipe {
     @ManyToOne( targetEntity = Person.class )
     private Person author;
     @ElementCollection
-
     private List <Ingredient> ingredients;
     @ElementCollection()
     private List <RecepiSteps> instructions;
     @ElementCollection
-
     private List <Taxonomy> tags;
     // private Comments comments;
     private int prepTimeMinute;
