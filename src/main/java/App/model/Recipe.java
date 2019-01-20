@@ -27,11 +27,11 @@ public class Recipe {
     private List <RecepiSteps> instructions;
     @ElementCollection
     private List <Taxonomy> tags;
-    @ManyToOne( targetEntity = Person.class )
+    @ManyToOne( targetEntity = Comments.class )
      private Comments comments;
     private int prepTimeMinute;
     private int cookingTime;
-    @ManyToOne( targetEntity = Person.class )
+    @ManyToOne( targetEntity = Rate.class )
     private Rate rate;
 
 
