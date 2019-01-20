@@ -16,17 +16,15 @@ public class RecipeServiceImpl implements RecipeService {
     RecipeRepository recipeRepository;
 
     public List <Recipe> getAllRecipe() {
-        return recipeRepository.findAll();
+        List <Recipe> all = recipeRepository.findAll();
+        return all;
     }
-
     public Recipe getRecipeById(Long id) {
         Optional <Recipe> optionalRecipe = recipeRepository.findById(id);
-        if (!optionalRecipe.isPresent()) {
+        if (optionalRecipe.isPresent()) {
             throw new NotFoundRecipeById("This recept does not exist");
-        }
-        return optionalRecipe.get();
+        } else return optionalRecipe.get();
     }
-
     public void creatRecipe(RecipeWeb recipeWeb) {
 
         Recipe recipe = new Recipe();
