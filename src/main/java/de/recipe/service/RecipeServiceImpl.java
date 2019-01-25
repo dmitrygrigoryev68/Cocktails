@@ -57,7 +57,7 @@ public  void deleteRecipieByRecipie(Recipe recipe) {
 
     public List <Recipe> findByIngredientsContaining(String nameIngredient) {
         List <Recipe> byIngredients = recipeRepository.findByIngredientsNameIngredientIn(nameIngredient);
-        if (byIngredients == null) throw new NotFoundRecipeById("This recipe name does not exist");
+        if (byIngredients .isEmpty()) throw new NotFoundRecipeById("This recipe name does not exist");
         else return byIngredients;
     }
 
