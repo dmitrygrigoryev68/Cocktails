@@ -1,4 +1,6 @@
-package de.model;
+package de.recipe.model;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,4 +20,11 @@ public class Ingredient implements Serializable {
     // private weightsAndMeasures wam;
 
 
+    public Ingredient() {
+    }
+    @JsonCreator
+    public Ingredient(@JsonProperty("nameIngredient")String nameIngredient,@JsonProperty ("descriptions")String descriptions) {
+        this.nameIngredient = nameIngredient;
+        this.descriptions = descriptions;
+    }
 }

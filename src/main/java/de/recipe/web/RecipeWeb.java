@@ -1,4 +1,4 @@
-package de.web;
+package de.recipe.web;
 import de.recipe.model.*;
 import lombok.Data;
 import java.util.List;

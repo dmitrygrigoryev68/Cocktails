@@ -1,10 +1,12 @@
-package App.controler;
-import App.model.Ingredient;
-import App.model.Recipe;
-import App.service.RecipeServiceImpl;
+package de.recipe.controller;
+
+import de.recipe.model.Ingredient;
+import de.recipe.model.Recipe;
+import de.recipe.service.RecipeServiceImpl;
+import de.recipe.web.RecipeWeb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import web.RecipeWeb;
+
 import java.util.List;
 
 @RestController
@@ -46,5 +48,10 @@ public class RecipeController {
     @RequestMapping( "search/byAuthor/{string}" )
     public List <Recipe> findBYAuthor(@PathVariable String string) {
         return recipeService.findbyAuthor(string);
+    }
+
+    @PutMapping( "/recipie/ubdate/{id}" )
+    public void updateStudent(@RequestBody Recipe recipe, @PathVariable long id) {
+        recipeService.updateRecipe(recipe, id);
     }
 }

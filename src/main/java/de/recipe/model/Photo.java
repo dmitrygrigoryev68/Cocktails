@@ -1,4 +1,4 @@
-package de.model;
+package de.recipe.model;
 
 /*@Data
 public class Photo extends Image {

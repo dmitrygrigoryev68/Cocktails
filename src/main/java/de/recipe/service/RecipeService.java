@@ -1,5 +1,5 @@
-package de.service;
-import web.RecipeWeb;
+package de.recipe.service;
+import de.recipe.web.RecipeWeb;
 
 public interface RecipeService {
 
