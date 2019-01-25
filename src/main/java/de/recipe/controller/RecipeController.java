@@ -36,8 +36,13 @@ public class RecipeController {
     }
 
     @DeleteMapping( value = "delete/" )
-    public void deleteRecipeByRecipe(@RequestBody Ingredient ingredient) {
-        recipeService.deleteRecipeByRecipe(ingredient);
+    public void deleteRecipeByIngretient(@RequestBody Ingredient ingredient) {
+        recipeService.deleteRecipeByIngredients(ingredient);
+    }
+
+    @DeleteMapping( value = "delete/recipes", consumes = "application/json" )
+    public void deletByRecipe(@RequestBody Recipe recipe) {
+        recipeService.deleteRecipieByRecipie(recipe);
     }
 
     @GetMapping( "/searhc/ingredient/{name_ingredient}" )
@@ -50,8 +55,8 @@ public class RecipeController {
         return recipeService.findbyAuthor(string);
     }
 
-    @PutMapping( "/recipie/ubdate/{id}" )
-    public void updateStudent(@RequestBody Recipe recipe, @PathVariable long id) {
+    @PutMapping( "/recipe/update/{id}" )
+    public void updateRecipeById(@RequestBody Recipe recipe, @PathVariable long id) {
         recipeService.updateRecipe(recipe, id);
     }
 }

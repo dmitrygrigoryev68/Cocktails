@@ -40,12 +40,15 @@ public class RecipeServiceImpl implements RecipeService {
         if (!recipeRepository.existsById(id)) throw new NotFoundRecipeById("This recipe does not exist");
         recipeRepository.deleteById(id);
     }
-
-    public void deleteRecipeByRecipe(Ingredient ingredient) {
+public  void deleteRecipieByRecipie(Recipe recipe) {
+        Long id=recipe.getId();
+        recipeRepository.deleteById(id);
+}
+    public void deleteRecipeByIngredients(Ingredient ingredient) {
         recipeRepository.deleteByIngredientsIn(ingredient);
     }
 
-    private Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
+   private Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
         ModelMapper modelMapper = new ModelMapper();
         Recipe recipe = modelMapper.map(recipeWeb, Recipe.class);
 
