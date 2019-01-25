@@ -2,14 +2,18 @@ package App.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-public class Comments {
+@Table( name = "comments" )
+public class Comments implements Serializable {
     @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
+    @Column
+    private String comment;
 
-     //facebook realization
+    //facebook realization
 }

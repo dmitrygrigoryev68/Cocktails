@@ -1,18 +1,21 @@
 package App.model;
-
 import lombok.Data;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Embeddable
+
 @Entity
 @Data
-public class Ingredient {
+@Table
+public class Ingredient implements Serializable {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+   @Column(name = "name_ingredient")
+    private String nameIngredient;
+    @Column
     private String descriptions;
     // private weightsAndMeasures wam;
+
 
 }

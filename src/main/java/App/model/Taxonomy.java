@@ -1,18 +1,18 @@
 package App.model;
-
 import lombok.Data;
-
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Data
-public class Taxonomy {
+@Table
+public class Taxonomy  implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    @Column
+    private String nameTaxonomy;
     //private Recipe recipe;
 
 

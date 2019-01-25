@@ -1,19 +1,19 @@
 package App.model;
-
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
-public class Recipe {
+@Table
+public class Recipe implements Serializable {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String announce;
@@ -21,22 +21,22 @@ public class Recipe {
     @Column( nullable = false, updatable = false )
     @Temporal( TemporalType.TIMESTAMP )
     private Date publicationDate;
-    @ManyToOne( targetEntity = Person.class )
+    @ManyToOne( targetEntity = Person.class, cascade = CascadeType.ALL )
     private Person author;
-    @ElementCollection
-    @LazyCollection( LazyCollectionOption.FALSE)
+    @OneToMany( cascade = CascadeType.ALL )
+    @LazyCollection( LazyCollectionOption.FALSE )
     private List <Ingredient> ingredients;
-    @ElementCollection
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany( cascade = CascadeType.ALL )
+    @LazyCollection( LazyCollectionOption.FALSE )
     private List <RecepiSteps> instructions;
-    @ElementCollection
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany( cascade = CascadeType.ALL )
+    @LazyCollection( LazyCollectionOption.FALSE )
     private List <Taxonomy> tags;
-    @ManyToOne( targetEntity = Comments.class )
-     private Comments comments;
+    @ManyToOne( targetEntity = Comments.class,cascade = CascadeType.ALL )
+    private Comments comments;
     private int prepTimeMinute;
     private int cookingTime;
-    @ManyToOne( targetEntity = Rate.class )
+    @OneToOne( targetEntity = Rate.class, cascade = CascadeType.ALL )
     private Rate rate;
 
 
