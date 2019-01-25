@@ -1,5 +1,5 @@
-package web;
-import App.model.*;
+package de.web;
+import de.recipe.model.*;
 import lombok.Data;
 import java.util.List;
 

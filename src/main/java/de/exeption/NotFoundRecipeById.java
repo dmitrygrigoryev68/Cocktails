@@ -1,4 +1,4 @@
-package exeption;
+package recipe.exeption;
 
 public class NotFoundRecipeById extends RuntimeException {
 

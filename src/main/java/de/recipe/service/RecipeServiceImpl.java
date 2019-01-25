@@ -1,7 +1,7 @@
-package App.service;
-import App.model.Ingredient;
-import App.model.Recipe;
-import App.repository.RecipeRepository;
+package de.service;
+import de.model.Ingredient;
+import de.model.Recipe;
+import de.repository.RecipeRepository;
 import exeption.NotFoundRecipeById;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

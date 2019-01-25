@@ -1,4 +1,4 @@
-package App.service;
+package de.service;
 import web.RecipeWeb;
 
 public interface RecipeService {

@@ -1,4 +1,4 @@
-package App.model;
+package de.model;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;

@@ -1,6 +1,6 @@
-package App.repository;
-import App.model.Ingredient;
-import App.model.Recipe;
+package de.repository;
+import de.model.Ingredient;
+import de.model.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

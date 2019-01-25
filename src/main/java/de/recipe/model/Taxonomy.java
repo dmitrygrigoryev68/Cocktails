@@ -1,16 +1,19 @@
-package App.model;
-
+package de.model;
 import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Entity
 @Data
 @Table
-public class Rate  implements Serializable {
+public class Taxonomy  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long id;
+    @Column
+    private String nameTaxonomy;
+    //private Recipe recipe;
+
 
 }
