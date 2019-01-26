@@ -18,10 +18,7 @@ indexpath/
 thumbs.db
 .DS_Store
 
-test/
 target/
-tests/
-src/main/resources/
 
 ###  Config Files andron13
 *.cnf
