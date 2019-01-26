@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table
-public class RecepiSteps  implements Serializable {
+public class RecepiStep implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;

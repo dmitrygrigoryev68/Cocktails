@@ -9,7 +9,7 @@ public class RecipeWeb {
     private String announce;
     private Person author;
     private List <Ingredient> ingredients;
-    private List <RecepiSteps> instructions;
+    private List <RecepiStep> instructions;
     private List <Taxonomy> tags;
     private int prepTimeMinute;
     private int cookingTime;

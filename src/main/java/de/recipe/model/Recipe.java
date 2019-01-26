@@ -28,12 +28,12 @@ public class Recipe implements Serializable {
     private List <Ingredient> ingredients;
     @OneToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
-    private List <RecepiSteps> instructions;
+    private List <RecepiStep> instructions;
     @OneToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
     private List <Taxonomy> tags;
-    @ManyToOne( targetEntity = Comments.class,cascade = CascadeType.ALL )
-    private Comments comments;
+    @ManyToOne( targetEntity = Comment.class,cascade = CascadeType.ALL )
+    private Comment comment;
     private int prepTimeMinute;
     private int cookingTime;
     @OneToOne( targetEntity = Rate.class, cascade = CascadeType.ALL )
