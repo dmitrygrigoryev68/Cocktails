@@ -1,11 +1,5 @@
-package App.model;
+package de.recipe.model;
 
-import lombok.Data;
-
-import javax.persistence.Entity;
-import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 /*@Data
 public class Photo extends Image {
 

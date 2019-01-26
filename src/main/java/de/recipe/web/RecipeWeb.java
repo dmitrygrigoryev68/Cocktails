@@ -1,7 +1,6 @@
-package App.model;
-
+package de.recipe.web;
+import de.recipe.model.*;
 import lombok.Data;
-
 import java.util.List;
 
 @Data
@@ -16,4 +15,6 @@ public class RecipeWeb {
     private int cookingTime;
     private Rate rate;
 
+
 }
+
