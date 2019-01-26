@@ -5,6 +5,7 @@
 out/
 debug/
 .idea_modules/
+indexpath/
 
 *.class
 *.jar
