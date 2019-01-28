@@ -1,7 +1,6 @@
 package de.recipe.service;
 
 import de.exeption.NotFoundRecipeById;
-import de.recipe.controller.RecipeController;
 import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.repository.RecipeRepository;
@@ -24,7 +23,7 @@ public class RecipeServiceImpl implements RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public List <Recipe> getAllRecipe() {
+    public List<Recipe> getAllRecipe() {
         return recipeRepository.findAll();
 
     }
@@ -33,7 +32,8 @@ public class RecipeServiceImpl implements RecipeService {
         Optional <Recipe> optionalRecipe = recipeRepository.findById(id);
         if (!optionalRecipe.isPresent()) {
             throw new NotFoundRecipeById("This recipe does not exist");
-        } else return optionalRecipe.get();
+        }
+        else return optionalRecipe.get();
     }
 
     public void creatRecipe(RecipeWeb recipeWeb) {
