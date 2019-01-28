@@ -1,6 +1,7 @@
 package de.recipe.service;
 
 import de.exeption.NotFoundRecipeById;
+import de.recipe.controller.RecipeController;
 import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.repository.RecipeRepository;
@@ -16,8 +17,12 @@ import java.util.Optional;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
+    private final RecipeRepository recipeRepository;
+
     @Autowired
-    RecipeRepository recipeRepository;
+    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
+    }
 
     public List <Recipe> getAllRecipe() {
         return recipeRepository.findAll();
@@ -45,14 +50,12 @@ public  void deleteRecipieByRecipie(Recipe recipe) {
         recipeRepository.deleteById(id);
 }
     public void deleteRecipeByIngredients(Ingredient ingredient) {
-        recipeRepository.deleteByIngredientsIn(ingredient);
+         recipeRepository.deleteByIngredientsIn(ingredient);
     }
 
    private Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
         ModelMapper modelMapper = new ModelMapper();
-        Recipe recipe = modelMapper.map(recipeWeb, Recipe.class);
-
-        return recipe;
+       return modelMapper.map(recipeWeb, Recipe.class);
     }
 
     public List <Recipe> findByIngredientsContaining(String nameIngredient) {
@@ -70,11 +73,12 @@ public  void deleteRecipieByRecipie(Recipe recipe) {
     public void updateRecipe(Recipe recipe, Long id) {
         Optional <Recipe> recipe1Optional = recipeRepository.findById(id);
 
-        if (!recipe1Optional.isPresent()) throw new NotFoundRecipeById("This recipe from ubdate does not exist ");
-
+        if (!recipe1Optional.isPresent()) {
+           throw new NotFoundRecipeById("");
+        }
         recipe.setId(id);
+       recipeRepository.save(recipe);
 
-        recipeRepository.save(recipe);
     }
 
 }

@@ -8,13 +8,20 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table( name = "comments" )
-class Comment implements Serializable {
+@Table
+public class Comment implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
     @Column
     private String comment;
 
-    //facebook realization
+    public Comment(String comment,Long id) {
+        this.comment = comment;
+        this.id=id;
+    }
+
+    public Comment() {
+    }
+//facebook realization
 }

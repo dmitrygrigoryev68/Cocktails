@@ -13,18 +13,19 @@ public class Ingredient implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
-   @Column(name = "name_ingredient")
+   @Column
     private String nameIngredient;
     @Column
     private String descriptions;
     // private weightsAndMeasures wam;
 
 
-    public Ingredient() {
-    }
-    @JsonCreator
-    public Ingredient(@JsonProperty("nameIngredient")String nameIngredient,@JsonProperty ("descriptions")String descriptions) {
+    public Ingredient(String nameIngredient, String descriptions,Long id) {
         this.nameIngredient = nameIngredient;
         this.descriptions = descriptions;
+        this.id=id;
+    }
+
+    public Ingredient() {
     }
 }

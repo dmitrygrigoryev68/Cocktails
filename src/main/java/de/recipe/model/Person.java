@@ -14,4 +14,12 @@ public class Person implements Serializable {
     private Long id;
     @Column
     private String nameaAuthor;
+
+    public Person(String nameaAuthor,Long id) {
+        this.nameaAuthor = nameaAuthor;
+        this.id=id;
+    }
+
+    public Person() {
+    }
 }

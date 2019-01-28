@@ -39,5 +39,21 @@ public class Recipe implements Serializable {
     @OneToOne( targetEntity = Rate.class, cascade = CascadeType.ALL )
     private Rate rate;
 
+    public Recipe(Long id,String title, String announce, Date publicationDate, Person author, List <Ingredient> ingredients, List <RecepiStep> instructions, List <Taxonomy> tags, Comment comment, int prepTimeMinute, int cookingTime, Rate rate) {
+        this.title = title;
+        this.announce = announce;
+        this.publicationDate = publicationDate;
+        this.author = author;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+        this.tags = tags;
+        this.comment = comment;
+        this.prepTimeMinute = prepTimeMinute;
+        this.cookingTime = cookingTime;
+        this.rate = rate;
+        this.id=id;
+    }
 
+    public Recipe() {
+    }
 }

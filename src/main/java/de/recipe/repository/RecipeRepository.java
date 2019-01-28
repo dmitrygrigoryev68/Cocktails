@@ -11,7 +11,7 @@ public interface RecipeRepository extends JpaRepository <Recipe, Long> {
 
     List <Recipe> findByIngredientsNameIngredientIn(String nameIngredient);
     List <Recipe> findByAuthorNameaAuthor(String nameAuthor);
-    void deleteByIngredientsIn(Ingredient ingredient);
+    boolean deleteByIngredientsIn(Ingredient ingredient);
 
 
 }

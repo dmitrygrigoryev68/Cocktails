@@ -25,7 +25,7 @@ public class RecipeController {
         recipeService.creatRecipe(recipeWeb);
     }
 
-    @RequestMapping( "/recipes/{id}" )
+    @GetMapping( "/recipes/{id}" )
     public Recipe getRecipeByIdController(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
     }
@@ -37,6 +37,7 @@ public class RecipeController {
 
     @DeleteMapping( value = "delete/" )
     public void deleteRecipeByIngretient(@RequestBody Ingredient ingredient) {
+
         recipeService.deleteRecipeByIngredients(ingredient);
     }
 
@@ -50,7 +51,7 @@ public class RecipeController {
         return recipeService.findByIngredientsContaining(name_ingredient);
     }
 
-    @RequestMapping( "search/byAuthor/{string}" )
+    @GetMapping( "/search/byAuthor/{string}" )
     public List <Recipe> findBYAuthor(@PathVariable String string) {
         return recipeService.findbyAuthor(string);
     }
@@ -58,5 +59,6 @@ public class RecipeController {
     @PutMapping( "/recipe/update/{id}" )
     public void updateRecipeById(@RequestBody Recipe recipe, @PathVariable long id) {
         recipeService.updateRecipe(recipe, id);
+
     }
 }
