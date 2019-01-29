@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class testRecipeContrroler {
 
-    Taxonomy taxonomy = new Taxonomy("ad", 1L);
+    private Taxonomy taxonomy = new Taxonomy("ad", 1L);
     private static List <Ingredient> ingredients = Arrays.asList(new Ingredient("vfd", "gf", 1L));
     private static List <RecepiStep> instructions = Arrays.asList(new RecepiStep("ds", "fd", 1L));
     private static List <Taxonomy> tags = Arrays.asList(new Taxonomy("ad", 1L));
