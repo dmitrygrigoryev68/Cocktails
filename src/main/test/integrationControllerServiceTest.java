@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest( classes = Main.class )
 @AutoConfigureMockMvc
 
-public class integrationControlerServiceTest {
+public class integrationControllerServiceTest {
     private Taxonomy taxonomy = new Taxonomy("ad", 1L);
     private static List <Ingredient> ingredients = Arrays.asList(new Ingredient("vfd", "gf", 1L));
     private static List <RecepiStep> instructions = Arrays.asList(new RecepiStep("ds", "fd", 1L));
