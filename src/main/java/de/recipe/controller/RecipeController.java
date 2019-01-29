@@ -35,7 +35,7 @@ public class RecipeController {
         recipeService.deleteRecipeById(id);
     }
 
-    @DeleteMapping( value = "delete/" )
+    @DeleteMapping( value = "/delete/" )
     public void deleteRecipeByIngretient(@RequestBody Ingredient ingredient) {
 
         recipeService.deleteRecipeByIngredients(ingredient);

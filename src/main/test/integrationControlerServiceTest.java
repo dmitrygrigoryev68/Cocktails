@@ -1,7 +1,9 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.Main;
 import de.recipe.controller.RecipeController;
 import de.recipe.model.*;
+import de.recipe.repository.RecipeRepository;
 import de.recipe.service.RecipeServiceImpl;
 import de.recipe.web.RecipeWeb;
 import org.junit.Test;
@@ -15,13 +17,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import static org.mockito.Mockito.verify;
-
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -33,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 
 public class integrationControlerServiceTest {
-    Taxonomy taxonomy = new Taxonomy("ad", 1L);
+    private Taxonomy taxonomy = new Taxonomy("ad", 1L);
     private static List <Ingredient> ingredients = Arrays.asList(new Ingredient("vfd", "gf", 1L));
     private static List <RecepiStep> instructions = Arrays.asList(new RecepiStep("ds", "fd", 1L));
     private static List <Taxonomy> tags = Arrays.asList(new Taxonomy("ad", 1L));
@@ -94,5 +93,51 @@ public class integrationControlerServiceTest {
                 andExpect(status()
                         .isOk());
         Mockito.verify(recipeService, Mockito.times(1)).deleteRecipeById(1L);
+    }
+    @Test
+    public void findByIngretientTest() throws Exception {
+        mockMvc.perform(get("/searhc/ingredient/{name_ingredient}",recipe.getIngredients().get(0).getNameIngredient())
+                .contentType("application/json;charset=UTF-8"))
+                .andDo(print())
+                .andExpect(status()
+                        .isOk());
+        verify(recipeService,Mockito.times(1) ).findByIngredientsContaining(recipe.getIngredients().get(0).getNameIngredient());
+
+    }
+    @Test
+    public void deletByIngretientTest() throws Exception {
+        String jason=objectMapper.writeValueAsString(recipe.getIngredients().get(0));
+        mockMvc.perform(delete("/delete/",recipe.getIngredients().get(0))
+                .contentType("application/json;charset=UTF-8")
+                 .content(jason))
+                .andDo(print())
+                .andExpect(status()
+                        .isOk());
+        verify(recipeService,Mockito.times(1) ).deleteRecipeByIngredients(recipe.getIngredients().get(0));
+
+    }
+    @Test
+    public void findBYAuthorTest() throws Exception {
+        when(recipeService.findbyAuthor(recipe.getAuthor().getNameaAuthor())).thenReturn(list);
+        mockMvc.perform(get("/search/byAuthor/{string}",recipe.getAuthor().getNameaAuthor())
+                .contentType("application/json;charset=UTF-8"))
+                .andDo(print())
+                .andExpect(status()
+                        .isOk());
+        verify(recipeService,Mockito.times(1) ).findbyAuthor(recipe.getAuthor().getNameaAuthor());
+
+    }
+    @Test
+    public void updateRecipeByIdTest() throws Exception {
+        String jason=objectMapper.writeValueAsString(recipe);
+        when(recipeService.findbyAuthor(recipe.getAuthor().getNameaAuthor())).thenReturn(list);
+        mockMvc.perform(put("/recipe/update/{id}",1)
+                .contentType("application/json;charset=UTF-8")
+                .content(jason))
+                .andDo(print())
+                .andExpect(status()
+                        .isOk());
+        verify(recipeService,Mockito.times(1) ).updateRecipe(recipe,1L);
+
     }
 }
