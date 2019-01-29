@@ -66,7 +66,7 @@ public  void deleteRecipieByRecipie(Recipe recipe) {
 
     public List <Recipe> findbyAuthor(String nameauthor) {
         List <Recipe> byAuthorNameaAuthor = recipeRepository.findByAuthorNameaAuthor(nameauthor);
-        if (byAuthorNameaAuthor.isEmpty()) throw new NotFoundRecipeById("This recipe name does not exist");
+        if (byAuthorNameaAuthor.isEmpty()) throw new NotFoundRecipeById("This  author does not exist");
         return byAuthorNameaAuthor;
     }
 
@@ -74,7 +74,7 @@ public  void deleteRecipieByRecipie(Recipe recipe) {
         Optional <Recipe> recipe1Optional = recipeRepository.findById(id);
 
         if (!recipe1Optional.isPresent()) {
-           throw new NotFoundRecipeById("");
+           throw new NotFoundRecipeById("This  recipe does not exist");
         }
         recipe.setId(id);
        recipeRepository.save(recipe);

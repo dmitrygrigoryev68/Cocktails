@@ -40,7 +40,7 @@ public class testServiceImpl {
     @MockBean
     RecipeRepository recipeRepository;
 
-    @MockBean
+    @Autowired
     private RecipeServiceImpl recipeService;
 
     @Test
@@ -55,7 +55,7 @@ public class testServiceImpl {
     public void getRecipeByIdTest() {
         when(recipeService.getRecipeById(1L)).thenReturn(recipe);
         assertEquals(recipeService.getRecipeById(1L), recipe);
-        verify(recipeService, Mockito.times(1)).getRecipeById(1L);
+        verify(recipeRepository, Mockito.times(1)).getOne(1L);
 
     }
 }

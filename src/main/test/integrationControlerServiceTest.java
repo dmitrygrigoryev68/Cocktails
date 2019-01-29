@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.Main;
 import de.recipe.controller.RecipeController;
 import de.recipe.model.*;
@@ -13,12 +14,16 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import static org.mockito.Mockito.verify;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest( classes = Main.class )
 @AutoConfigureMockMvc
 
-public class integrationTest {
+public class integrationControlerServiceTest {
     Taxonomy taxonomy = new Taxonomy("ad", 1L);
     private static List <Ingredient> ingredients = Arrays.asList(new Ingredient("vfd", "gf", 1L));
     private static List <RecepiStep> instructions = Arrays.asList(new RecepiStep("ds", "fd", 1L));
@@ -36,7 +41,8 @@ public class integrationTest {
     private static Recipe recipe = new Recipe(1L, "title", "String announce", date, new Person("fgd", 1L), ingredients, instructions, tags, new Comment("ds", 1L), 23, 23, new Rate("sdf", 1L));
     private static RecipeWeb recipeWeb = new RecipeWeb("title", "String announce", new Person("fgd", 1L), ingredients, instructions, tags, 23, 23, new Rate("sdf", 1L));
     private static List <Recipe> list = Arrays.asList(recipe);
-
+    @Autowired
+    private ObjectMapper objectMapper;
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -52,8 +58,41 @@ public class integrationTest {
                 .andExpect(status()
                         .isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(content().json("[{\"title\":\"title\"}]"))
                 .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"nameaAuthor\":\"fgd\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"vfd\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
         Mockito.verify(recipeService, Mockito.times(1)).getAllRecipe();
+    }
+    @Test
+    public void creatRecipeControllerTest( ) throws Exception {
+        String jason=objectMapper.writeValueAsString(recipeWeb);
+        mockMvc.perform(post("/recipes/",recipeWeb)
+        .contentType("application/json;charset=UTF-8")
+                .content(jason))
+                .andDo(print())
+                .andExpect(status()
+                .isOk());
+        verify(recipeService,Mockito.times(1) ).creatRecipe(recipeWeb);
+
+    }
+    @Test
+    public void getRecipeByIdTest() throws Exception {
+        when(recipeService.getRecipeById(1L)).thenReturn(recipe);
+
+        mockMvc.perform(get("/recipes/{id}",1L)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print()).
+                andExpect(status()
+                        .isOk())
+                .andExpect(content().json("{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"nameaAuthor\":\"fgd\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"vfd\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}\n"));
+        Mockito.verify(recipeService, Mockito.times(1)).getRecipeById(1L);
+
+    }
+    @Test
+    public void delletRecipeByIDTest() throws Exception {
+        mockMvc.perform(delete("/delete/{id}",1L)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print()).
+                andExpect(status()
+                        .isOk());
+        Mockito.verify(recipeService, Mockito.times(1)).deleteRecipeById(1L);
     }
 }
