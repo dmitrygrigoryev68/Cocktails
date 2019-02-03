@@ -15,6 +15,16 @@ public class RecipeWeb {
     private int cookingTime;
     private Rate rate;
 
-
+    public RecipeWeb(String title, String announce, Person author, List <Ingredient> ingredients, List <RecepiStep> instructions, List <Taxonomy> tags, int prepTimeMinute, int cookingTime, Rate rate) {
+        this.title = title;
+        this.announce = announce;
+        this.author = author;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+        this.tags = tags;
+        this.prepTimeMinute = prepTimeMinute;
+        this.cookingTime = cookingTime;
+        this.rate = rate;
+    }
 }
 

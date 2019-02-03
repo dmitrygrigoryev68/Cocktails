@@ -15,7 +15,15 @@ public class RecepiStep implements Serializable {
     @Column
     private String stepDescription;
 
-    // private Photo photo;
+    public RecepiStep(String stepTitle, String stepDescription,Long id) {
+        this.stepTitle = stepTitle;
+        this.stepDescription = stepDescription;
+        this.id=id;
+    }
+
+    public RecepiStep() {
+    }
+// private Photo photo;
     // private Video video;
     // private Audio audio;
 }

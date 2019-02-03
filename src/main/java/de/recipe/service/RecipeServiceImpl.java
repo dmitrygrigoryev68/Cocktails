@@ -16,10 +16,14 @@ import java.util.Optional;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
-    @Autowired
-    RecipeRepository recipeRepository;
+    private final RecipeRepository recipeRepository;
 
-    public List <Recipe> getAllRecipe() {
+    @Autowired
+    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
+    }
+
+    public List<Recipe> getAllRecipe() {
         return recipeRepository.findAll();
 
     }
@@ -28,7 +32,8 @@ public class RecipeServiceImpl implements RecipeService {
         Optional <Recipe> optionalRecipe = recipeRepository.findById(id);
         if (!optionalRecipe.isPresent()) {
             throw new NotFoundRecipeById("This recipe does not exist");
-        } else return optionalRecipe.get();
+        }
+        else return optionalRecipe.get();
     }
 
     public void creatRecipe(RecipeWeb recipeWeb) {
@@ -45,36 +50,35 @@ public  void deleteRecipieByRecipie(Recipe recipe) {
         recipeRepository.deleteById(id);
 }
     public void deleteRecipeByIngredients(Ingredient ingredient) {
-        recipeRepository.deleteByIngredientsIn(ingredient);
+         recipeRepository.deleteByIngredientsIn(ingredient);
     }
 
    private Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
         ModelMapper modelMapper = new ModelMapper();
-        Recipe recipe = modelMapper.map(recipeWeb, Recipe.class);
-
-        return recipe;
+       return modelMapper.map(recipeWeb, Recipe.class);
     }
 
     public List <Recipe> findByIngredientsContaining(String nameIngredient) {
         List <Recipe> byIngredients = recipeRepository.findByIngredientsNameIngredientIn(nameIngredient);
         if (byIngredients .isEmpty()) throw new NotFoundRecipeById("This recipe name does not exist");
-        else return byIngredients;
+         return byIngredients;
     }
 
     public List <Recipe> findbyAuthor(String nameauthor) {
         List <Recipe> byAuthorNameaAuthor = recipeRepository.findByAuthorNameaAuthor(nameauthor);
-        if (byAuthorNameaAuthor.isEmpty()) throw new NotFoundRecipeById("This recipe name does not exist");
+        if (byAuthorNameaAuthor.isEmpty()) throw new NotFoundRecipeById("This  author does not exist");
         return byAuthorNameaAuthor;
     }
 
     public void updateRecipe(Recipe recipe, Long id) {
         Optional <Recipe> recipe1Optional = recipeRepository.findById(id);
 
-        if (!recipe1Optional.isPresent()) throw new NotFoundRecipeById("This recipe from ubdate does not exist ");
-
+        if (!recipe1Optional.isPresent()) {
+           throw new NotFoundRecipeById("This  recipe does not exist");
+        }
         recipe.setId(id);
+       recipeRepository.save(recipe);
 
-        recipeRepository.save(recipe);
     }
 
 }

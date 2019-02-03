@@ -11,6 +11,14 @@ import java.io.Serializable;
 public class Rate  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
+private String rate;
 
+    public Rate(String rate,long id) {
+        this.rate = rate;
+        this.id=id;
+    }
+
+    public Rate() {
+    }
 }
