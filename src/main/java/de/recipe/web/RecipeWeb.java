@@ -1,6 +1,8 @@
 package de.recipe.web;
 import de.recipe.model.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.util.List;
 
 @Data
@@ -25,6 +27,9 @@ public class RecipeWeb {
         this.prepTimeMinute = prepTimeMinute;
         this.cookingTime = cookingTime;
         this.rate = rate;
+    }
+
+    public RecipeWeb() {
     }
 }
 

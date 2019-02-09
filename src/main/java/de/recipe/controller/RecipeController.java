@@ -4,6 +4,7 @@ import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.service.RecipeServiceImpl;
 import de.recipe.web.RecipeWeb;
+import de.recipe.web.RecipeWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class RecipeController {
     RecipeServiceImpl recipeService;
 
     @GetMapping( value = "/recipes" )
-    public List <Recipe> getAllRecipe() {
+    public List <RecipeWebOutput> getAllRecipe() {
         return recipeService.getAllRecipe();
     }
 
@@ -26,7 +27,7 @@ public class RecipeController {
     }
 
     @GetMapping( "/recipes/{id}" )
-    public Recipe getRecipeByIdController(@PathVariable Long id) {
+    public RecipeWebOutput getRecipeByIdController(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
     }
 
@@ -61,4 +62,5 @@ public class RecipeController {
         recipeService.updateRecipe(recipe, id);
 
     }
+
 }

@@ -1,15 +1,18 @@
 import de.Main;
+import de.recipe.controller.RecipeController;
 import de.recipe.model.*;
 import de.recipe.repository.RecipeRepository;
 import de.recipe.service.RecipeServiceImpl;
 import de.recipe.web.RecipeWeb;
+import de.recipe.web.RecipeWebOutput;
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -17,17 +20,16 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith( SpringRunner.class )
 @SpringBootTest( classes = Main.class )
 @AutoConfigureMockMvc
 public class testServiceImpl {
-
     private Taxonomy taxonomy = new Taxonomy("ad", 1L);
-    private static List <Ingredient> ingredients = Arrays.asList(new Ingredient("vfd", "gf", 1L));
+    private static List <Ingredient> ingredients = Arrays.asList(new Ingredient("vfd", "gf",1L));
     private static List <RecepiStep> instructions = Arrays.asList(new RecepiStep("ds", "fd", 1L));
     private static List <Taxonomy> tags = Arrays.asList(new Taxonomy("ad", 1L));
     private static Date date = new Date();
@@ -37,25 +39,31 @@ public class testServiceImpl {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Autowired
     RecipeRepository recipeRepository;
 
     @Autowired
     private RecipeServiceImpl recipeService;
+    @Autowired
+    RecipeController recipeController;
 
     @Test
     public void testServiceGetAll() {
-        when(recipeRepository.findAll()).thenReturn(list);
-        assertEquals(recipeService.getAllRecipe(), list);
-        verify(recipeRepository, Mockito.times(1)).findAll();
+        List <RecipeWebOutput> listService = recipeController.getAllRecipe();
+        List <Recipe> listrepo = recipeRepository.findAll();
+        Assert.assertEquals(listService.size(), listrepo.size());
+        Assert.assertEquals(listrepo, listService);
+
 
     }
 
     @Test
-    public void getRecipeByIdTest() {
-        when(recipeService.getRecipeById(1L)).thenReturn(recipe);
-        assertEquals(recipeService.getRecipeById(1L), recipe);
-        verify(recipeRepository, Mockito.times(1)).getOne(1L);
+    public void getRecipeByIdTest() throws Exception {
+        Recipe recipe = recipeRepository.getOne(1L);
+        mockMvc.perform(get("/recipes/{id}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print()).
+                andExpect(status().isOk());
+        Assertions.assertEquals(recipeService.getRecipeById(1L), recipe);
+
 
     }
 }
