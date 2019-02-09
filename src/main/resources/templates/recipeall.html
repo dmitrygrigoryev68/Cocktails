@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Person List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Recipe List</h1>
+<a href="/index">Home</a>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>title</th>
+            <th>announce</th>
+            <th>Author</th>
+            <th>CookingTime</th>
+            <th>Ingredients</th>
+            <th>Instruction</th>
+            <th>PrepTimeMinute</th>
+            <th>PublicationDate</th>
+            <th>Rate</th>
+            <th>Taxonomy</th>
+            <th>Comment</th>
+
+        </tr>
+
+
+        <tr th:each="RecipeWebOutput: ${recipeall}">
+            <td th:utext="${RecipeWebOutput.title}">Title</td>
+            <td th:utext="${RecipeWebOutput.announce}">Anounce</td>
+            <td th:utext="${RecipeWebOutput.author}">Author</td>
+            <td th:utext="${RecipeWebOutput.cookingTime}">CookingTime</td>
+            <td th:utext="${RecipeWebOutput.ingredients}">Ingredients</td>
+            <td th:utext="${RecipeWebOutput.instructions}">Instruction</td>
+            <td th:utext="${RecipeWebOutput.prepTimeMinute}">PrepTimeMinute</td>
+            <td th:utext="${RecipeWebOutput.publicationDate}">PublicationDate</td>
+            <td th:utext="${RecipeWebOutput.rate}">Rate</td>
+            <td th:utext="${RecipeWebOutput.tags}">Taxonomy</td>
+            <td th:utext="${RecipeWebOutput.comment}">Comment</td>
+            <br>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

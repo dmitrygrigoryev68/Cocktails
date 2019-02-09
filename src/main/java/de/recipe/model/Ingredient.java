@@ -1,13 +1,15 @@
 package de.recipe.model;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
-
+@Transactional
 @Entity
 @Data
+@EqualsAndHashCode
 @Table
 public class Ingredient implements Serializable {
     @Id
@@ -25,6 +27,7 @@ public class Ingredient implements Serializable {
         this.descriptions = descriptions;
         this.id=id;
     }
+
 
     public Ingredient() {
     }
