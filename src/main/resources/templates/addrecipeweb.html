@@ -1,76 +1,108 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
-   <head>
-          <meta charset="UTF-8" />
-          <title>Add Recipe</title>
-          <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-       </head>
-   <body>
-      <h1>Create a Recipe:</h1>
-      <!--/*@thymesVar id="addrecipeweb" type="templates"*/-->
-      <tr th:each ="recipeweb : ${addrecipeweb}">
-          <td th:utext="${recipeweb.title}">Title</td>
-          <td th:utext="${recipeweb.announce}">Anounce</td>
-          <td th:utext="${recipeweb.author}">Author</td>
-          <td th:utext="${recipeweb.cookingTime}">CookingTime</td>
-          <td th:utext="${recipeweb.ingredients}">Ingredients</td>
-          <td th:utext="${recipeweb.instructions}">Instruction</td>
-          <td th:utext="${recipeweb.prepTimeMinute}">PrepTimeMinute</td>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>BORAJI.COM</title>
 
-          <td th:utext="${recipeweb.tags}">Tags</td>
+    <style type="text/css">
+        span.error{
+            color: red;
+            margin-left: 5px;
+        }
+    </style>
 
-          <td th:utext="${recipeweb.rate}">Rate</td>
-          <br>
-      </tr>
-      <!--
-         In Thymeleaf the equivalent of
-         JSP's ${pageContext.request.contextPath}/edit.html
-         would be @{/edit.html}
-         -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            /*  Submit form using Ajax */
+            $('button[type=submit]').click(function(e) {
 
-      <form th:action="@{/addrecipe}"
-                     th:object="${recipeWeb}" method="POST">
-          <label>
-              Title:
-              <input type="text" th:field="*{title}"/>
-          </label>
-             <br/>
-              Announce:
-          <label>
-              <input type="text" th:field="*{announce}" />
-          </label>
-          <br/>
-          Author:
-          <label>
-              <input type="text" th:field="*{author.nameaAuthor}" />
-          </label>
-          <br/>
-          Ingredients:
-<!--/*@thymesVar id="Ingredient" type="de.recipe.model.Ingredient"*/-->
-<form th:object="${Ingredient}" >
-    <label>
-        <input type="text"  th:field="*{nameIngredient}"  name="Ingredients[nameIngredient]">
-    </label>
+                //Prevent default submission of form
+                e.preventDefault();
 
-    <label>
-        <input type="text"  th:field="*{descriptions}" name="Ingredients[descriptions]">
-    </label>
+                //Remove all errors
+                $('input').next().remove();
 
+                $.post({
+                    url : '/addrecipe',
+                    data : $('form[name=RecipeForm]').serialize(),
+                    success : function(res) {
 
+                        if(res.validated){
+                            //Set response
+                            $('#resultContainer pre code').text(JSON.stringify(res.RecipeWeb));
+                            $('#resultContainer').show();
+
+                        }else{
+                            //Set error messages
+                            $.each(res.errorMessages,function(key,value){
+                                $('input[name='+key+']').after('<span class="error">'+value+'</span>');
+                            });
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Recipe Input Form</h1>
+<hr />
+
+<form action="saveRecipe" method="post" name="RecipeForm">
+    <table>
+        <tr>
+            <td>title</td>
+            <td><input name="title" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Announce</td>
+            <td><input name="announce" type="text" /></td>
+        </tr>
+        <tr>
+            <td> Author</td>
+            <td><input name=" author" type="text" /></td>
+        </tr>
+        <tr>
+            <td>IngredientsName</td>
+            <td><input name="nameIngredient" type="text" /></td>
+            <td>Description</td>
+            <td><input name="descriptions" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Instructions</td>
+            <td><input name="instructions" type="text" /></td>
+        </tr>
+        <tr>
+        <td>Tags</td>
+        <td><input name="tags" type="text" /></td>
+    </tr>
+        <tr>
+            <td>PrepTimeMinute</td>
+            <td><input name="prepTimeMinute" type="text" /></td>
+        </tr>
+        <tr>
+            <td>CookingTime</td>
+            <td><input name="cookingTime" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Rate</td>
+            <td><input name="rate" type="text" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
 </form>
-          <br>
 
-             <input type="submit" value="Create" />
-          </form>
-
-      <br/>
-
-      <!-- Check if errorMessage is not null and not empty -->
-
-      <div th:if="${errorMessage}" th:utext="${errorMessage}"
-                    style="color:red;font-style:italic;">
-             ...
-          </div>
-
-   </body>
+<!-- Result Container  -->
+<div id="resultContainer" style="display: none;">
+    <hr/>
+    <h4 style="color: green;">JSON Response From Server</h4>
+    <pre style="color: green;">
+    <code></code>
+   </pre>
+</div>
+</body>
 </html>
