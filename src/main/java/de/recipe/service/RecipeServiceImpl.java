@@ -1,5 +1,4 @@
 package de.recipe.service;
-
 import de.exeption.NotFoundRecipeById;
 import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
@@ -8,7 +7,6 @@ import de.recipe.web.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,7 +23,10 @@ public class RecipeServiceImpl<T, Y> implements RecipeService {
     }
 
     public List <RecipeWebOutput> getAllRecipe() {
-        return recipeRepository.findAll().stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
+        return recipeRepository.findAll()
+                .stream()
+                .map(this::creatRecipeWebOutputToRecipe)
+                .collect(Collectors.toList());
     }
 
     public RecipeWebOutput getRecipeById(Long id) {
