@@ -1,12 +1,14 @@
 package de.recipe.service;
+
 import de.exeption.NotFoundRecipeById;
-import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.repository.RecipeRepository;
-import de.recipe.web.*;
+import de.recipe.web.RecipeWeb;
+import de.recipe.web.RecipeWebOutput;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,10 +25,10 @@ public class RecipeServiceImpl<T, Y> implements RecipeService {
     }
 
     public List <RecipeWebOutput> getAllRecipe() {
-        return recipeRepository.findAll()
-                .stream()
-                .map(this::creatRecipeWebOutputToRecipe)
-                .collect(Collectors.toList());
+        List <Recipe> outputList = recipeRepository.findAll();
+        List <RecipeWebOutput> outputList1 = outputList.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
+        if (outputList.isEmpty()) throw new NotFoundRecipeById("Recipe is NotFound");
+        return outputList1;
     }
 
     public RecipeWebOutput getRecipeById(Long id) {
@@ -46,13 +48,20 @@ public class RecipeServiceImpl<T, Y> implements RecipeService {
         recipeRepository.deleteById(id);
     }
 
-    public void deleteRecipieByRecipie(Recipe recipe) {
-        Long id = recipe.getId();
-        recipeRepository.deleteById(id);
+    public void deleteRecipieByRecipie(RecipeWeb recipeWeb) {
+        Optional <Recipe> optionalRecipe = Optional.ofNullable(recipeRepository.findByTitle(recipeWeb.getTitle()));
+        if (!optionalRecipe.isPresent()) {
+            throw new NotFoundRecipeById("This recipe does not exist");
+        }
+        recipeRepository.deleteById(optionalRecipe.get().getId());
     }
 
-    public void deleteRecipeByIngredients(Ingredient ingredient) {
-        recipeRepository.deleteByIngredientsIn(ingredient);
+    public void deleteRecipeByIngredients(String ingredient) {
+        List <Recipe> list = recipeRepository.findByIngredientsNameIngredientIn(ingredient);
+        for (Recipe s : list) {
+        }
+
+
     }
 
     private Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
@@ -60,12 +69,13 @@ public class RecipeServiceImpl<T, Y> implements RecipeService {
         return modelMapper.map(recipeWeb, Recipe.class);
     }
 
+
     private RecipeWebOutput creatRecipeWebOutputToRecipe(Recipe recipe) {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(recipe,RecipeWebOutput.class);
+        return modelMapper.map(recipe, RecipeWebOutput.class);
     }
 
-   private List <T> refactoryObjectListToObjectwebList(List <Y> list, Class <T> tClass) {
+    private List <T> refactoryObjectListToObjectwebList(List <Y> list, Class <T> tClass) {
         ModelMapper modelMapper = new ModelMapper();
         return list.stream().map(a -> modelMapper.map(a, tClass)).collect(Collectors.toList());
     }
@@ -91,8 +101,12 @@ public class RecipeServiceImpl<T, Y> implements RecipeService {
         recipe.setId(id);
         recipeRepository.save(recipe);
 
+
     }
 
-
+    public RecipeWebOutput findByTitle(String title) {
+        Recipe recipe = recipeRepository.findByTitle(title);
+        return creatRecipeWebOutputToRecipe(recipe);
+    }
 }
 

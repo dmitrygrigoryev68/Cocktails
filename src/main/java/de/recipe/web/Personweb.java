@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Personweb {
+
     private String nameaAuthor;
 
     public Personweb(String nameaAuthor) {

@@ -6,22 +6,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Transactional
 @Entity
 @Data
 @Table
 @EqualsAndHashCode
-public class Rate  implements Serializable {
+public class Rate implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
-private String rate;
+    @Column( name = "rate_name",nullable = false)
+    private String rateName;
 
-    public Rate(String rate,long id) {
-        this.rate = rate;
-        this.id=id;
+    public Rate(String rateName, long id) {
+        this.rateName = rateName;
+        this.id = id;
     }
 
 

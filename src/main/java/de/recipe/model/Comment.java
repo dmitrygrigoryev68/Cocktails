@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Transactional
 @Entity
@@ -17,13 +16,11 @@ public class Comment implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column
+    @Column(length = 1500,nullable = false)
     private String comment;
-
-    public Comment(String comment,Long id) {
-        this.comment = comment;
-        this.id=id;
-    }
+  /*  @ManyToOne( fetch = FetchType.EAGER, targetEntity = User.class, cascade = CascadeType.ALL )
+     private User user;
+*/
     public Comment() {
     }
 //facebook realization

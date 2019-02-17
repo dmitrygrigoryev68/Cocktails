@@ -1,33 +1,27 @@
 package de.recipe.web;
-import de.recipe.model.*;
+
+import de.recipe.model.Photo;
+import de.recipe.model.Video;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import org.glassfish.jersey.server.Uri;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class RecipeWeb {
     private String title;
     private String announce;
-    private Person author;
-    private List <Ingredient> ingredients;
-    private List <RecepiStep> instructions;
-    private List <Taxonomy> tags;
+    private Personweb author;
+    private List <IngredientWeb> ingredients;
+    private List <RecepiStepWeb> instructions;
+    private List <TaxonomyWeb> tags;
     private int prepTimeMinute;
     private int cookingTime;
-    private Rate rate;
+    private RateWeb rate;
+    private List <Photo> image;
+    private List<Video>  video;
 
-    public RecipeWeb(String title, String announce, Person author, List <Ingredient> ingredients, List <RecepiStep> instructions, List <Taxonomy> tags, int prepTimeMinute, int cookingTime, Rate rate) {
-        this.title = title;
-        this.announce = announce;
-        this.author = author;
-        this.ingredients = ingredients;
-        this.instructions = instructions;
-        this.tags = tags;
-        this.prepTimeMinute = prepTimeMinute;
-        this.cookingTime = cookingTime;
-        this.rate = rate;
-    }
 
     public RecipeWeb() {
     }
