@@ -1,4 +1,5 @@
 package de.recipe.model;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,19 +14,19 @@ import java.io.Serializable;
 @Table
 public class Ingredient implements Serializable {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-   @Column
+    @Column(length =3000,nullable = false)
     private String nameIngredient;
-    @Column
+    @Column(length =3000,nullable = false)
     private String descriptions;
     // private weightsAndMeasures wam;
 
 
-    public Ingredient(String nameIngredient, String descriptions,Long id) {
+    public Ingredient(String nameIngredient, String descriptions, Long id) {
         this.nameIngredient = nameIngredient;
         this.descriptions = descriptions;
-        this.id=id;
+        this.id = id;
     }
 
 

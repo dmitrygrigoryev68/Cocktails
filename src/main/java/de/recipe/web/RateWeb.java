@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class RateWeb {
-    private String rate;
+    private String rateName;
 
-    public RateWeb(String rate) {
-        this.rate = rate;
+    public RateWeb(String rateName) {
+        this.rateName = rateName;
     }
 
     public RateWeb() {

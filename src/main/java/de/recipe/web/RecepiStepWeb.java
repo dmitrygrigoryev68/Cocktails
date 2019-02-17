@@ -2,7 +2,6 @@ package de.recipe.web;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 @Data
 public class RecepiStepWeb {
     private String stepTitle;

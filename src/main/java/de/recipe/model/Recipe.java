@@ -8,10 +8,12 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
+
 @Transactional
 @Entity
 @EqualsAndHashCode
@@ -22,43 +24,36 @@ public class Recipe implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
     private String title;
+    @Column(length = 3000)
     private String announce;
     @CreationTimestamp
     @Column( nullable = false, updatable = false )
     @Temporal( TemporalType.TIMESTAMP )
     private Date publicationDate;
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Person.class, cascade = CascadeType.ALL )
+    @ManyToOne( fetch = FetchType.EAGER, targetEntity = Person.class, cascade = CascadeType.ALL )
     private Person author;
     @OneToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
     private List <Ingredient> ingredients;
-    @OneToMany(cascade = CascadeType.ALL )
+    @OneToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
     private List <RecepiStep> instructions;
-    @OneToMany(cascade = CascadeType.ALL )
+    @OneToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
     private List <Taxonomy> tags;
-    @ManyToOne(targetEntity = Comment.class, cascade = CascadeType.ALL )
-    private Comment comment;
+    @ManyToMany( cascade = CascadeType.ALL )
+    @LazyCollection( LazyCollectionOption.FALSE )
+    private Set <Comment> comment;
     private int prepTimeMinute;
     private int cookingTime;
-    @OneToOne(targetEntity = Rate.class, cascade = CascadeType.ALL )
+    @OneToOne( targetEntity = Rate.class, cascade = CascadeType.ALL )
     private Rate rate;
-
-    public Recipe(Long id, String title, String announce, Date publicationDate, Person author, List <Ingredient> ingredients, List <RecepiStep> instructions, List <Taxonomy> tags, Comment comment, int prepTimeMinute, int cookingTime, Rate rate) {
-        this.title = title;
-        this.announce = announce;
-        this.publicationDate = publicationDate;
-        this.author = author;
-        this.ingredients = ingredients;
-        this.instructions = instructions;
-        this.tags = tags;
-        this.comment = comment;
-        this.prepTimeMinute = prepTimeMinute;
-        this.cookingTime = cookingTime;
-        this.rate = rate;
-        this.id = id;
-    }
+    @OneToMany(cascade=CascadeType.ALL)
+    @LazyCollection( LazyCollectionOption.FALSE )
+    private List <Photo> image;
+    @OneToMany(cascade=CascadeType.ALL)
+    @LazyCollection( LazyCollectionOption.FALSE )
+    private List<Video>  video;
 
     public Recipe() {
     }

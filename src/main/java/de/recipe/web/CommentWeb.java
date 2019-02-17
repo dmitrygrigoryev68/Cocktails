@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class CommentWeb {
-    private String comment;
+    private String commentName;
 
-    public CommentWeb(String comment) {
-        this.comment = comment;
+    public CommentWeb(String commentName) {
+        this.commentName = commentName;
     }
 
     public CommentWeb() {

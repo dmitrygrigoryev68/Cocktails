@@ -1,47 +1,83 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Person List</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../static/css/style.css" rel="stylesheet"
+          type="text/css"/>
 </head>
 <body>
 <h1>Recipe List</h1>
-<a href="/index">Home</a>
-<br/><br/>
+<a href="index">Home</a>
+<br/>
 <div>
-    <table border="1">
-        <tr>
-            <th>title</th>
-            <th>announce</th>
-            <th>Author</th>
-            <th>CookingTime</th>
-            <th>Ingredients</th>
-            <th>Instruction</th>
-            <th>PrepTimeMinute</th>
-            <th>PublicationDate</th>
-            <th>Rate</th>
-            <th>Taxonomy</th>
-            <th>Comment</th>
 
-        </tr>
-
-
-        <tr th:each="RecipeWebOutput: ${recipeall}">
+    <tr th:each="RecipeWebOutput: ${recipeall}">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <img class="img-thumbnail"  height="120" width="80" th:src="${RecipeWebOutput.image[0].filename}" >
+                </div>
+                <div class="col-sm">
+                    <img class="img-thumbnail" height="120" width="80" th:src="${RecipeWebOutput.image[1].filename}">
+                </div>
+                <div class="col-sm">
+                    <img class="img-thumbnail" height="120" width="80" th:src="${RecipeWebOutput.image[2].filename}">
+                </div>
+            </div>
+        </div>
+        <div>ID Recipe:<a th:href="@{'recipeid/'+${RecipeWebOutput.id}}">
+            <td th:utext="${RecipeWebOutput.id}"></td>
+        </a></div>
+        <div>
+        </div>
+        <div>Title:<a th:href="@{'recipebytitle/'+${RecipeWebOutput.title}}">
             <td th:utext="${RecipeWebOutput.title}"></td>
+        </a></div>
+        <div>
+            Announce:
             <td th:utext="${RecipeWebOutput.announce}"></td>
-            <td th:utext="${RecipeWebOutput.author}"></td>
+        </div>
+        <div>Author:
+            <a th:href="@{'/recipe/'+${RecipeWebOutput.author.nameaAuthor}}">
+                <td th:utext="${RecipeWebOutput.author.nameaAuthor}"></td>
+            </a></div>
+        <div>
+            CooKing Time :
             <td th:utext="${RecipeWebOutput.cookingTime}"></td>
-            <td th:utext="${RecipeWebOutput.ingredients}"></td>
-            <td th:utext="${RecipeWebOutput.instructions}"></td>
+        </div>
+        <div>Ingredients Name:
+
+            <ul th:each="IngredientWeb :${RecipeWebOutput.ingredients}">
+                <a th:href="@{'recipebyingredient/'+${IngredientWeb.nameIngredient}}">
+                    <li th:text="${IngredientWeb.nameIngredient}">Ingredient</li>
+
+                </a>
+
+            </ul>
+
+        </div>
+        <div>
+            <ul th:each="TaxonomyWeb :${RecipeWebOutput.tags}">Taxonomy :
+
+                <li th:text="${TaxonomyWeb.nameTaxonomy}"></li>
+                </br>
+
+            </ul>
+            Preparation Time :
             <td th:utext="${RecipeWebOutput.prepTimeMinute}"></td>
-            <td th:utext="${RecipeWebOutput.publicationDate}"></td>
-            <td th:utext="${RecipeWebOutput.rate}"></td>
-            <td th:utext="${RecipeWebOutput.tags}"></td>
-            <td th:utext="${RecipeWebOutput.comment}"></td>
-            <br>
-        </tr>
-    </table>
+        </div>
+
+
+        <br/>
+    </tr>
+
 </div>
 </body>
 </html>
