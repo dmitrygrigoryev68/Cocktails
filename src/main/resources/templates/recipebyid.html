@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Searc by Id</title>
+</head>
+<body>
+<div>Search By Id</div>
+
+
+<form action="{% recipeid/'id'%}" method="get">
+    <div><label>
+        <input name="id" th:valuetype="Long" value=""/>
+    </label>
+        <button th:type="submit">Search</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,6 +1,5 @@
 package de.recipe.controller;
 
-import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.service.RecipeServiceImpl;
 import de.recipe.web.RecipeWeb;
@@ -22,8 +21,9 @@ public class RecipeController {
     }
 
     @PostMapping( value = "/recipes", consumes = "application/json" )
-    public void creatRecipeController(@RequestBody RecipeWeb recipeWeb) {
+    public RecipeWeb creatRecipeController(@RequestBody RecipeWeb recipeWeb) {
         recipeService.creatRecipe(recipeWeb);
+        return recipeWeb;
     }
 
     @GetMapping( "/recipes/{id}" )
@@ -32,23 +32,25 @@ public class RecipeController {
     }
 
     @DeleteMapping( value = "/delete/{id}" )
-    public void delletRecipeByID(@PathVariable Long id) {
+    public List <RecipeWebOutput> delletRecipeByID(@PathVariable Long id) {
         recipeService.deleteRecipeById(id);
+        return getAllRecipe();
+
     }
 
     @DeleteMapping( value = "/delete/" )
-    public void deleteRecipeByIngretient(@RequestBody Ingredient ingredient) {
+    public void deleteRecipeByIngretient(@RequestBody String ingredient) {
 
         recipeService.deleteRecipeByIngredients(ingredient);
     }
 
     @DeleteMapping( value = "delete/recipes", consumes = "application/json" )
-    public void deletByRecipe(@RequestBody Recipe recipe) {
+    public void deletByRecipe(@RequestBody RecipeWeb recipe) {
         recipeService.deleteRecipieByRecipie(recipe);
     }
 
     @GetMapping( "/searhc/ingredient/{name_ingredient}" )
-    public List <Recipe> findByIngredientController(@PathVariable String name_ingredient) {
+    public List findByIngredientController(@PathVariable String name_ingredient) {
         return recipeService.findByIngredientsContaining(name_ingredient);
     }
 

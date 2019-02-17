@@ -1,36 +1,26 @@
 package de.recipe.model;
 
-/*@Data
-public class Photo extends Image {
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.transaction.annotation.Transactional;
 
-    private String alt;
-    private String title;
+import javax.persistence.*;
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+@Transactional
+@Entity
+@Data
+@Table
+@EqualsAndHashCode
+public class Photo {
+
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Long id;
+    @Column(length = 5000,nullable = false)
     private String filename;
 
 
-    @Override
-    public int getWidth(ImageObserver observer) {
-        return 0;
-    }
 
-    @Override
-    public int getHeight(ImageObserver observer) {
-        return 0;
-    }
-
-    @Override
-    public ImageProducer getSource() {
-        return null;
-    }
-
-    @Override
-    public Graphics getGraphics() {
-        return null;
-    }
-
-    @Override
-    public Object getProperty(String name, ImageObserver observer) {
-        return null;
-    }
 }
-*/
