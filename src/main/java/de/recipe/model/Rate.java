@@ -14,9 +14,10 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class Rate implements Serializable {
     @Id
+    @Column(name = "rate_id")
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
-    @Column( name = "rate_name",nullable = false)
+    @Column( name = "rate_name", nullable = false )
     private String rateName;
 
     public Rate(String rateName, long id) {

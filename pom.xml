@@ -6,7 +6,7 @@
 
     <name>RecipesAndCocktails</name>
     <description>
-        Recepes and Coctails DB with JavaBackend
+        Recipes and Cocktails DB with JavaBackend
     </description>
 
     <parent>
@@ -25,7 +25,7 @@
         <developer>
             <id>Telran</id>
             <name>DAJ</name>
-            <email>andron13@gmail.com</email>
+            <email>blackrailean@gmail.com</email>
             <timezone>ECT</timezone>
         </developer>
     </developers>
@@ -45,17 +45,6 @@
             <version>4.0.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>27.0.1-jre</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -136,11 +125,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.3.1</version>
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -172,7 +157,7 @@
                         <resource>
                             <targetPath>/</targetPath>
                             <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
+                            <include>${project.build.finalName}.war</include>
                         </resource>
                     </resources>
                 </configuration>

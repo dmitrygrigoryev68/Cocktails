@@ -5,9 +5,7 @@ import lombok.EqualsAndHashCode;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
+
 @Transactional
 @Entity
 @Data
@@ -16,11 +14,14 @@ import java.awt.image.ImageProducer;
 public class Photo {
 
     @Id
+    @Column(name = "photo_id")
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column(length = 5000,nullable = false)
-    private String filename;
+    @Column( length = 5000, nullable = false )
+    private String patch;
 
+    public Photo() {
+    }
 
 
 }

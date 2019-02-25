@@ -1,26 +1,33 @@
 package de.recipe.controller;
 
 import de.recipe.model.Recipe;
-import de.recipe.service.RecipeServiceImpl;
+import de.recipe.service.RecipeService;
+import de.recipe.service.RecipeServiceWebTechnical;
 import de.recipe.web.RecipeWeb;
 import de.recipe.web.RecipeWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class RecipeController {
-
+    private final RecipeService recipeService;
+@Autowired
+    RecipeServiceWebTechnical serviceWebTechnical;
     @Autowired
-    RecipeServiceImpl recipeService;
+    public RecipeController( RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
 
-    @GetMapping( value = "/recipes" )
+
+    @GetMapping( value = "/getAllRecipes" )
     public List <RecipeWebOutput> getAllRecipe() {
         return recipeService.getAllRecipe();
     }
 
-    @PostMapping( value = "/recipes", consumes = "application/json" )
+    @PostMapping( value = "/addNewRecipes", consumes = "application/json" )
     public RecipeWeb creatRecipeController(@RequestBody RecipeWeb recipeWeb) {
         recipeService.creatRecipe(recipeWeb);
         return recipeWeb;
@@ -31,37 +38,39 @@ public class RecipeController {
         return recipeService.getRecipeById(id);
     }
 
-    @DeleteMapping( value = "/delete/{id}" )
+    @DeleteMapping( value = "/recipes/{id}" )
     public List <RecipeWebOutput> delletRecipeByID(@PathVariable Long id) {
         recipeService.deleteRecipeById(id);
         return getAllRecipe();
 
     }
 
-    @DeleteMapping( value = "/delete/" )
+    @DeleteMapping( value = "/recipesByIngredient/" )
     public void deleteRecipeByIngretient(@RequestBody String ingredient) {
 
         recipeService.deleteRecipeByIngredients(ingredient);
     }
 
-    @DeleteMapping( value = "delete/recipes", consumes = "application/json" )
+    @DeleteMapping( value = "recipes/recipes", consumes = "application/json" )
     public void deletByRecipe(@RequestBody RecipeWeb recipe) {
         recipeService.deleteRecipieByRecipie(recipe);
     }
 
-    @GetMapping( "/searhc/ingredient/{name_ingredient}" )
+    @GetMapping( "/recipes/ingredients/{name_ingredient}" )
     public List findByIngredientController(@PathVariable String name_ingredient) {
         return recipeService.findByIngredientsContaining(name_ingredient);
     }
 
-    @GetMapping( "/search/byAuthor/{string}" )
-    public List <Recipe> findBYAuthor(@PathVariable String string) {
-        return recipeService.findbyAuthor(string);
+    @GetMapping( "/recipes/author/{nameAuthor}" )
+    public List <RecipeWebOutput> findBYAuthor(@PathVariable String nameAuthor) {
+        List <RecipeWebOutput> recipeWebOutputList = recipeService.findbyAuthor(nameAuthor);
+        return recipeWebOutputList;
     }
 
-    @PutMapping( "/recipe/update/{id}" )
-    public void updateRecipeById(@RequestBody Recipe recipe, @PathVariable long id) {
-        recipeService.updateRecipe(recipe, id);
+    @PutMapping( "/recipes/{id}" )
+    public void updateRecipeById(@RequestBody RecipeWeb recipeWeb, @PathVariable long id) {
+        Recipe recipe = (Recipe) serviceWebTechnical.convertTheReceiptsIntoAnotherEmbodiment(recipeWeb, Recipe.class);
+        recipeService.updateRecipe(recipe,id);
 
     }
 

@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
+
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Searc by Id</title>
+    <meta charset="UTF-8"/>
+    <title>Add Recipe</title>
     <script crossorigin="anonymous"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -16,36 +17,31 @@
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+
 </head>
 <body>
-<div style="text-align: center;color: crimson">Search</div>
-<a class="badge badge-primary" href="/web/index"> ___Home___ </a>
+<h1>Add Comment:</h1>
 
-<br/>
-<br/>
-<form th:object="${id}" th:action ="@{/recipes/web/title/}" method="post">
-    <label>
-        <input class="form-control input-lg"  th:field="${id.title}" type="text" />
-    </label>
-    <button class="btn btn-success" type="submit">SearchByTitle</button>
 
-</form>
-<br/>
-<br/>
-<form th:action="@{/recipesbyid/web/}" th:object="${id}" method="post">
-    <label>
-        <input class="form-control input-lg"  th:field="${id.id}" type="number"/>
-    </label>
-    <button class="btn btn-success" type="submit">SearchById</button>
-</form>
-<br/>
-<br/>
-<form th:object="${id}" th:action ="@{/recipes/web/author/}" method="post">
-    <label>
-        <input class="form-control input-lg"  th:field="${id.author.name}" type="text" />
-    </label>
-    <button class="btn btn-success" type="submit">SearchByAuthor</button>
+<!--/*@thymesVar id="RecipeWebOutput" type="de.recipe.web.RecipeWebOutput"*/-->
+<form th:method="post" modelattribute="RecipeWebOutput"
+      th:action="@{/addcomment/}" th:object=" ${addComment}" th:type="RecipeWebOutput" >
 
+<!--<li th:field="${RecipeWebOutput.id}" th:value="${RecipeWebOutput.id}"></li>-->
+    Title Recipe:
+    <div  >
+        <label>
+            <input class="form-control input-lg"   th:field="${addComment.id}"
+                   type="number"/>
+
+            <input class="form-control input-lg"   th:field="${addComment.comment[0].commentName}"
+                   type="text"/>
+        </label>
+    </div>
+    <br/>
+    <div class="btn btn-primary btn-lg"><input class="btn btn-primary btn-lg" type="submit" value="AddComment"/>
+    </div>
 </form>
 </body>
 </html>
