@@ -5,13 +5,14 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Data
 @Entity
 @Table( name = "recipistep" )
 public class RecepiStep implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( name = "recipestep_id" ,unique = true)
+    @Column( name = "recipestep_id", unique = true )
     private Long id;
 
     @Column
@@ -22,7 +23,7 @@ public class RecepiStep implements Serializable {
     private String stepDescription;
 
     //@Column//sveazi na photo
-   // private Photo photo;
+    // private Photo photo;
 
 //    @ManyToOne(optional = false)
 //    @JoinColumn(name = "recipistep")

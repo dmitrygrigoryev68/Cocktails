@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public  class RecipeServiceWebTechnical<T, Y> implements serviceTehnic {
+public class RecipeServiceWebTechnical<T, Y> implements serviceTehnic {
     public RecipeWeb creatIngredientsToString(RecipeWeb recipeWeb) {
         String[] name = recipeWeb.getIngredients().get(0).getName().split(",");
         String[] description = recipeWeb.getIngredients().get(0).getDescription().split(",");
@@ -27,8 +27,8 @@ public  class RecipeServiceWebTechnical<T, Y> implements serviceTehnic {
 
     public RecipeWebOutput createsStringToIngredients(RecipeWebOutput recipeWebOutput) {
         StringBuffer stringBuffer = new StringBuffer();
-        String nameIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getName().toString()).collect(Collectors.joining(","));
-        String descriptionIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getDescription().toString()).collect(Collectors.joining(","));
+        String nameIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getName()).collect(Collectors.joining(","));
+        String descriptionIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getDescription()).collect(Collectors.joining(","));
 
         List <IngredientWeb> list = Arrays.asList(new IngredientWeb(nameIngredients, descriptionIngredients));
         recipeWebOutput.setIngredients(list);
@@ -59,8 +59,8 @@ public  class RecipeServiceWebTechnical<T, Y> implements serviceTehnic {
 
     public RecipeWebOutput createsStringToRecipeSteps(RecipeWebOutput recipeWebOutput) {
 
-        String namestepTitle = recipeWebOutput.getInstructions().stream().map(a -> a.getStepTitle().toString()).collect(Collectors.joining(","));
-        String stepDescription = recipeWebOutput.getInstructions().stream().map(a -> a.getStepDescription().toString()).collect(Collectors.joining(","));
+        String namestepTitle = recipeWebOutput.getInstructions().stream().map(a -> a.getStepTitle()).collect(Collectors.joining(","));
+        String stepDescription = recipeWebOutput.getInstructions().stream().map(a -> a.getStepDescription()).collect(Collectors.joining(","));
 
         List <IngredientWeb> list = Arrays.asList(new IngredientWeb(namestepTitle, stepDescription));
         recipeWebOutput.setIngredients(list);

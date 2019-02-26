@@ -19,9 +19,4 @@ public interface RecipeRepository extends JpaRepository <Recipe, Long> {
     List <Recipe> findByAuthorName(String nameAuthor);
 
 
-
-
-
-
-
 }

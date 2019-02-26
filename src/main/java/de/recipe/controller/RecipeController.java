@@ -13,11 +13,12 @@ import java.util.List;
 @RestController
 public class RecipeController {
     private final RecipeService recipeService;
-@Autowired
-    RecipeServiceWebTechnical serviceWebTechnical;
+    private final RecipeServiceWebTechnical serviceWebTechnical;
+
     @Autowired
-    public RecipeController( RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, RecipeServiceWebTechnical serviceWebTechnical) {
         this.recipeService = recipeService;
+        this.serviceWebTechnical = serviceWebTechnical;
     }
 
 
@@ -60,17 +61,21 @@ public class RecipeController {
         return recipeService.findByIngredientsContaining(name_ingredient);
     }
 
-    @GetMapping( "/recipes/author/{nameAuthor}" )
+    @GetMapping( value = "/recipes/author/{nameAuthor}" )
     public List <RecipeWebOutput> findBYAuthor(@PathVariable String nameAuthor) {
         List <RecipeWebOutput> recipeWebOutputList = recipeService.findbyAuthor(nameAuthor);
         return recipeWebOutputList;
     }
 
-    @PutMapping( "/recipes/{id}" )
+    @PutMapping(value = "/recipes/{id}" )
     public void updateRecipeById(@RequestBody RecipeWeb recipeWeb, @PathVariable long id) {
         Recipe recipe = (Recipe) serviceWebTechnical.convertTheReceiptsIntoAnotherEmbodiment(recipeWeb, Recipe.class);
-        recipeService.updateRecipe(recipe,id);
+        recipeService.updateRecipe(recipe, id);
 
     }
 
+    @DeleteMapping( value = "/recipes/ingredients/name" )
+    private void deleteIngredientsToRecipe(String nameIngredient) {
+        recipeService.deleteIngredientsToRecipes(nameIngredient);
+    }
 }

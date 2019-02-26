@@ -13,9 +13,9 @@ import javax.persistence.*;
 @EqualsAndHashCode
 public class Video {
     @Column( nullable = false )
-   private String patch;
+    private String patch;
     @Id
-    @Column(name = "video_id")
+    @Column( name = "video_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 

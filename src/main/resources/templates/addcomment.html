@@ -25,17 +25,17 @@
 
 
 <!--/*@thymesVar id="RecipeWebOutput" type="de.recipe.web.RecipeWebOutput"*/-->
-<form th:method="post" modelattribute="RecipeWebOutput"
-      th:action="@{/addcomment/}" th:object=" ${addComment}" th:type="RecipeWebOutput" >
+<form modelattribute="RecipeWebOutput" th:action="@{/addcomment/}"
+      th:method="post" th:object=" ${addComment}" th:type="RecipeWebOutput">
 
-<!--<li th:field="${RecipeWebOutput.id}" th:value="${RecipeWebOutput.id}"></li>-->
+    <!--<li th:field="${RecipeWebOutput.id}" th:value="${RecipeWebOutput.id}"></li>-->
     Title Recipe:
-    <div  >
+    <div>
         <label>
-            <input class="form-control input-lg"   th:field="${addComment.id}"
+            <input class="form-control input-lg" th:field="${addComment.id}"
                    type="number"/>
 
-            <input class="form-control input-lg"   th:field="${addComment.comment[0].commentName}"
+            <input class="form-control input-lg" th:field="${addComment.comment[0].commentName}"
                    type="text"/>
         </label>
     </div>

@@ -24,20 +24,20 @@
 <br/>
 <div>
     <form action="ubdaterecipe.html"
-          th:action="@{/recipes/web/ubdate/}" th:method="PUT" th:RecipeWebOutput="${ubdate}" th:type="recipe">
+          th:RecipeWebOutput="${ubdate}" th:action="@{/recipes/web/ubdate/}" th:method="PUT" th:type="recipe">
         <div>
             <input class="form-control input-lg" th:field="*{ubdate.id}" type="text"/></div>
         <br/>
         Title Recipe:
         <div>
-        <input class="form-control input-lg" th:field="*{ubdate.title}" type="text"/></div>
+            <input class="form-control input-lg" th:field="*{ubdate.title}" type="text"/></div>
         <br/>
         Anonce:
         <div><input class="form-control input-lg" th:field="*{ubdate.announce}" type="text"/></div>
         <br/>
         Author:
         <div>
-        <input class="form-control input-lg" th:field="*{ubdate.author.name}" type="text"/></div>
+            <input class="form-control input-lg" th:field="*{ubdate.author.name}" type="text"/></div>
         <br/>
         Ingredient Name:
         <div>

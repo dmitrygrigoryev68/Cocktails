@@ -23,26 +23,26 @@
 
 <br/>
 <br/>
-<form th:object="${id}" th:action ="@{/recipes/web/title/}" method="post">
+<form method="post" th:action="@{/recipes/web/title/}" th:object="${id}">
     <label>
-        <input class="form-control input-lg"  th:field="${id.title}" type="text" />
+        <input class="form-control input-lg" th:field="${id.title}" type="text"/>
     </label>
     <button class="btn btn-success" type="submit">SearchByTitle</button>
 
 </form>
 <br/>
 <br/>
-<form th:action="@{/recipesbyid/web/}" th:object="${id}" method="post">
+<form method="post" th:action="@{/recipesbyid/web/}" th:object="${id}">
     <label>
-        <input class="form-control input-lg"  th:field="${id.id}" type="number"/>
+        <input class="form-control input-lg" th:field="${id.id}" type="number"/>
     </label>
     <button class="btn btn-success" type="submit">SearchById</button>
 </form>
 <br/>
 <br/>
-<form th:object="${id}" th:action ="@{/recipes/web/author/}" method="post">
+<form method="post" th:action="@{/recipes/web/author/}" th:object="${id}">
     <label>
-        <input class="form-control input-lg"  th:field="${id.author.name}" type="text" />
+        <input class="form-control input-lg" th:field="${id.author.name}" type="text"/>
     </label>
     <button class="btn btn-success" type="submit">SearchByAuthor</button>
 

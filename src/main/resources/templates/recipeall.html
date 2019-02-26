@@ -39,8 +39,8 @@
             </div>
         </div>
         <div style="align-content: center;"><a class="badge badge-primary"
-                                               th:href="@{'/recipes/web/'+${RecipeWebOutput.id}}"
-                                               style="align-content: center">Select Recipe</a></div>
+                                               style="align-content: center"
+                                               th:href="@{'/recipes/web/'+${RecipeWebOutput.id}}">Select Recipe</a></div>
         <div class="container px-lg-5" style="align-content: center; ">
             <div class="row mx-lg-n5">
                 <div class="col py-3 px-lg-5 border bg-light">
@@ -62,7 +62,7 @@
                         <td th:utext="${RecipeWebOutput.announce}"></td>
                     </div>
                     <div>
-                        <p style="color: #35acdf" ;>Author:</p>
+                        <p ; style="color: #35acdf">Author:</p>
                         <a th:href="@{'/recipes/web/nameAuthor/'+${RecipeWebOutput.author.name}}">
                             <td th:utext="${RecipeWebOutput.author.name}"></td>
                         </a></div>

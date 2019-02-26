@@ -20,15 +20,15 @@ public class User implements Serializable {
     private Long id;
     @Column( nullable = false )
     private String name;
-//    @ManyToOne
-//    @JoinColumn( name = "author" )
-//    Recipe recipe;
+    @ManyToOne
+   @JoinColumn( name = "author" )
+   Recipe recipe;
 
     public User() {
     }
 
-    public User(String name,Long id) {
+    public User(String name, Long id) {
         this.name = name;
-        this.id=id;
+        this.id = id;
     }
 }

@@ -1,6 +1,7 @@
 package de.recipe.service;
 
 import de.exeption.NotFoundRecipeById;
+import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.repository.RecipeRepository;
 import de.recipe.web.RecipeWeb;
@@ -13,10 +14,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-;
-
 @Service
-public  class RecipeServiceImpl implements RecipeService {
+public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
 
     @Autowired
@@ -56,13 +55,21 @@ public  class RecipeServiceImpl implements RecipeService {
         recipeRepository.deleteById(optionalRecipe.get().getId());
     }
 
-    public void deleteRecipeByIngredients(String ingredient) {
-        List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredient);
-        for (Recipe s:list) {
+    public void deleteRecipeByIngredients(String ingredientName) {
+        List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredientName);
+        for (Recipe s : list) {
             recipeRepository.deleteById(s.getId());
         }
+    }
 
-
+    public void deleteIngredientsToRecipes(String ingredientName) {
+        List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredientName);
+        for (Recipe x : list) {
+            for (Ingredient s : x.getIngredients()) {
+                if (s.getName().equals(ingredientName)) x.getIngredients().remove(s);
+            }
+            updateRecipe(x, x.getId());
+        }
     }
 
     public Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
@@ -76,7 +83,6 @@ public  class RecipeServiceImpl implements RecipeService {
         return modelMapper.map(recipe, RecipeWebOutput.class);
     }
 
-
     public List <RecipeWebOutput> findByIngredientsContaining(String nameIngredient) {
         List <Recipe> byIngredients = recipeRepository.findByIngredientsNameIn(nameIngredient);
         if (byIngredients.isEmpty()) throw new NotFoundRecipeById("This recipe name does not exist");
@@ -84,21 +90,20 @@ public  class RecipeServiceImpl implements RecipeService {
     }
 
     public List <RecipeWebOutput> findbyAuthor(String nameauthor) {
-        List <Recipe> byAuthorNameaAuthor = recipeRepository.findByAuthorName(nameauthor);
-        if (byAuthorNameaAuthor.isEmpty()) throw new NotFoundRecipeById("This  author does not exist");
-        return byAuthorNameaAuthor.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
+        List <Recipe> byAuthorName = recipeRepository.findByAuthorName(nameauthor);
+        if (byAuthorName.isEmpty()) throw new NotFoundRecipeById("This  author does not exist");
+        return byAuthorName.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
     }
 
-    public void updateRecipe(Recipe recipe, Long id) {
+    public RecipeWebOutput updateRecipe(Recipe recipe, Long id) {
         Optional <Recipe> byId = recipeRepository.findById(id);
-        if(byId.isPresent()){
+        if (byId.isPresent()) {
             recipe.setId(id);
-
             recipeRepository.saveAndFlush(recipe);
         }
         recipe.setId(id);
         recipeRepository.save(recipe);
-
+        return creatRecipeWebOutputToRecipe(recipe);
     }
 
     public RecipeWebOutput findByTitle(String title) {

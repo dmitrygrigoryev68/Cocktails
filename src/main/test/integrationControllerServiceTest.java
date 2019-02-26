@@ -1,32 +1,3 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.Main;
-import de.recipe.controller.RecipeController;
-import de.recipe.model.*;
-import de.recipe.service.RecipeServiceImpl;
-import de.recipe.web.RecipeWeb;
-import de.recipe.web.RecipeWebOutput;
-import de.recipe.web.Userweb;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
-import javax.ws.rs.core.MediaType;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 /*
 @RunWith( SpringRunner.class )
 @SpringBootTest( classes = Main.class )

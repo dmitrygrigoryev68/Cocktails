@@ -26,7 +26,7 @@ public class WebControler {
         return "index";
     }
 
-    @GetMapping( value = {"/getAllRecipes/web/"})
+    @GetMapping( value = {"/getAllRecipes/web/"} )
     public String personList(Model model) {
         List <RecipeWebOutput> recipeList = service.getAllRecipe();
         model.addAttribute("recipeall", recipeList);
@@ -94,6 +94,7 @@ public class WebControler {
         model.addAttribute("recipeByAuthor", recipeWebOutput);
         return "recipeByTitle";
     }
+
     @PostMapping( value = "/recipes/web/author/" )
     public String searchByAuthorPost(@ModelAttribute( "id" ) RecipeWebOutput recipeWebOutput1, Model model) {
         List <RecipeWebOutput> recipeWebOutput = service.findbyAuthor(recipeWebOutput1.getAuthor().getName());
