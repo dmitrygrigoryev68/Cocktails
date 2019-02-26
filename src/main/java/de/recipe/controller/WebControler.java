@@ -3,7 +3,6 @@ package de.recipe.controller;
 import de.recipe.model.Recipe;
 import de.recipe.service.RecipeServiceImpl;
 import de.recipe.service.RecipeServiceWebTechnical;
-import de.recipe.web.CommentWeb;
 import de.recipe.web.RecipeWeb;
 import de.recipe.web.RecipeWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;

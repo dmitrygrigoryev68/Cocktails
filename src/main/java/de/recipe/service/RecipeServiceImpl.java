@@ -57,7 +57,7 @@ public  class RecipeServiceImpl implements RecipeService {
     }
 
     public void deleteRecipeByIngredients(String ingredient) {
-        List <Recipe> list = recipeRepository.findByIngredientsNameIngredientIn(ingredient);
+        List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredient);
         for (Recipe s:list) {
             recipeRepository.deleteById(s.getId());
         }
@@ -78,7 +78,7 @@ public  class RecipeServiceImpl implements RecipeService {
 
 
     public List <RecipeWebOutput> findByIngredientsContaining(String nameIngredient) {
-        List <Recipe> byIngredients = recipeRepository.findByIngredientsNameIngredientIn(nameIngredient);
+        List <Recipe> byIngredients = recipeRepository.findByIngredientsNameIn(nameIngredient);
         if (byIngredients.isEmpty()) throw new NotFoundRecipeById("This recipe name does not exist");
         return byIngredients.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
     }

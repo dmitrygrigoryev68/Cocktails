@@ -6,7 +6,6 @@ import de.recipe.service.RecipeServiceWebTechnical;
 import de.recipe.web.RecipeWeb;
 import de.recipe.web.RecipeWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +33,7 @@ public class RecipeController {
     }
 
     @GetMapping( "/recipes/{id}" )
-    public RecipeWebOutput getRecipeByIdController(@PathVariable Long id) {
+    public RecipeWebOutput getRecipeById(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
     }
 
@@ -46,18 +45,18 @@ public class RecipeController {
     }
 
     @DeleteMapping( value = "/recipes/Ingredient/" )
-    public void deleteRecipeByIngretient(@RequestBody String ingredient) {
+    private void deleteRecipeByIngretient(@RequestBody String ingredient) {
 
         recipeService.deleteRecipeByIngredients(ingredient);
     }
 
-    @DeleteMapping( value = "recipes/byrecipes", consumes = "application/json" )
-    public void deletByRecipe(@RequestBody RecipeWeb recipe) {
+    @DeleteMapping( value = "recipes/byrecipes" )
+    private void deletByRecipe(@RequestBody RecipeWeb recipe) {
         recipeService.deleteRecipieByRecipie(recipe);
     }
 
     @GetMapping( "/recipes/ingredients/{name_ingredient}" )
-    public List findByIngredientController(@PathVariable String name_ingredient) {
+    public List findByIngredient(@PathVariable String name_ingredient) {
         return recipeService.findByIngredientsContaining(name_ingredient);
     }
 

@@ -88,8 +88,8 @@
                     <div>
                         <p style="color: #35acdf;">Ingredient :</p>
                         <ul th:each="IngredientWeb :${RecipeWebOutput.ingredients}">
-                            <a th:href="@{'/recipes/web/ingredient/'+${IngredientWeb.nameIngredient}}">
-                                <li style="size: auto" th:text="${IngredientWeb.nameIngredient}">Ingredient</li>
+                            <a th:href="@{'/recipes/web/ingredient/'+${IngredientWeb.getName}}">
+                                <li style="size: auto" th:text="${IngredientWeb.getName}">Ingredient</li>
                             </a>
                         </ul>
 

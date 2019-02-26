@@ -51,18 +51,11 @@ public class Recipe implements Serializable {
 
     private List <Taxonomy> tags;
 
-    @OneToMany( cascade = CascadeType.ALL  )
-    @LazyCollection( LazyCollectionOption.FALSE )
-    @JoinColumn( referencedColumnName = "recipe_id" )
-    private List <Comment> comment;
-
+    @Column
     private int prepTimeMinute;
 
+    @Column
     private int cookingTime;
-
-    @OneToOne( targetEntity = Rate.class, cascade = CascadeType.ALL )
-
-    private Rate rate;
 
     @ManyToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )

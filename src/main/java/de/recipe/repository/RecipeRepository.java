@@ -12,7 +12,7 @@ public interface RecipeRepository extends JpaRepository <Recipe, Long> {
 
     Recipe findByTitle(String title);
 
-    List <Recipe> findByIngredientsNameIngredientIn(String nameIngredient);
+    List <Recipe> findByIngredientsNameIn(String name);
 
     // List <Recipe> findByIngredientsNameIngredientNameIngredientNameIngredient(String nameIngredient1, String nameIngredient2, String nameIngredient3);
 

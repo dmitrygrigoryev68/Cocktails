@@ -66,7 +66,7 @@ public class integrationControllerServiceTest {
                 .andExpect(status()
                         .isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"vasea\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"morcovca\",\"descriptions\":\"gf\"},{\"id\":2,\"nameIngredient\":\"cartofca\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}},{\"id\":2,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"grisa\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"morcovca\",\"descriptions\":\"gf\"},{\"id\":2,\"nameIngredient\":\"cartofca\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
+                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"vasea\"},\"ingredients\":[{\"id\":1,\"name\":\"morcovca\",\"description\":\"gf\"},{\"id\":2,\"name\":\"cartofca\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}},{\"id\":2,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"grisa\"},\"ingredients\":[{\"id\":1,\"name\":\"morcovca\",\"description\":\"gf\"},{\"id\":2,\"name\":\"cartofca\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
         verify(recipeService, Mockito.times(1)).getAllRecipe();
     }
     @Test
@@ -91,7 +91,7 @@ public class integrationControllerServiceTest {
                 andExpect(status()
                         .isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(content().json("{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"vasea\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"morcovca\",\"descriptions\":\"gf\"},{\"id\":2,\"nameIngredient\":\"cartofca\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}},{\"id\":2,\"title\":\"title\",\"announce\":\"String announce\",\"publicationDate\":\"2019-01-29T14:31:57.370+0000\",\"author\":{\"id\":1,\"name\":\"grisa\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"morcovca\",\"descriptions\":\"gf\"},{\"id\":2,\"nameIngredient\":\"cartofca\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}\n"));
+                .andExpect(content().json("{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"vasea\"},\"ingredients\":[{\"id\":1,\"name\":\"morcovca\",\"description\":\"gf\"},{\"id\":2,\"name\":\"cartofca\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}},{\"id\":2,\"title\":\"title\",\"announce\":\"String announce\",\"publicationDate\":\"2019-01-29T14:31:57.370+0000\",\"author\":{\"id\":1,\"name\":\"grisa\"},\"ingredients\":[{\"id\":1,\"name\":\"morcovca\",\"description\":\"gf\"},{\"id\":2,\"name\":\"cartofca\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}\n"));
         verify(recipeService, Mockito.times(1)).getRecipeById(1L);
 
     }
@@ -106,12 +106,12 @@ public class integrationControllerServiceTest {
     }
     @Test
     public void findByIngretientTest() throws Exception {
-        mockMvc.perform(get("/searhc/ingredient/{name_ingredient}",recipe.getIngredients().get(0).getNameIngredient())
+        mockMvc.perform(get("/searhc/ingredient/{name_ingredient}",recipe.getIngredients().get(0).getName())
                 .contentType("application/json;charset=UTF-8"))
                 .andDo(print())
                 .andExpect(status()
                         .isOk());
-        verify(recipeService,Mockito.times(1) ).findByIngredientsContaining(recipe.getIngredients().get(0).getNameIngredient());
+        verify(recipeService,Mockito.times(1) ).findByIngredientsContaining(recipe.getIngredients().get(0).getName());
 
     }
     @Test

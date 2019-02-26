@@ -17,20 +17,11 @@ public class Ingredient implements Serializable {
     @Column(name = "ingredient_id")
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
+
     @Column(length =3000,nullable = false)
-    private String nameIngredient;
+    private String name;
+
     @Column(length =3000,nullable = false)
-    private String descriptions;
-    // private weightsAndMeasures wam;
+    private String description;
 
-
-    public Ingredient(String nameIngredient, String descriptions, Long id) {
-        this.nameIngredient = nameIngredient;
-        this.descriptions = descriptions;
-        this.id = id;
-    }
-
-
-    public Ingredient() {
-    }
 }

@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Service
 public  class RecipeServiceWebTechnical<T, Y> implements serviceTehnic {
     public RecipeWeb creatIngredientsToString(RecipeWeb recipeWeb) {
-        String[] name = recipeWeb.getIngredients().get(0).getNameIngredient().split(",");
-        String[] description = recipeWeb.getIngredients().get(0).getDescriptions().split(",");
+        String[] name = recipeWeb.getIngredients().get(0).getName().split(",");
+        String[] description = recipeWeb.getIngredients().get(0).getDescription().split(",");
         List <IngredientWeb> list = new ArrayList <>();
         for (int i = 0; i < name.length; i++) {
             list.add(new IngredientWeb(name[i], description[i]));
@@ -27,8 +27,8 @@ public  class RecipeServiceWebTechnical<T, Y> implements serviceTehnic {
 
     public RecipeWebOutput createsStringToIngredients(RecipeWebOutput recipeWebOutput) {
         StringBuffer stringBuffer = new StringBuffer();
-        String nameIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getNameIngredient().toString()).collect(Collectors.joining(","));
-        String descriptionIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getDescriptions().toString()).collect(Collectors.joining(","));
+        String nameIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getName().toString()).collect(Collectors.joining(","));
+        String descriptionIngredients = recipeWebOutput.getIngredients().stream().map(a -> a.getDescription().toString()).collect(Collectors.joining(","));
 
         List <IngredientWeb> list = Arrays.asList(new IngredientWeb(nameIngredients, descriptionIngredients));
         recipeWebOutput.setIngredients(list);

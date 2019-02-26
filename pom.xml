@@ -15,8 +15,6 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/><!-- lookup parent from repository -->
     </parent>
-
-
     <groupId>de.tel-ran</groupId>
     <artifactId>Recipes</artifactId>
     <version>0.0.1</version>
@@ -44,7 +42,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -96,14 +93,6 @@
             <version>5.1.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <!--
-            JSON SIMPLE PARSER
-            -->
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
             <groupId>org.easymock</groupId>
@@ -125,16 +114,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class IngredientWeb {
-    private String nameIngredient;
-    private String descriptions;
+    private String name;
+    private String description;
 
-    public IngredientWeb(String nameIngredient, String descriptions) {
-        this.nameIngredient = nameIngredient;
-        this.descriptions = descriptions;
+    public IngredientWeb(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public IngredientWeb() {
