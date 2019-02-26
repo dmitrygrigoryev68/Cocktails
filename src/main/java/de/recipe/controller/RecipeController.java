@@ -45,13 +45,13 @@ public class RecipeController {
 
     }
 
-    @DeleteMapping( value = "/recipesByIngredient/" )
+    @DeleteMapping( value = "/recipes/Ingredient/" )
     public void deleteRecipeByIngretient(@RequestBody String ingredient) {
 
         recipeService.deleteRecipeByIngredients(ingredient);
     }
 
-    @DeleteMapping( value = "recipes/recipes", consumes = "application/json" )
+    @DeleteMapping( value = "recipes/byrecipes", consumes = "application/json" )
     public void deletByRecipe(@RequestBody RecipeWeb recipe) {
         recipeService.deleteRecipieByRecipie(recipe);
     }
