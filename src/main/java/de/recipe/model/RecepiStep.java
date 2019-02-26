@@ -18,17 +18,9 @@ public class RecepiStep implements Serializable {
     @Column
     private String stepTitle;
 
-    @Column()
-    @Type( type = "text" )//ne uvereni
+    @Column
+
     private String stepDescription;
-
-    //@Column//sveazi na photo
-    // private Photo photo;
-
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "recipistep")
-//    private Recipe recipeID;
-
 
     public RecepiStep(String stepTitle, String stepDescription, Long id) {
         this.stepTitle = stepTitle;

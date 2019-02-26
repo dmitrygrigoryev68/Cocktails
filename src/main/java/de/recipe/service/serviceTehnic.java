@@ -1,5 +1,5 @@
 package de.recipe.service;
 
-public interface serviceTehnic<Y, T> {
+public interface serviceTehnic {
 
 }

@@ -14,8 +14,6 @@ public interface RecipeRepository extends JpaRepository <Recipe, Long> {
 
     List <Recipe> findByIngredientsNameIn(String name);
 
-    // List <Recipe> findByIngredientsNameIngredientNameIngredientNameIngredient(String nameIngredient1, String nameIngredient2, String nameIngredient3);
-
     List <Recipe> findByAuthorName(String nameAuthor);
 
 
