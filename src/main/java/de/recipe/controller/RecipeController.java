@@ -45,17 +45,6 @@ public class RecipeController {
 
     }
 
-    @DeleteMapping( value = "/recipes/Ingredient/" )
-    private void deleteRecipeByIngretient(@RequestBody String ingredient) {
-
-        recipeService.deleteRecipeByIngredients(ingredient);
-    }
-
-    @DeleteMapping( value = "recipes/byrecipes" )
-    private void deletByRecipe(@RequestBody RecipeWeb recipe) {
-        recipeService.deleteRecipieByRecipie(recipe);
-    }
-
     @GetMapping( "/recipes/ingredients/{name_ingredient}" )
     public List findByIngredient(@PathVariable String name_ingredient) {
         return recipeService.findByIngredientsContaining(name_ingredient);
@@ -67,13 +56,14 @@ public class RecipeController {
         return recipeWebOutputList;
     }
 
-    @PutMapping(value = "/recipes/{id}" )
+    @PutMapping( value = "/recipes/{id}" )
     public void updateRecipeById(@RequestBody RecipeWeb recipeWeb, @PathVariable long id) {
         Recipe recipe = (Recipe) serviceWebTechnical.convertTheReceiptsIntoAnotherEmbodiment(recipeWeb, Recipe.class);
         recipeService.updateRecipe(recipe, id);
 
     }
 
+    //test
     @DeleteMapping( value = "/recipes/ingredients/name" )
     private void deleteIngredientsToRecipe(String nameIngredient) {
         recipeService.deleteIngredientsToRecipes(nameIngredient);

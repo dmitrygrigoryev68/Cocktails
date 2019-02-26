@@ -47,14 +47,6 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.deleteById(id);
     }
 
-    public void deleteRecipieByRecipie(RecipeWeb recipeWeb) {
-        Optional <Recipe> optionalRecipe = Optional.ofNullable(recipeRepository.findByTitle(recipeWeb.getTitle()));
-        if (!optionalRecipe.isPresent()) {
-            throw new NotFoundRecipeById("This recipe does not exist");
-        }
-        recipeRepository.deleteById(optionalRecipe.get().getId());
-    }
-
     public void deleteRecipeByIngredients(String ingredientName) {
         List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredientName);
         for (Recipe s : list) {

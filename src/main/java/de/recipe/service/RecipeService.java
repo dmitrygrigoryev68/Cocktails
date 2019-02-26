@@ -15,7 +15,6 @@ public interface RecipeService {
 
     void deleteRecipeById(long id);
 
-    void deleteRecipieByRecipie(RecipeWeb recipeWeb);
 
     void deleteRecipeByIngredients(String ingredient);
 
