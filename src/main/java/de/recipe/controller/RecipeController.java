@@ -26,7 +26,7 @@ public class RecipeController {
         return recipeService.getAllRecipe();
     }
 
-    @PostMapping( value = "/recipes/", consumes = "application/json" )
+    @PostMapping( value = "/recipes/" )
     public RecipeWeb creatRecipeController(@RequestBody RecipeWeb recipeWeb) {
         recipeService.creatRecipe(recipeWeb);
         return recipeWeb;
