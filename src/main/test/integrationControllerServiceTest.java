@@ -62,16 +62,20 @@ public class integrationControllerServiceTest {
     @Test
     public void testGetAllRecipe() throws Exception {
         when(recipeService.getAllRecipe()).thenReturn(recipeWebOutputs);
-        mockMvc.perform(get("/getAllRecipes/").contentType(MediaType.APPLICATION_JSON)).
-                andDo(print()).andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8")).
-                andExpect(content().json(jasonArr));
+        mockMvc.perform(get("/recipes/").contentType(MediaType.APPLICATION_JSON)).
+                andDo(print()).
+                andExpect(status().isOk())
+                .andExpect(content().
+                        contentType("application/json;charset=UTF-8")).
+                andExpect(content()
+                        .json(jasonArr));
         verify(recipeService, Mockito.times(1)).getAllRecipe();
     }
 
 
     @Test
     public void creatRecipeControllerTest() throws Exception {
-        mockMvc.perform(post("/addNewRecipes", recipeWebOutput)
+        mockMvc.perform(post("/recipes/", recipeWebOutput)
                 .contentType("application/json;charset=UTF-8")
                 .content(jason)).andDo(print())
                 .andExpect(status().isOk());
@@ -113,7 +117,7 @@ public class integrationControllerServiceTest {
     @Test
     public void findBYAuthorTest() throws Exception {
         when(recipeService.findbyAuthor(recipe.getAuthor().getName())).thenReturn(recipeWebOutputs);
-        mockMvc.perform(get("/recipes/author/{nameAuthor}", recipe.getAuthor().getName()).contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk()).
+        mockMvc.perform(get("/recipes/author/{name_author}", recipe.getAuthor().getName()).contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk()).
                 andExpect(content().json(jasonArr));
         verify(recipeService, Mockito.times(1)).findbyAuthor(recipe.getAuthor().getName());
     }
@@ -127,6 +131,6 @@ public class integrationControllerServiceTest {
                 .andDo(print())
                 .andExpect(status()
                         .isOk());
-       verify(recipeService, Mockito.times(1)).updateRecipe(recipeWebOutput,1L);
+        verify(recipeService, Mockito.times(1)).updateRecipe(recipeWebOutput,1L);
     }
 }
