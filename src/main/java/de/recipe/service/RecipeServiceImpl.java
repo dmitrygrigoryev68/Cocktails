@@ -1,9 +1,9 @@
 package de.recipe.service;
 
 import de.exeption.NotFoundRecipeById;
-import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.repository.RecipeRepository;
+import de.recipe.web.IngredientWeb;
 import de.recipe.web.RecipeWeb;
 import de.recipe.web.RecipeWebOutput;
 import org.modelmapper.ModelMapper;
@@ -65,11 +65,12 @@ public class RecipeServiceImpl<Y, T> implements RecipeService {
 
     public void deleteIngredientsToRecipes(String ingredientName) {
         List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredientName);
-        for (Recipe x : list) {
-            for (Ingredient s : x.getIngredients()) {
+        List <RecipeWebOutput> recipeWebOutputList = (List <RecipeWebOutput>) refactoryObjectListToObjectwebList(list, RecipeWebOutput.class);
+        for (RecipeWebOutput x : recipeWebOutputList) {
+            for (IngredientWeb s : x.getIngredients()) {
                 if (s.getName().equals(ingredientName)) x.getIngredients().remove(s);
             }
-            updateRecipe(x, x.getId());
+            updateRecipe(x,x.getId());
         }
     }
 
@@ -96,16 +97,15 @@ public class RecipeServiceImpl<Y, T> implements RecipeService {
         return byAuthorName.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
     }
 
-    public RecipeWebOutput updateRecipe(Recipe recipe, Long id) {
+    public void updateRecipe(RecipeWebOutput recipe, Long id) {
         Optional <Recipe> byId = recipeRepository.findById(id);
+        Recipe recipe1  = (Recipe) convertTheReceiptsIntoAnotherEmbodiment(recipe, RecipeWebOutput.class);
         if (byId.isPresent()) {
             recipe.setId(id);
-            recipeRepository.saveAndFlush(recipe);
-
-        }
+            recipeRepository.saveAndFlush(recipe1);        }
         recipe.setId(id);
-        recipeRepository.save(recipe);
-        return creatRecipeWebOutputToRecipe(recipeRepository.getOne(id));
+        recipeRepository.save(recipe1);
+
     }
 
     public RecipeWebOutput findByTitle(String title) {

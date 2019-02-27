@@ -25,7 +25,7 @@ public interface RecipeService<Y, T> {
 
     public List <RecipeWebOutput> findbyAuthor(String nameauthor);
 
-    public RecipeWebOutput updateRecipe(Recipe recipe, Long id);
+    public void updateRecipe(RecipeWebOutput recipe, Long id);
 
     public RecipeWebOutput findByTitle(String title);
 

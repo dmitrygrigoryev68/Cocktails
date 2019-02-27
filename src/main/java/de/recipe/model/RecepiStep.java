@@ -1,7 +1,6 @@
 package de.recipe.model;
 
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
