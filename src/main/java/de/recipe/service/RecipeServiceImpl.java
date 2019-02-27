@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class RecipeServiceImpl implements RecipeService {
+public class RecipeServiceImpl<Y, T> implements RecipeService {
     private final RecipeRepository recipeRepository;
 
     @Autowired
@@ -36,7 +36,16 @@ public class RecipeServiceImpl implements RecipeService {
             throw new NotFoundRecipeById("This recipe does not exist");
         } else return creatRecipeWebOutputToRecipe(optionalRecipe.get());
     }
+    public Y convertTheReceiptsIntoAnotherEmbodiment(Object t, Class refactoryclass) {
+        ModelMapper modelMapper = new ModelMapper();
+        Y y = (Y) modelMapper.map(t, refactoryclass);
+        return y;
+    }
 
+    public List <T> refactoryObjectListToObjectwebList(List list, Class tClass) {
+        ModelMapper modelMapper = new ModelMapper();
+        return (List <T>) list.stream().map(a -> modelMapper.map(a, tClass)).collect(Collectors.toList());
+    }
     public void creatRecipe(RecipeWeb recipeWeb) {
         Recipe recipe = creatRecipeToRecipeWeb(recipeWeb);
         recipeRepository.save(recipe);
@@ -92,10 +101,11 @@ public class RecipeServiceImpl implements RecipeService {
         if (byId.isPresent()) {
             recipe.setId(id);
             recipeRepository.saveAndFlush(recipe);
+
         }
         recipe.setId(id);
         recipeRepository.save(recipe);
-        return creatRecipeWebOutputToRecipe(recipe);
+        return creatRecipeWebOutputToRecipe(recipeRepository.getOne(id));
     }
 
     public RecipeWebOutput findByTitle(String title) {

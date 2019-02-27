@@ -13,4 +13,12 @@ public class Personweb {
 
     public Personweb() {
     }
+
+    public String getNameaAuthor() {
+        return nameaAuthor;
+    }
+
+    public void setNameaAuthor(String nameaAuthor) {
+        this.nameaAuthor = nameaAuthor;
+    }
 }

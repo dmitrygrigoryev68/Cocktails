@@ -22,5 +22,23 @@ public class Video {
     public Video() {
     }
 
+    public Video(String patch) {
+        this.patch = patch;
+    }
 
+    public String getPatch() {
+        return patch;
+    }
+
+    public void setPatch(String patch) {
+        this.patch = patch;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

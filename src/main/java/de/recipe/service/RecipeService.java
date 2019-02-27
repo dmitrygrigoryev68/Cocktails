@@ -6,29 +6,32 @@ import de.recipe.web.RecipeWebOutput;
 
 import java.util.List;
 
-public interface RecipeService {
-    List <RecipeWebOutput> getAllRecipe();
+public interface RecipeService<Y, T> {
+    public List <RecipeWebOutput> getAllRecipe();
 
-    RecipeWebOutput getRecipeById(Long id);
+    public RecipeWebOutput getRecipeById(Long id);
 
-    void creatRecipe(RecipeWeb recipeWeb);
+    public void creatRecipe(RecipeWeb recipeWeb);
 
-    void deleteRecipeById(long id);
+    public void deleteRecipeById(long id);
 
+    public void deleteRecipeByIngredients(String ingredient);
 
-    void deleteRecipeByIngredients(String ingredient);
+    public Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb);
 
-    Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb);
+    public RecipeWebOutput creatRecipeWebOutputToRecipe(Recipe recipe);
 
-    RecipeWebOutput creatRecipeWebOutputToRecipe(Recipe recipe);
+    public List <RecipeWebOutput> findByIngredientsContaining(String nameIngredient);
 
-    List <RecipeWebOutput> findByIngredientsContaining(String nameIngredient);
+    public List <RecipeWebOutput> findbyAuthor(String nameauthor);
 
-    List <RecipeWebOutput> findbyAuthor(String nameauthor);
+    public RecipeWebOutput updateRecipe(Recipe recipe, Long id);
 
-    RecipeWebOutput updateRecipe(Recipe recipe, Long id);
+    public RecipeWebOutput findByTitle(String title);
 
-    RecipeWebOutput findByTitle(String title);
+    public void deleteIngredientsToRecipes(String ingredientName);
 
-    void deleteIngredientsToRecipes(String ingredientName);
+    public Y convertTheReceiptsIntoAnotherEmbodiment(T t, Class <Y> refactoryclass);
+
+    public List <T> refactoryObjectListToObjectwebList(List <Y> list, Class <T> tClass);
 }

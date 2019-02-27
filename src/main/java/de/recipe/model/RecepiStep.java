@@ -30,5 +30,29 @@ public class RecepiStep implements Serializable {
 
     public RecepiStep() {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getStepTitle() {
+        return stepTitle;
+    }
+
+    public void setStepTitle(String stepTitle) {
+        this.stepTitle = stepTitle;
+    }
+
+    public String getStepDescription() {
+        return stepDescription;
+    }
+
+    public void setStepDescription(String stepDescription) {
+        this.stepDescription = stepDescription;
+    }
 }
 

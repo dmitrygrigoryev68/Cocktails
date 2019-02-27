@@ -2,28 +2,28 @@ package de.recipe.controller;
 
 import de.recipe.model.Recipe;
 import de.recipe.service.RecipeService;
-import de.recipe.service.RecipeServiceWebTechnical;
 import de.recipe.web.RecipeWeb;
 import de.recipe.web.RecipeWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class RecipeController {
-    private final RecipeService recipeService;
-    private final RecipeServiceWebTechnical serviceWebTechnical;
+    @Qualifier(value = "RecipeService")
+    private RecipeService recipeService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService, RecipeServiceWebTechnical serviceWebTechnical) {
+
+    public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
-        this.serviceWebTechnical = serviceWebTechnical;
+
     }
 
-
     @GetMapping( value = "/getAllRecipes" )
-    public List <RecipeWebOutput> getAllRecipe() {
+    public List getAllRecipe() {
         return recipeService.getAllRecipe();
     }
 
@@ -57,10 +57,10 @@ public class RecipeController {
     }
 
     @PutMapping( value = "/recipes/{id}" )
-    public void updateRecipeById(@RequestBody RecipeWeb recipeWeb, @PathVariable long id) {
-        Recipe recipe = (Recipe) serviceWebTechnical.convertTheReceiptsIntoAnotherEmbodiment(recipeWeb, Recipe.class);
-        recipeService.updateRecipe(recipe, id);
+    public RecipeWebOutput updateRecipeById(@RequestBody RecipeWeb recipeWeb, @PathVariable long id) {
+        Recipe recipe = (Recipe) recipeService.convertTheReceiptsIntoAnotherEmbodiment(recipeWeb, Recipe.class);
 
+        return recipeService.updateRecipe(recipe, id);
     }
 
     //test
