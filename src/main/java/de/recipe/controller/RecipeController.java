@@ -61,7 +61,7 @@ public class RecipeController {
 
 //test
     @DeleteMapping( value = "/recipes/ingredients/" )
-    private void deleteIngredientsToRecipe( String nameIngredient) {
+   private void deleteIngredientsToRecipe(@RequestBody String nameIngredient) {
         recipeService.deleteIngredientsToRecipes(nameIngredient);
     }
 }
