@@ -59,7 +59,7 @@ public class RecipeController {
     public void updateRecipeById(@RequestBody RecipeWebOutput recipeWebOutput, @PathVariable Long id) {        recipeService.updateRecipe(recipeWebOutput, id);
     }
 
-
+//test
     @DeleteMapping( value = "/recipes/ingredients/" )
     private void deleteIngredientsToRecipe( String nameIngredient) {
         recipeService.deleteIngredientsToRecipes(nameIngredient);
