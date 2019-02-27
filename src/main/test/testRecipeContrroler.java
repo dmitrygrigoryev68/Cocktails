@@ -30,7 +30,7 @@ public class testRecipeContrroler {
                         .isOk())
         .andExpect(content().contentType("application/json;charset=UTF-8"))
         .andExpect(content().json("[{\"title\":\"title\"}]"))
-        .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"nameaAuthor\":\"fgd\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"vfd\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
+        .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
         Mockito.verify(recipeController, Mockito.times(1)).getAllRecipe();
 
     }
@@ -44,7 +44,7 @@ when(recipeController.getRecipeByIdController(1L)).thenReturn(recipe);
                 andExpect(status()
                         .isOk())
                 .andExpect(content().json("{\"title\":\"title\"}"))
-                .andExpect(content().json("{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"nameaAuthor\":\"fgd\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"vfd\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}\n"));
+                .andExpect(content().json("{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}\n"));
         Mockito.verify(recipeController, Mockito.times(1)).getRecipeByIdController(1L);
 
     }
@@ -58,7 +58,7 @@ when(recipeController.getRecipeByIdController(1L)).thenReturn(recipe);
                 andExpect(status()
                         .isOk())
                 .andExpect(content().json("[{\"title\":\"title\"}]"))
-                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"nameaAuthor\":\"fgd\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"vfd\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
+                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
         Mockito.verify(recipeController, Mockito.times(1)).findByIngredientController("vfd");
 
     }
@@ -72,7 +72,7 @@ when(recipeController.getRecipeByIdController(1L)).thenReturn(recipe);
                 andExpect(status()
                         .isOk())
                 .andExpect(content().json("[{\"title\":\"title\"}]"))
-                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"nameaAuthor\":\"fgd\"},\"ingredients\":[{\"id\":1,\"nameIngredient\":\"vfd\",\"descriptions\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
+                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
         Mockito.verify(recipeController, Mockito.times(1)).findBYAuthor("fgd");
 
     }

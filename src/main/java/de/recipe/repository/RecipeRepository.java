@@ -1,6 +1,6 @@
 package de.recipe.repository;
 
-import de.recipe.model.Ingredient;
+
 import de.recipe.model.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,13 +12,9 @@ public interface RecipeRepository extends JpaRepository <Recipe, Long> {
 
     Recipe findByTitle(String title);
 
-    List <Recipe> findByIngredientsNameIngredientIn(String nameIngredient);
+    List <Recipe> findByIngredientsNameIn(String name);
 
-    // List <Recipe> findByIngredientsNameIngredientNameIngredientNameIngredient(String nameIngredient1, String nameIngredient2, String nameIngredient3);
-
-    List <Recipe> findByAuthorNameaAuthor(String nameAuthor);
-
-    void deleteByIngredientsIn(Ingredient ingredient);
+    List <Recipe> findByAuthorName(String nameAuthor);
 
 
 }

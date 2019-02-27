@@ -1,24 +1,25 @@
 package de.recipe.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Transactional
-@Entity
 @Data
-@Table
-@EqualsAndHashCode
+@Entity
+@Table( name = "recipistep" )
 public class RecepiStep implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column( name = "recipestep_id", unique = true )
     private Long id;
-    @Column(length = 1500,nullable = false)
+
+    @Column
     private String stepTitle;
-    @Column(length = 5000 ,nullable = false)
+
+    @Column
+
     private String stepDescription;
 
     public RecepiStep(String stepTitle, String stepDescription, Long id) {

@@ -6,7 +6,7 @@
 
     <name>RecipesAndCocktails</name>
     <description>
-        Recepes and Coctails DB with JavaBackend
+        Recipes and Cocktails DB with JavaBackend
     </description>
 
     <parent>
@@ -15,8 +15,6 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/><!-- lookup parent from repository -->
     </parent>
-
-
     <groupId>de.tel-ran</groupId>
     <artifactId>Recipes</artifactId>
     <version>0.0.1</version>
@@ -43,18 +41,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>27.0.1-jre</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -107,14 +93,6 @@
             <version>5.1.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <!--
-            JSON SIMPLE PARSER
-            -->
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
             <groupId>org.easymock</groupId>
@@ -132,24 +110,13 @@
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.3.1</version>
-        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -172,7 +139,7 @@
                         <resource>
                             <targetPath>/</targetPath>
                             <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
+                            <include>${project.build.finalName}.war</include>
                         </resource>
                     </resources>
                 </configuration>

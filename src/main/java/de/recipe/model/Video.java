@@ -5,16 +5,22 @@ import lombok.EqualsAndHashCode;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.net.URI;
+
 @Transactional
 @Entity
 @Data
 @Table
 @EqualsAndHashCode
 public class Video {
+    @Column( nullable = false )
+    private String patch;
     @Id
+    @Column( name = "video_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column(nullable = false)
-    String patch;
+
+    public Video() {
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package de.recipe.service;
 
 import de.exeption.NotFoundRecipeById;
+import de.recipe.model.Ingredient;
 import de.recipe.model.Recipe;
 import de.recipe.repository.RecipeRepository;
 import de.recipe.web.RecipeWeb;
@@ -13,10 +14,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-;
-
 @Service
-public class RecipeServiceImpl<T, Y> implements RecipeService {
+public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
 
     @Autowired
@@ -48,60 +47,55 @@ public class RecipeServiceImpl<T, Y> implements RecipeService {
         recipeRepository.deleteById(id);
     }
 
-    public void deleteRecipieByRecipie(RecipeWeb recipeWeb) {
-        Optional <Recipe> optionalRecipe = Optional.ofNullable(recipeRepository.findByTitle(recipeWeb.getTitle()));
-        if (!optionalRecipe.isPresent()) {
-            throw new NotFoundRecipeById("This recipe does not exist");
-        }
-        recipeRepository.deleteById(optionalRecipe.get().getId());
-    }
-
-    public void deleteRecipeByIngredients(String ingredient) {
-        List <Recipe> list = recipeRepository.findByIngredientsNameIngredientIn(ingredient);
+    public void deleteRecipeByIngredients(String ingredientName) {
+        List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredientName);
         for (Recipe s : list) {
+            recipeRepository.deleteById(s.getId());
         }
-
-
     }
 
-    private Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
+    public void deleteIngredientsToRecipes(String ingredientName) {
+        List <Recipe> list = recipeRepository.findByIngredientsNameIn(ingredientName);
+        for (Recipe x : list) {
+            for (Ingredient s : x.getIngredients()) {
+                if (s.getName().equals(ingredientName)) x.getIngredients().remove(s);
+            }
+            updateRecipe(x, x.getId());
+        }
+    }
+
+    public Recipe creatRecipeToRecipeWeb(RecipeWeb recipeWeb) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(recipeWeb, Recipe.class);
     }
 
 
-    private RecipeWebOutput creatRecipeWebOutputToRecipe(Recipe recipe) {
+    public RecipeWebOutput creatRecipeWebOutputToRecipe(Recipe recipe) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(recipe, RecipeWebOutput.class);
     }
 
-    private List <T> refactoryObjectListToObjectwebList(List <Y> list, Class <T> tClass) {
-        ModelMapper modelMapper = new ModelMapper();
-        return list.stream().map(a -> modelMapper.map(a, tClass)).collect(Collectors.toList());
-    }
-
     public List <RecipeWebOutput> findByIngredientsContaining(String nameIngredient) {
-        List <Recipe> byIngredients = recipeRepository.findByIngredientsNameIngredientIn(nameIngredient);
+        List <Recipe> byIngredients = recipeRepository.findByIngredientsNameIn(nameIngredient);
         if (byIngredients.isEmpty()) throw new NotFoundRecipeById("This recipe name does not exist");
         return byIngredients.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
     }
 
     public List <RecipeWebOutput> findbyAuthor(String nameauthor) {
-        List <Recipe> byAuthorNameaAuthor = recipeRepository.findByAuthorNameaAuthor(nameauthor);
-        if (byAuthorNameaAuthor.isEmpty()) throw new NotFoundRecipeById("This  author does not exist");
-        return byAuthorNameaAuthor.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
+        List <Recipe> byAuthorName = recipeRepository.findByAuthorName(nameauthor);
+        if (byAuthorName.isEmpty()) throw new NotFoundRecipeById("This  author does not exist");
+        return byAuthorName.stream().map(this::creatRecipeWebOutputToRecipe).collect(Collectors.toList());
     }
 
-    public void updateRecipe(Recipe recipe, Long id) {
-        Optional <Recipe> recipe1Optional = recipeRepository.findById(id);
-
-        if (!recipe1Optional.isPresent()) {
-            throw new NotFoundRecipeById("This  recipe does not exist");
+    public RecipeWebOutput updateRecipe(Recipe recipe, Long id) {
+        Optional <Recipe> byId = recipeRepository.findById(id);
+        if (byId.isPresent()) {
+            recipe.setId(id);
+            recipeRepository.saveAndFlush(recipe);
         }
         recipe.setId(id);
         recipeRepository.save(recipe);
-
-
+        return creatRecipeWebOutputToRecipe(recipe);
     }
 
     public RecipeWebOutput findByTitle(String title) {

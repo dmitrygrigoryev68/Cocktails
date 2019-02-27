@@ -14,22 +14,14 @@ import java.io.Serializable;
 @Table
 public class Ingredient implements Serializable {
     @Id
+    @Column( name = "ingredient_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column(length =3000,nullable = false)
-    private String nameIngredient;
-    @Column(length =3000,nullable = false)
-    private String descriptions;
-    // private weightsAndMeasures wam;
 
+    @Column( length = 3000, nullable = false )
+    private String name;
 
-    public Ingredient(String nameIngredient, String descriptions, Long id) {
-        this.nameIngredient = nameIngredient;
-        this.descriptions = descriptions;
-        this.id = id;
-    }
+    @Column( length = 3000, nullable = false )
+    private String description;
 
-
-    public Ingredient() {
-    }
 }

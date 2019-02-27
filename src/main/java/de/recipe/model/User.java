@@ -1,20 +1,31 @@
 package de.recipe.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
+@Transactional
+@Entity
 @Data
-@Table( name = "user" )
-public class User {
+@Table
+@EqualsAndHashCode
+public class User implements Serializable {
+
     @Id
+    @Column( name = "user_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column
-    String userName;
-    String userFamyli;
-    String userEmail;
-    String userPasword;
-    String userRol;
-    String header;
+    @Column( nullable = false )
+    private String name;
+
+    public User() {
+    }
+
+    public User(String name, Long id) {
+        this.name = name;
+        this.id = id;
+    }
 }
