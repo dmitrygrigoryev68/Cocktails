@@ -1,33 +1,30 @@
 package de.recipe.controller;
 
-import de.recipe.model.Recipe;
 import de.recipe.service.RecipeService;
 import de.recipe.web.RecipeWeb;
 import de.recipe.web.RecipeWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class RecipeController {
-    @Qualifier(value = "RecipeService")
+
     private RecipeService recipeService;
 
     @Autowired
-
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
 
     }
 
-    @GetMapping( value = "/getAllRecipes" )
+    @GetMapping( value = "/recipes/" )
     public List getAllRecipe() {
         return recipeService.getAllRecipe();
     }
 
-    @PostMapping( value = "/addNewRecipes", consumes = "application/json" )
+    @PostMapping( value = "/recipes/" )
     public RecipeWeb creatRecipeController(@RequestBody RecipeWeb recipeWeb) {
         recipeService.creatRecipe(recipeWeb);
         return recipeWeb;
@@ -50,22 +47,19 @@ public class RecipeController {
         return recipeService.findByIngredientsContaining(name_ingredient);
     }
 
-    @GetMapping( value = "/recipes/author/{nameAuthor}" )
-    public List <RecipeWebOutput> findBYAuthor(@PathVariable String nameAuthor) {
-        List <RecipeWebOutput> recipeWebOutputList = recipeService.findbyAuthor(nameAuthor);
+    @GetMapping( value = "/recipes/author/{name_author}" )
+    public List <RecipeWebOutput> findBYAuthor(@PathVariable String name_author) {
+        List <RecipeWebOutput> recipeWebOutputList = recipeService.findbyAuthor(name_author);
         return recipeWebOutputList;
     }
 
     @PutMapping( value = "/recipes/{id}" )
-    public RecipeWebOutput updateRecipeById(@RequestBody RecipeWeb recipeWeb, @PathVariable long id) {
-        Recipe recipe = (Recipe) recipeService.convertTheReceiptsIntoAnotherEmbodiment(recipeWeb, Recipe.class);
-
-        return recipeService.updateRecipe(recipe, id);
+    public void updateRecipeById(@RequestBody RecipeWebOutput recipeWebOutput, @PathVariable Long id) {        recipeService.updateRecipe(recipeWebOutput, id);
     }
 
-    //test
-    @DeleteMapping( value = "/recipes/ingredients/name" )
-    private void deleteIngredientsToRecipe(String nameIngredient) {
+//test
+    @DeleteMapping( value = "/recipes/ingredients/" )
+   private void deleteIngredientsToRecipe(@RequestBody String nameIngredient) {
         recipeService.deleteIngredientsToRecipes(nameIngredient);
     }
 }
