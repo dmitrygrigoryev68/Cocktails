@@ -31,6 +31,19 @@ public class Taxonomy implements Serializable {
     public Taxonomy() {
     }
 
-    public Taxonomy(String ad, long l) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNameTaxonomy() {
+        return nameTaxonomy;
+    }
+
+    public void setNameTaxonomy(String nameTaxonomy) {
+        this.nameTaxonomy = nameTaxonomy;
     }
 }

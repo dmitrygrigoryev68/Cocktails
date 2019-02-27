@@ -12,4 +12,12 @@ public class TaxonomyWeb {
 
     public TaxonomyWeb() {
     }
+
+    public String getNameTaxonomy() {
+        return nameTaxonomy;
+    }
+
+    public void setNameTaxonomy(String nameTaxonomy) {
+        this.nameTaxonomy = nameTaxonomy;
+    }
 }
