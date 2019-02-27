@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.Main;
 import de.recipe.controller.RecipeController;
 import de.recipe.model.*;
+import de.recipe.service.RecipeService;
 import de.recipe.service.RecipeServiceImpl;
 import de.recipe.web.*;
 import org.junit.Test;
@@ -34,8 +35,9 @@ public class integrationControllerServiceTest {
     @Autowired
     RecipeController recipeController;
     @MockBean
+    RecipeService recipeService;
 
-    RecipeServiceImpl recipeService;
+
     private List <Ingredient> ingredientList = Arrays.asList(new Ingredient("pepper", "salt and freshly ground pepper"));
     private List <RecepiStep> recepiSteps = Arrays.asList(new RecepiStep("1", "Heat the oil in a large", 1L));
     private List <Taxonomy> taxonomyList = Arrays.asList(new Taxonomy("Italia", 1L));
@@ -92,7 +94,9 @@ public class integrationControllerServiceTest {
 
     @Test
     public void delletRecipeByIDTest() throws Exception {
-        mockMvc.perform(delete("/recipes/{id}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print()).
+        mockMvc.perform(delete("/recipes/{id}", 1L)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print()).
                 andExpect(status().isOk());
         verify(recipeService, Mockito.times(1)).deleteRecipeById(1L);
     }
@@ -117,13 +121,12 @@ public class integrationControllerServiceTest {
     @Test
     public void updateRecipeByIdTest() throws Exception {
 
-        when(recipeService.updateRecipe(recipe, 1L)).thenReturn(recipeWebOutput);
-        mockMvc.perform(put("/recipes/{id}",1,recipeWeb)
+
+        mockMvc.perform(put("/recipes/{id}",1).contentType(MediaType.APPLICATION_JSON).content(jason)
                 .contentType("application/json;charset=UTF-8"))
                 .andDo(print())
                 .andExpect(status()
-                        .isOk()).andExpect(content().json(jason));
-
-        verify(recipeService, Mockito.times(1)).updateRecipe(recipe, 1L);
+                        .isOk());
+       verify(recipeService, Mockito.times(1)).updateRecipe(recipeWebOutput,1L);
     }
 }
