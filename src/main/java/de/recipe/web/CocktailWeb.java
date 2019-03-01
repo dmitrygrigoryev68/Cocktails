@@ -1,36 +1,41 @@
 package de.recipe.web;
 
+import de.recipe.model.Ingredient;
+import de.recipe.model.Photo;
+import de.recipe.model.User;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
-public class RecipeWeb {
-    private String title;
-    private String announce;
-    private Userweb author;
-    private List <IngredientWeb> ingredients;
-    private List <RecepiStepWeb> instructions;
-    private List <TaxonomyWeb> tags;
-    private int prepTimeMinute;
-    private int cookingTime;
-    private List <PhotoWeb> image;
-    private List <VideoWeb> video;
+public class CocktailWeb {
 
-    public RecipeWeb() {
+    private String title;
+
+    private String announce;
+
+    private Userweb author;
+
+    private List <IngredientWeb> ingredients;
+
+    private int prepTimeMinute;
+
+    private int cookingTime;
+
+    private List <PhotoWeb> image;
+
+    public CocktailWeb() {
     }
 
-    public RecipeWeb(String title, String announce, Userweb author, List <IngredientWeb> ingredients, List <RecepiStepWeb> instructions, List <TaxonomyWeb> tags, int prepTimeMinute, int cookingTime, List <PhotoWeb> image, List <VideoWeb> video) {
+    public CocktailWeb(String title, String announce, Userweb author, List <IngredientWeb> ingredients, int prepTimeMinute, int cookingTime, List <PhotoWeb> image) {
         this.title = title;
         this.announce = announce;
         this.author = author;
         this.ingredients = ingredients;
-        this.instructions = instructions;
-        this.tags = tags;
         this.prepTimeMinute = prepTimeMinute;
         this.cookingTime = cookingTime;
         this.image = image;
-        this.video = video;
     }
 
     public String getTitle() {
@@ -65,22 +70,6 @@ public class RecipeWeb {
         this.ingredients = ingredients;
     }
 
-    public List <RecepiStepWeb> getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(List <RecepiStepWeb> instructions) {
-        this.instructions = instructions;
-    }
-
-    public List <TaxonomyWeb> getTags() {
-        return tags;
-    }
-
-    public void setTags(List <TaxonomyWeb> tags) {
-        this.tags = tags;
-    }
-
     public int getPrepTimeMinute() {
         return prepTimeMinute;
     }
@@ -103,14 +92,6 @@ public class RecipeWeb {
 
     public void setImage(List <PhotoWeb> image) {
         this.image = image;
-    }
-
-    public List <VideoWeb> getVideo() {
-        return video;
-    }
-
-    public void setVideo(List <VideoWeb> video) {
-        this.video = video;
     }
 }
 
