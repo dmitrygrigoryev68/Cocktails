@@ -1,0 +1,36 @@
+{
+  "title": "Sex on the Beach Cocktail Recipe",
+  "announce": "So I have to say one of the best drink's I've drunk so far has become my favorite drink as well",
+  "author": {
+    "name": "Iurie Railean"
+  },
+  "ingredients": [
+    {
+      "name": "Wodka",
+      "description": "4 cl Wodka"
+    },
+    {
+      "name": "Pfirsich Likör",
+      "description": "4 cl Pfirsich Likör"
+    },
+    {
+      "name": "cranberry juice or Cranberry Rectal",
+      "description": "8 cl cranberry juice or Cranberry Rectal"
+    },
+    {
+      "name": "orange juice",
+      "description": "8 cl of orange juice"
+    },
+    {
+      "name": "ice",
+      "description": "ice cubes"
+    }
+  ],
+  "prepTimeMinute": 15,
+  "cookingTime": 112,
+  "image": [
+    {
+      "patch": "http//google.com"
+    }
+  ]
+}

@@ -18,13 +18,13 @@ USE `recipedb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `recipe`
+-- Table structure for table `cocktail`
 --
 
-DROP TABLE IF EXISTS `recipe`;
+DROP TABLE IF EXISTS `cocktail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `recipe` (
+CREATE TABLE `cocktail` (
   `recipe_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `announce` varchar(3000) DEFAULT NULL,
   `cooking_time` int(11) NOT NULL,
@@ -40,13 +40,13 @@ CREATE TABLE `recipe` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `recipe`
+-- Dumping data for table `cocktail`
 --
 
-LOCK TABLES `recipe` WRITE;
-/*!40000 ALTER TABLE `recipe` DISABLE KEYS */;
-REPLACE INTO `recipe` (`recipe_id`, `announce`, `cooking_time`, `prep_time_minute`, `publication_date`, `title`, `user_id`, `rate`) VALUES (1,'The easiest pasta dish you will ever make with just 5 ingredients in 15 min, loaded with Parmesan and crisp bacon goodness!',12,5,'2019-02-23 15:22:05','SPAGHETTI CARBONARA',11,11),(2,'Antonio Carluccio\'s not above an easy tuna pasta recipe. A store cupboard favourite with a twist of fresh ginger.',10,30,'2019-02-23 20:48:12','Spaghetti BologneseTuna pasta sauce',2,2),(4,'Master crispy crackling with this simple roast pork shoulder recipe and you’ll have the perfect roast dinner. Use our roast calculator to work out exact roast pork shoulder cooking times and temperatures.',120,30,'2019-02-23 21:53:27','Roast pork shoulder',13,13);
-/*!40000 ALTER TABLE `recipe` ENABLE KEYS */;
+LOCK TABLES `cocktail` WRITE;
+/*!40000 ALTER TABLE `cocktail` DISABLE KEYS */;
+REPLACE INTO `cocktail` (`recipe_id`, `announce`, `cooking_time`, `prep_time_minute`, `publication_date`, `title`, `user_id`, `rate`) VALUES (1,'The easiest pasta dish you will ever make with just 5 ingredients in 15 min, loaded with Parmesan and crisp bacon goodness!',12,5,'2019-02-23 15:22:05','SPAGHETTI CARBONARA',11,11),(2,'Antonio Carluccio\'s not above an easy tuna pasta cocktail. A store cupboard favourite with a twist of fresh ginger.',10,30,'2019-02-23 20:48:12','Spaghetti BologneseTuna pasta sauce',2,2),(4,'Master crispy crackling with this simple roast pork shoulder cocktail and you’ll have the perfect roast dinner. Use our roast calculator to work out exact roast pork shoulder cooking times and temperatures.',120,30,'2019-02-23 21:53:27','Roast pork shoulder',13,13);
+/*!40000 ALTER TABLE `cocktail` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
