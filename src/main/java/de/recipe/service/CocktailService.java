@@ -27,7 +27,7 @@ public interface CocktailService<Y, T> {
 
     public CocktailWebOutput findByTitle(String title);
 
-    public Y convertTheReceiptsIntoAnotherEmbodiment(T t, Class <Y> refactoryclass);
+    public Y convertTheeCoctailsIntoAnotherEmbodiment(T t, Class <Y> refactoryclass);
 
     public List <T> refactoryObjectListToObjectwebList(List <Y> list, Class <T> tClass);
 }

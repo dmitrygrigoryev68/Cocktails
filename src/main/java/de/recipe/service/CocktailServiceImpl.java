@@ -4,7 +4,6 @@ import de.exeption.NotFoundCocktailById;
 import de.recipe.model.Cocktail;
 import de.recipe.repository.CocktailRepository;
 import de.recipe.web.CocktailWebOutput;
-import de.recipe.web.IngredientWeb;
 import de.recipe.web.CocktailWeb;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
             throw new NotFoundCocktailById("This recipe does not exist");
         } else return creatCocktailWebOutputToRecipe(optionalRecipe.get());
     }
-    public Y convertTheReceiptsIntoAnotherEmbodiment(Object t, Class refactoryclass) {
+    public Y convertTheeCoctailsIntoAnotherEmbodiment(Object t, Class refactoryclass) {
         ModelMapper modelMapper = new ModelMapper();
         Y y = (Y) modelMapper.map(t, refactoryclass);
         return y;
@@ -50,7 +49,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     public void creatCocktail(CocktailWeb cocktailWeb) {
         Cocktail cocktail = creatRecipeToCocktailWeb(cocktailWeb);
         cocktailRepository.save(cocktail);
-        convertTheReceiptsIntoAnotherEmbodiment(cocktailRepository.findByTitle(cocktail.getTitle()), CocktailWebOutput.class);
+        convertTheeCoctailsIntoAnotherEmbodiment(cocktailRepository.findByTitle(cocktail.getTitle()), CocktailWebOutput.class);
     }
 
     public void deleteCocktailById(long id) {
@@ -91,7 +90,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
 
     public void updateCocktail(CocktailWebOutput cocktailWebOutput, Long id) {
         Optional <Cocktail> byId = cocktailRepository.findById(id);
-        Cocktail cocktail1 = (Cocktail) convertTheReceiptsIntoAnotherEmbodiment(cocktailWebOutput, Cocktail.class);
+        Cocktail cocktail1 = (Cocktail) convertTheeCoctailsIntoAnotherEmbodiment(cocktailWebOutput, Cocktail.class);
         if (byId.isPresent()) {
             cocktail1.setId(id);
             cocktailRepository.saveAndFlush(cocktail1);

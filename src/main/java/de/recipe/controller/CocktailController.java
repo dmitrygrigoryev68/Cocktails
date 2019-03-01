@@ -27,7 +27,7 @@ public class CocktailController {
     @PostMapping( value = "/" )
     public CocktailWebOutput creatRecipeController(@RequestBody CocktailWeb cocktailWeb) {
         cocktailService.creatCocktail(cocktailWeb);
-        return (CocktailWebOutput) cocktailService.convertTheReceiptsIntoAnotherEmbodiment( cocktailWeb,CocktailWebOutput.class);
+        return (CocktailWebOutput) cocktailService.convertTheeCoctailsIntoAnotherEmbodiment( cocktailWeb,CocktailWebOutput.class);
     }
 
     @GetMapping( "/{id}" )
@@ -57,7 +57,7 @@ public class CocktailController {
 
     }
 
-    @PutMapping( value = "/ubdate/{id}" )
+    @PutMapping( value = "/{id}" )
     public void updateCocktailById(@RequestBody CocktailWebOutput cocktailWebOutput, @PathVariable Long id) {
         cocktailService.updateCocktail(cocktailWebOutput, id);
     }

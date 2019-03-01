@@ -128,7 +128,7 @@ public class integrationControllerServiceTest {
     public void updateRecipeByIdTest() throws Exception {
 
 
-        mockMvc.perform(put("/cocktails/ubdate/{id}",1).contentType(MediaType.APPLICATION_JSON).content(jason)
+        mockMvc.perform(put("/cocktails/{id}",1).contentType(MediaType.APPLICATION_JSON).content(jason)
                 .contentType("application/json;charset=UTF-8"))
                 .andDo(print())
                 .andExpect(status()
