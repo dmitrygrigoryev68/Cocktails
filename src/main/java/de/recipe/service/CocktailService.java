@@ -5,7 +5,7 @@ import de.recipe.web.CocktailWeb;
 import de.recipe.web.CocktailWebOutput;
 
 import java.util.List;
-
+@Service
 public interface CocktailService<Y, T> {
     public List <CocktailWebOutput> getAllCocktail();
 
