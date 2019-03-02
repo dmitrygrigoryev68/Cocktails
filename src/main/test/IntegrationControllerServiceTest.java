@@ -2,9 +2,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.Main;
 import de.recipe.controller.CocktailController;
-import de.recipe.model.*;
+import de.recipe.model.Cocktail;
+import de.recipe.model.Ingredient;
+import de.recipe.model.Photo;
+import de.recipe.model.User;
 import de.recipe.service.CocktailService;
-import de.recipe.web.*;
+import de.recipe.web.CocktailWeb;
+import de.recipe.web.CocktailWebOutput;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -17,7 +21,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,15 +32,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith( SpringRunner.class )
 @SpringBootTest( classes = Main.class )
 @AutoConfigureMockMvc
-public class integrationControllerServiceTest {
+public class IntegrationControllerServiceTest {
 
     @Autowired
     MockMvc mockMvc;
+
     @Autowired
     CocktailController recipeController;
+
     @MockBean
     CocktailService cocktailService;
-
 
     private List <Ingredient> ingredientList = Arrays.asList(new Ingredient("Wodka", "4 cl Wodka"),new Ingredient("Pfirsich Likör","4 cl Pfirsich Likör"),new Ingredient("cranberry juice or Cranberry Rectal","8 cl cranberry juice or Cranberry Rectal"),new Ingredient("orange juice","8 cl of orange juice"),new Ingredient("ice","ice cubes"));
 
@@ -54,9 +58,8 @@ public class integrationControllerServiceTest {
     private String jason = objectMapper.writeValueAsString(cocktailWebOutput);
     private String jasonArr = objectMapper.writeValueAsString(cocktailWebOutputs);
 
-    public integrationControllerServiceTest() throws JsonProcessingException {
+    public IntegrationControllerServiceTest() throws JsonProcessingException {
     }
-
     @Test
     public void testGetAllCocktails() throws Exception {
         when(cocktailService.getAllCocktail()).thenReturn(cocktailWebOutputs);
@@ -70,7 +73,6 @@ public class integrationControllerServiceTest {
         verify(cocktailService, Mockito.times(1)).getAllCocktail();
     }
 
-
     @Test
     public void creatCocktailsTest() throws Exception {
         mockMvc.perform(post("/cocktails/", cocktailWebOutput)
@@ -80,7 +82,6 @@ public class integrationControllerServiceTest {
         verify(cocktailService, Mockito.times(1)).creatCocktail(cocktailWeb);
 
     }
-
     @Test
     public void getCocktailsByIdTest() throws Exception {
         when(cocktailService.getCocktailById(1L)).thenReturn(cocktailWebOutput);
@@ -93,7 +94,6 @@ public class integrationControllerServiceTest {
         verify(cocktailService, Mockito.times(1)).getCocktailById(1L);
 
     }
-
     @Test
     public void delletCocktailsByIDTest() throws Exception {
         mockMvc.perform(delete("/cocktails/{id}", 1L)
@@ -102,7 +102,6 @@ public class integrationControllerServiceTest {
                 andExpect(status().isOk());
         verify(cocktailService, Mockito.times(1)).deleteCocktailById(1L);
     }
-
     @Test
     public void findByIngretientTest() throws Exception {
         when(cocktailService.findByIngredientsContaining(cocktailWebOutput.getIngredients().get(0).getName())).thenReturn(cocktailWebOutputs);
@@ -110,7 +109,6 @@ public class integrationControllerServiceTest {
         verify(cocktailService, Mockito.times(1)).findByIngredientsContaining(cocktail.getIngredients().get(0).getName());
 
     }
-
 
     @Test
     public void findBYAuthorTest() throws Exception {
@@ -126,8 +124,6 @@ public class integrationControllerServiceTest {
 
     @Test
     public void updateRecipeByIdTest() throws Exception {
-
-
         mockMvc.perform(put("/cocktails/{id}",1).contentType(MediaType.APPLICATION_JSON).content(jason)
                 .contentType("application/json;charset=UTF-8"))
                 .andDo(print())
