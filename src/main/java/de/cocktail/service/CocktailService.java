@@ -1,11 +1,12 @@
-package de.recipe.service;
+package de.cocktail.service;
 
-import de.recipe.model.Cocktail;
-import de.recipe.web.CocktailWeb;
-import de.recipe.web.CocktailWebOutput;
+import de.cocktail.model.Cocktail;
+import de.cocktail.web.CocktailWeb;
+import de.cocktail.web.CocktailWebOutput;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface CocktailService<Y, T> {
     public List <CocktailWebOutput> getAllCocktail();
 
@@ -29,5 +30,5 @@ public interface CocktailService<Y, T> {
 
     public Y convertTheeCoctailsIntoAnotherEmbodiment(T t, Class <Y> refactoryclass);
 
-    public List <T> refactoryObjectListToObjectwebList(List <Y> list, Class <T> tClass);
+
 }

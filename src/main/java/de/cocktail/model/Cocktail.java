@@ -1,4 +1,4 @@
-package de.recipe.model;
+package de.cocktail.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,9 +18,11 @@ import java.util.List;
 @Data
 @Table( name = "COCKTAILS" )
 public class Cocktail implements Serializable {
+
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
     @Column( name = "COCKTAILS_ID" )
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+
     private Long id;
 
     private String title;
@@ -34,7 +36,7 @@ public class Cocktail implements Serializable {
     private Date publicationDate;
 
     @OneToOne( cascade = CascadeType.ALL, targetEntity = User.class )
-    @JoinColumn( name = "user_id" )
+
     private User author;
 
     @ManyToMany( cascade = CascadeType.ALL, targetEntity = Ingredient.class )
@@ -57,14 +59,5 @@ public class Cocktail implements Serializable {
     public Cocktail() {
     }
 
-    public Cocktail(String title, String announce, User author, List <Ingredient> ingredients, int prepTimeMinute, int cookingTime, List <Photo> image) {
-        this.title = title;
-        this.announce = announce;
 
-        this.author = author;
-        this.ingredients = ingredients;
-        this.prepTimeMinute = prepTimeMinute;
-        this.cookingTime = cookingTime;
-        this.image = image;
-    }
 }

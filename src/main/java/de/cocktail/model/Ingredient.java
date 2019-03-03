@@ -1,4 +1,4 @@
-package de.recipe.model;
+package de.cocktail.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,21 +10,22 @@ import java.io.Serializable;
 @Transactional
 @Entity
 @Data
-@Table
 @EqualsAndHashCode
-public class User implements Serializable {
-
+@Table
+public class Ingredient implements Serializable {
     @Id
-    @Column( name = "user_id" )
+    @Column( name = "ingredient_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column( nullable = false )
+
+    @Column( length = 3000, nullable = false )
     private String name;
 
-    public User() {
+    @Column( length = 3000, nullable = false )
+    private String description;
+
+    public Ingredient() {
     }
 
-    public User(String name) {
-        this.name = name;
-    }
+
 }

@@ -1,29 +1,28 @@
-package de.recipe.model;
+package de.cocktail.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Transactional
 @Entity
 @Data
 @Table
 @EqualsAndHashCode
-public class Photo {
+public class User implements Serializable {
 
     @Id
-    @Column( name = "photo_id" )
+    @Column( name = "user_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column( length = 5000, nullable = false )
-    private String patch;
+    @Column( nullable = false )
+    private String name;
 
-    public Photo() {
+    public User() {
     }
 
-    public Photo(String patch) {
-        this.patch = patch;
-    }
+
 }

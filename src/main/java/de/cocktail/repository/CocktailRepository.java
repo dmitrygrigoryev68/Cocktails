@@ -1,7 +1,7 @@
-package de.recipe.repository;
+package de.cocktail.repository;
 
 
-import de.recipe.model.Cocktail;
+import de.cocktail.model.Cocktail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
