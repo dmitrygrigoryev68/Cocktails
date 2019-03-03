@@ -1,12 +1,13 @@
-package de.recipe.service;
+package de.cocktail.service;
 
+import de.cocktail.model.Cocktail;
+import de.cocktail.repository.CocktailRepository;
+import de.cocktail.web.CocktailWeb;
+import de.cocktail.web.CocktailWebOutput;
 import de.exeption.NotFoundCocktailById;
-import de.recipe.model.Cocktail;
-import de.recipe.repository.CocktailRepository;
-import de.recipe.web.CocktailWebOutput;
-import de.recipe.web.CocktailWeb;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     private final CocktailRepository cocktailRepository;
 
     @Autowired
-    public CocktailServiceImpl(CocktailRepository cocktailRepository) {
+    public CocktailServiceImpl( CocktailRepository cocktailRepository) {
         this.cocktailRepository = cocktailRepository;
     }
 
@@ -33,7 +34,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     public CocktailWebOutput getCocktailById(Long id) {
         Optional <Cocktail> optionalRecipe = cocktailRepository.findById(id);
         if (!optionalRecipe.isPresent()) {
-            throw new NotFoundCocktailById("This recipe does not exist");
+            throw new NotFoundCocktailById("This cocktail does not exist");
         } else return creatCocktailWebOutputToRecipe(optionalRecipe.get());
     }
     public Y convertTheeCoctailsIntoAnotherEmbodiment(Object t, Class refactoryclass) {
@@ -42,18 +43,13 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
         return y;
     }
 
-    public List <T> refactoryObjectListToObjectwebList(List list, Class tClass) {
-        ModelMapper modelMapper = new ModelMapper();
-        return (List <T>) list.stream().map(a -> modelMapper.map(a, tClass)).collect(Collectors.toList());
-    }
     public void creatCocktail(CocktailWeb cocktailWeb) {
         Cocktail cocktail = creatRecipeToCocktailWeb(cocktailWeb);
         cocktailRepository.save(cocktail);
-        convertTheeCoctailsIntoAnotherEmbodiment(cocktailRepository.findByTitle(cocktail.getTitle()), CocktailWebOutput.class);
     }
 
     public void deleteCocktailById(long id) {
-        if (!cocktailRepository.existsById(id)) throw new NotFoundCocktailById("This recipe does not exist");
+        if (!cocktailRepository.existsById(id)) throw new NotFoundCocktailById("This cocktail does not exist");
         cocktailRepository.deleteById(id);
     }
 
@@ -78,7 +74,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
 
     public List <CocktailWebOutput> findByIngredientsContaining(String nameIngredient) {
         List <Cocktail> byIngredients = cocktailRepository.findByIngredientsNameIn(nameIngredient);
-        if (byIngredients.isEmpty()) throw new NotFoundCocktailById("This recipe name does not exist");
+        if (byIngredients.isEmpty()) throw new NotFoundCocktailById("This cocktail name does not exist");
         return byIngredients.stream().map(this::creatCocktailWebOutputToRecipe).collect(Collectors.toList());
     }
 
