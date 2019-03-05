@@ -35,8 +35,8 @@ INSERT INTO cocktail_ingredients(cocktail_ingredients.Cocktail_id, cocktail_ingr
 VALUES (2, 6),
        (2, 7),
        (2, 8),
-       (2, 5),
        (2, 5);
+
 INSERT INTO cocktail_image(Cocktail_id, image_id)
 VALUES (2, 2);
 INSERT INTO cocktail(id, title, announce, publicationDate, cookingTime, prepTimeMinute, author_id)
