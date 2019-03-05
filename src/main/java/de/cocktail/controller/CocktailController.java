@@ -1,76 +1,96 @@
 package de.cocktail.controller;
-
 import de.cocktail.service.CocktailService;
 import de.cocktail.web.CocktailWeb;
 import de.cocktail.web.CocktailWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.websocket.server.PathParam;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 @RestController
-
 public class CocktailController {
+
+    private final CocktailService cocktailService;
+
     @Autowired
-
-    private CocktailService cocktailService;
-
-
-    @GetMapping( "/recipes/ingredients/{name_ingredient}" )
-    public List findByIngredient1(@PathVariable String name_ingredient) {
-        return cocktailService.findByIngredientsContaining(name_ingredient);
+    public CocktailController(CocktailService cocktailService) {
+        this.cocktailService = cocktailService;
     }
 
-    @RequestMapping( path = "/cocktails ", method = RequestMethod.GET, params = "" )
-    public List getAllRecipe() {
-        return cocktailService.getAllCocktail();
-    }
 
-    @PostMapping( value = "/cocktails" )
-    public void creatRecipeController(@RequestBody CocktailWeb cocktailWeb) {
-        cocktailService.creatCocktail(cocktailWeb);
-    }
-
-//    @PostMapping
-//    @PatchMapping( "/cocktails/id?id={id} " )
-//    public Response getCocktailById(@PathParam( "id" ) Long id) {
-//        return Response
-//                .status(Response.Status.OK)
-//                .entity(cocktailService.getCocktailById(id))
-//                .build();
-//
-//    }
-
-    @DeleteMapping( "/cocktails/{id}" )
-    public void deleteCocktailByID(@PathVariable Long id) {
-        cocktailService.deleteCocktailById(id);
-
-    }
-
-    @PostMapping
-    @PatchMapping( value = "/cocktails/ingredients?ingredient={name_ingredient}/ " )
-    public Response findByIngredient(@PathParam( "name_ingredient" ) String name_ingredient) {
-        return Response.status(Response.Status.OK)
+    @GetMapping( "/cocktails/ingredients/{name_ingredient}" )
+    public Response findCocktailsByIngredient(@PathVariable String name_ingredient) {
+        return Response.
+                status(Response.Status.OK)
                 .entity(cocktailService.findByIngredientsContaining(name_ingredient))
+                .language("en")
+                .build();
+    }
+
+    @GetMapping("/cocktails/author/{name_author}")
+
+    public Response findCocktailsBYAuthor(@PathVariable String name_author) {
+        return Response.status(Response.Status.OK)
+                .entity(cocktailService.findbyAuthor(name_author))
+                .language("en")
+                .build();
+    }
+
+
+    @GetMapping("/cocktails/")
+    public Response getAllCocktails() {
+        return Response.status(Response.Status.OK)
+                .entity(cocktailService.getAllCocktail())
+                .language("en")
                 .build();
 
     }
 
-    @GetMapping( "/cocktails/author?author={name_author}/ " )
-    public List <CocktailWebOutput> findBYAuthor(@PathVariable String name_author) {
-        return cocktailService.findbyAuthor(name_author);
+    @PostMapping("cocktails/")
+    public Response saveCocktail(@RequestBody CocktailWeb cocktailWeb) {
+        cocktailService.creatCocktail(cocktailWeb);
+        return Response
+                .status(Response.Status.ACCEPTED)
+                .entity(cocktailWeb)
+                .language("en")
+                .build();
     }
 
-    @GetMapping( "/cocktails/title?title={title}/ " )
-    public CocktailWebOutput findByTitle(@PathVariable String title) {
-        return cocktailService.findByTitle(title);
+    @GetMapping("/cocktails/{id}" )
+    public Response getCocktailById(@PathVariable Long id) {
+        return Response.
+                status(Response.Status.OK)
+                .entity(cocktailService.getCocktailById(id))
+                .language("en")
+                .build();
 
     }
 
-    @PutMapping( "/cocktails/{id} " )
-    public void updateCocktailById(@RequestBody CocktailWebOutput cocktailWebOutput, @PathVariable Long id) {
+    @DeleteMapping( "/cocktails/{id}" )
+    public Response deleteCocktailByID(@PathVariable Long id) {
+        cocktailService.deleteCocktailById(id);
+       return Response
+               .ok()
+               .language("en")
+               .build();
+    }
+
+
+    @GetMapping( "/cocktails/title/{title}/" )
+    public Response findCocktailByTitle(@PathVariable String title) {
+        return Response.status(Response.Status.OK)
+                .entity(cocktailService.findByTitle(title))
+                .language("en")
+                .build();
+
+    }
+
+    @PutMapping( "/cocktails/{id}" )
+    public Response updateCocktailById(@RequestBody CocktailWebOutput cocktailWebOutput,@PathVariable Long id) {
         cocktailService.updateCocktail(cocktailWebOutput, id);
+        return Response.status(Response.Status.OK)
+                .entity(cocktailService.getCocktailById(id))
+                .language("en")
+                .build();
     }
 
 }
