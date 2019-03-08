@@ -1,4 +1,5 @@
 package de.cocktail.controller;
+
 import de.cocktail.service.CocktailService;
 import de.cocktail.web.CocktailWeb;
 import de.cocktail.web.CocktailWebOutput;
