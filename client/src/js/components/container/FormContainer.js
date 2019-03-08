@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Input from "../view/Input.js";
 import axios from "axios"
+import {BrowserRouter,Route} from "react-router-dom";
+import Home from "./Home";
+
+
 
 
 class FormContainer extends Component {
@@ -35,7 +39,11 @@ class FormContainer extends Component {
         const { seo_title, cocktails } = this.state
         const listItems = cocktails.map((d) => <li key={d.name}>{d.name}</li>);
         return (
-            <div>
+            <BrowserRouter>
+
+             <div>
+                 <Route path="/" component={Home}/>
+                 <Route path="/FormContainer" component={FormContainer}/>
                 <form id="article-form">
                     <Input
                         text={seo_title}
@@ -48,7 +56,8 @@ class FormContainer extends Component {
                 </form>
                 <button onClick={this.handleClick} type="submit">Get Cocktail</button>
                 <ul style={listItems.length ? {} : { display: 'none' }}>{listItems}</ul>
-            </div>
+             </div>
+            </BrowserRouter>
         )}
 }
 
