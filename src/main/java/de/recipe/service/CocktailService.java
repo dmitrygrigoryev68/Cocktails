@@ -3,6 +3,7 @@ package de.recipe.service;
 import de.recipe.model.Cocktail;
 import de.recipe.web.CocktailWeb;
 import de.recipe.web.CocktailWebOutput;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service

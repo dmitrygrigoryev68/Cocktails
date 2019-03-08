@@ -1,7 +1,8 @@
-package de.cocktail.controller;
-import de.cocktail.service.CocktailService;
-import de.cocktail.web.CocktailWeb;
-import de.cocktail.web.CocktailWebOutput;
+package de.recipe.controller;
+
+import de.recipe.service.CocktailService;
+import de.recipe.web.CocktailWeb;
+import de.recipe.web.CocktailWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 @RestController
 
 public class CocktailController {
-  private  CocktailService cocktailService;
+  private CocktailService cocktailService;
 
     @Autowired
     public CocktailController( CocktailService cocktailService) {
