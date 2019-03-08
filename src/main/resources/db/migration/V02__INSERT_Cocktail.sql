@@ -41,8 +41,8 @@ INSERT INTO cocktail_image(Cocktail_id, image_id)
 VALUES (2, 2);
 INSERT INTO cocktail(id, title, announce, publicationDate, cookingTime, prepTimeMinute, author_id)
 VALUES (2, 'Eight Cocktail',
-        'Shake the ingredients vigorously with a few ice cubes for about 10 seconds and then strain into a martini glass or a shooter glass. Put an After Eight in the glass.',
-        '2019-03-04', 12, 5, 2);
+        'Shake the ingredients vigorously with a few ice cubes for about 10 seconds and then strain into a martini glass or a shooter glass. Put an After Eight in the glass.','2019-03-04',
+         12, 5, 2);
 
 
 INSERT INTO USER(id, name)
