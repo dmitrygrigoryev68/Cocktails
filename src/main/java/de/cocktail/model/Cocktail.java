@@ -31,7 +31,7 @@ public class Cocktail implements Serializable {
 
     @CreationTimestamp
     @Column
-    @Temporal( TemporalType.DATE )
+    @Temporal( TemporalType.TIMESTAMP )
     private Date publicationDate;
 
     @OneToOne( cascade = CascadeType.ALL, targetEntity = User.class )
