@@ -6,6 +6,7 @@ import de.cocktail.web.CocktailWebOutput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public interface CocktailService<Y, T> {
     public List <CocktailWebOutput> getAllCocktail();
@@ -20,7 +21,7 @@ public interface CocktailService<Y, T> {
 
     public CocktailWebOutput creatCocktailWebOutputToRecipe(Cocktail cocktail);
 
-    public List <CocktailWebOutput> findByIngredientsContaining(String nameIngredient);
+    public List<Cocktail> findByIngredientsContaining(String nameIngredient);
 
     public List <CocktailWebOutput> findbyAuthor(String nameauthor);
 

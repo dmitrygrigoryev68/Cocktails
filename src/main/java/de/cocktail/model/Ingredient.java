@@ -13,15 +13,15 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Table
 public class Ingredient implements Serializable {
+
     @Id
-    @Column( name = "ingredient_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @Column( length = 3000, nullable = false )
-    private String name;
+@Column(name = "TITLE")
+    private String title;
 
-    @Column( length = 3000, nullable = false )
+
     private String description;
 
     public Ingredient() {

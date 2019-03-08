@@ -58,7 +58,7 @@ public class testRecipeContrroler {
     @Test
     public void testGetAllCocktails() throws Exception {
 
-    //    when(recipeController.getAllCocktail()).thenReturn(list);
+    //    when(recipeController.getAllCocktails()).thenReturn(list);
 
         mockMvc.perform(get("/recipes/")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -67,8 +67,8 @@ public class testRecipeContrroler {
                         .isOk())
         .andExpect(content().contentType("application/json;charset=UTF-8"))
         .andExpect(content().json("[{\"title\":\"title\"}]"))
-        .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
-        Mockito.verify(recipeController, Mockito.times(1)).getAllCocktail();
+        .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"name\":{\"id\":1,\"title\":\"fgd\"},\"ingredients\":[{\"id\":1,\"title\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
+        Mockito.verify(recipeController, Mockito.times(1)).getAllCocktails();
 
     }
     @Test
@@ -81,7 +81,7 @@ when(recipeController.getCocktailById(1L)).thenReturn(recipeWebOutput);
                 andExpect(status()
                         .isOk())
                 .andExpect(content().json("{\"title\":\"title\"}"))
-                .andExpect(content().json("{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}\n"));
+                .andExpect(content().json("{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"name\":{\"id\":1,\"title\":\"fgd\"},\"ingredients\":[{\"id\":1,\"title\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}\n"));
         Mockito.verify(recipeController, Mockito.times(1)).getCocktailById(1L);
 
     }
@@ -95,13 +95,13 @@ when(recipeController.getCocktailById(1L)).thenReturn(recipeWebOutput);
                 andExpect(status()
                         .isOk())
                 .andExpect(content().json("[{\"title\":\"title\"}]"))
-                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
+                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"name\":{\"id\":1,\"title\":\"fgd\"},\"ingredients\":[{\"id\":1,\"title\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
         Mockito.verify(recipeController, Mockito.times(1)).findByIngredient("vfd");
 
     }
     @Test
     public void testSearcbyAuthor() throws Exception {
-      //  when(recipeController.findBYAuthor("fgd")).thenReturn(list);
+      //  when(recipeController.findCocktailsBYAuthor("fgd")).thenReturn(list);
 
         mockMvc.perform(get("/search/byAuthor/{string}","fgd")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -109,8 +109,8 @@ when(recipeController.getCocktailById(1L)).thenReturn(recipeWebOutput);
                 andExpect(status()
                         .isOk())
                 .andExpect(content().json("[{\"title\":\"title\"}]"))
-                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"author\":{\"id\":1,\"name\":\"fgd\"},\"ingredients\":[{\"id\":1,\"name\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
-        Mockito.verify(recipeController, Mockito.times(1)).findBYAuthor("fgd");
+                .andExpect(content().json("[{\"id\":1,\"title\":\"title\",\"announce\":\"String announce\",\"name\":{\"id\":1,\"title\":\"fgd\"},\"ingredients\":[{\"id\":1,\"title\":\"vfd\",\"description\":\"gf\"}],\"instructions\":[{\"id\":1,\"stepTitle\":\"ds\",\"stepDescription\":\"fd\"}],\"tags\":[{\"id\":1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate\":\"sdf\"}}]\n"));
+        Mockito.verify(recipeController, Mockito.times(1)).findCocktailsBYAuthor("fgd");
 
     }
 

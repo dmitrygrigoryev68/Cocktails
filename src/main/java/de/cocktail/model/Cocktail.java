@@ -16,22 +16,21 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode
 @Data
-@Table( name = "COCKTAILS" )
+@Table
 public class Cocktail implements Serializable {
 
     @Id
-    @Column( name = "COCKTAILS_ID" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
 
     private Long id;
 
     private String title;
 
-    @Column( length = 3000 )
+    @Column
     private String announce;
 
     @CreationTimestamp
-    @Column( nullable = false, updatable = false )
+    @Column
     @Temporal( TemporalType.TIMESTAMP )
     private Date publicationDate;
 
@@ -60,4 +59,4 @@ public class Cocktail implements Serializable {
     }
 
 
-}
+    }
