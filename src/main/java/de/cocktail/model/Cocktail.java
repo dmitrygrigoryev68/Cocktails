@@ -58,14 +58,5 @@ public class Cocktail implements Serializable {
     public Cocktail() {
     }
 
-    public Cocktail(String title, String announce, Date publicationDate, User author, List <Ingredient> ingredients, int prepTimeMinute, int cookingTime, List <Photo> image) {
-        this.title = title;
-        this.announce = announce;
-        this.publicationDate = publicationDate;
-        this.author = author;
-        this.ingredients = ingredients;
-        this.prepTimeMinute = prepTimeMinute;
-        this.cookingTime = cookingTime;
-        this.image = image;
+
     }
-}
