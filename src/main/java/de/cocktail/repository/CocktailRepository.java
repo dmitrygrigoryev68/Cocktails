@@ -6,15 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CocktailRepository extends JpaRepository <Cocktail, Long> {
 
     Cocktail findByTitle(String title);
 
-    List <Cocktail> findByIngredientsNameIn(String name);
+    List<Cocktail> findByIngredientsTitle(String name);
 
-    List <Cocktail> findByAuthorName(String name_author);
+    List <Cocktail> findByAuthor_Name(String name_author);
 
 
 }

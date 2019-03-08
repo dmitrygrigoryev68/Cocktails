@@ -7,8 +7,6 @@ public class Userweb {
 
     private String name;
 
-
-
     public Userweb() {
     }
 

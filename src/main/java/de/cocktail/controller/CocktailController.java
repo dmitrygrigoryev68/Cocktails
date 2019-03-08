@@ -4,6 +4,8 @@ import de.cocktail.web.CocktailWeb;
 import de.cocktail.web.CocktailWebOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @RestController
@@ -22,7 +24,7 @@ public class CocktailController {
         return Response.
                 status(Response.Status.OK)
                 .entity(cocktailService.findByIngredientsContaining(name_ingredient))
-                .language("en")
+                .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
     }
 
@@ -31,7 +33,7 @@ public class CocktailController {
     public Response findCocktailsBYAuthor(@PathVariable String name_author) {
         return Response.status(Response.Status.OK)
                 .entity(cocktailService.findbyAuthor(name_author))
-                .language("en")
+                .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
     }
 
@@ -40,7 +42,7 @@ public class CocktailController {
     public Response getAllCocktails() {
         return Response.status(Response.Status.OK)
                 .entity(cocktailService.getAllCocktail())
-                .language("en")
+                .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
 
     }
@@ -50,8 +52,8 @@ public class CocktailController {
         cocktailService.creatCocktail(cocktailWeb);
         return Response
                 .status(Response.Status.ACCEPTED)
-                .entity(cocktailWeb)
-                .language("en")
+                .entity(cocktailService.findByTitle(cocktailWeb.getTitle()))
+                .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
     }
 
@@ -60,7 +62,7 @@ public class CocktailController {
         return Response.
                 status(Response.Status.OK)
                 .entity(cocktailService.getCocktailById(id))
-                .language("en")
+                .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
 
     }
@@ -79,7 +81,7 @@ public class CocktailController {
     public Response findCocktailByTitle(@PathVariable String title) {
         return Response.status(Response.Status.OK)
                 .entity(cocktailService.findByTitle(title))
-                .language("en")
+                .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
 
     }
@@ -88,8 +90,7 @@ public class CocktailController {
     public Response updateCocktailById(@RequestBody CocktailWebOutput cocktailWebOutput,@PathVariable Long id) {
         cocktailService.updateCocktail(cocktailWebOutput, id);
         return Response.status(Response.Status.OK)
-                .entity(cocktailService.getCocktailById(id))
-                .language("en")
+                .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
     }
 
