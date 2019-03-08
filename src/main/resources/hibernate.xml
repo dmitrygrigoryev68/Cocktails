@@ -7,8 +7,8 @@
         <property name="connection.url">jdbc:mysql://localhost:8082/</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
+        <!-- <property title="connection.username"/> -->
+        <!-- <property title="connection.password"/> -->
 
         <!--DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>

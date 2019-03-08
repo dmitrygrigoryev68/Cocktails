@@ -16,23 +16,22 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode
 @Data
-@Table( name = "COCKTAILS" )
+@Table
 public class Cocktail implements Serializable {
 
     @Id
-    @Column( name = "COCKTAILS_ID" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
 
     private Long id;
 
     private String title;
 
-    @Column( length = 3000 )
+    @Column
     private String announce;
 
     @CreationTimestamp
-    @Column( nullable = false, updatable = false )
-    @Temporal( TemporalType.TIMESTAMP )
+    @Column
+    @Temporal( TemporalType.DATE )
     private Date publicationDate;
 
     @OneToOne( cascade = CascadeType.ALL, targetEntity = User.class )
@@ -59,5 +58,14 @@ public class Cocktail implements Serializable {
     public Cocktail() {
     }
 
-
+    public Cocktail(String title, String announce, Date publicationDate, User author, List <Ingredient> ingredients, int prepTimeMinute, int cookingTime, List <Photo> image) {
+        this.title = title;
+        this.announce = announce;
+        this.publicationDate = publicationDate;
+        this.author = author;
+        this.ingredients = ingredients;
+        this.prepTimeMinute = prepTimeMinute;
+        this.cookingTime = cookingTime;
+        this.image = image;
+    }
 }

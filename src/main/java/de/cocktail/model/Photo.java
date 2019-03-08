@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
-@Transactional
+
 @Entity
 @Data
 @Table
@@ -14,14 +14,11 @@ import javax.persistence.*;
 public class Photo {
 
     @Id
-    @Column( name = "photo_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
-    @Column( length = 5000, nullable = false )
+
     private String patch;
 
     public Photo() {
     }
-
-
-}
+   }

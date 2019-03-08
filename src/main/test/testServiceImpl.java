@@ -60,7 +60,7 @@ public class testServiceImpl {
 
     @Test
     public void testServiceGetAll() {
-        List <CocktailWebOutput> listService = recipeController.getAllCocktail();
+        List <CocktailWebOutput> listService = recipeController.getAllCocktails();
         List <Cocktail> listrepo = recipeRepository.findAll();
         Assert.assertEquals(listService.size(), listrepo.size());
         Assert.assertEquals(listrepo, listService);
