@@ -6,6 +6,10 @@ out/
 debug/
 .idea_modules/
 indexpath/
+/dist/
+/client/node_modules/
+/client/package-lock.json
+
 
 *.class
 *.jar
