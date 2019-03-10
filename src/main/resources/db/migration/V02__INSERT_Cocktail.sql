@@ -1,66 +1,92 @@
-INSERT INTO USER(id, name)
-VALUES (1, 'https://www.cocktail-rezepte-4u.de/rezepte/Sex-on-the-Beach.html');
-INSERT INTO photo(id, patch)
-VALUES (1, 'https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg');
-insert INTO ingredient(id, TITLE, description)
-VALUES (1, 'Vodka', '4 cl Vodka'),
-       (2, 'Peach liqueur', '4 cl peach liqueur'),
-       (3, ' Cranberry', '8 cl cranberry juice or Cranberry Rectal'),
-       (4, 'Orange juice', '8 cl of orange juice'),
-       (5, 'Ice', 'Ice cubes');
+/* add user */
 
-INSERT INTO cocktail_ingredients(cocktail_ingredients.Cocktail_id, cocktail_ingredients.ingredients_id)
-VALUES (1, 1),
-       (1, 2),
-       (1, 3),
-       (1, 4),
-       (1, 5);
-INSERT INTO cocktail_image(Cocktail_id, image_id)
-VALUES (1, 1);
-INSERT INTO cocktail(id, title, announce, publicationDate, cookingTime, prepTimeMinute, author_id)
-VALUES (1, 'Sex on the Beach Cocktail Recipe',
-        'So I have to say one of the best drink''s I''ve drunk so far has become my favorite drink as well',
-        '2019-03-04', 112, 15, 1);
+insert into user(user_loginname, user_email, user_password)
+values ('andron13', 'andron13@gmail.com', '123456'),
+       ('Juri', 'test1@test.dev', '123456'),
+       ('Elena', 'test2@test.dev', '123456'),
+       ('Dmitri', 'test3@test.dev', '123456');
 
+/* add 1 photo */
 
-INSERT INTO USER(id, name)
-VALUES (2, 'cocktail-rezepte-4u.de');
-INSERT INTO photo(id, patch)
-VALUES (2, 'https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg');
-insert INTO ingredient(id, TITLE, description)
-VALUES (6, 'Сreme de cacao', '2 cl creme de cacao brown'),
-       (7, 'Creme de Menthe', '2 cl of Creme de Menthe green'),
-       (8, ' Vodka', '2 cl of vodka');
-INSERT INTO cocktail_ingredients(cocktail_ingredients.Cocktail_id, cocktail_ingredients.ingredients_id)
-VALUES (2, 6),
-       (2, 7),
-       (2, 8),
-       (2, 5);
+insert into photo(photo_path, photo_title, photo_alt)
+values ('https://ru.inshaker.com/uploads/cocktail/hires/698/1537730384-Parkside-Fizz__highres.jpg',
+        'коктейль номер 1', 'так выглядит коктейль номер 1'),
+       ('https://ru.inshaker.com/uploads/cocktail/hires/698/1537730384-Parkside-Fizz__highres.jpg',
+        'коктейль номер 2', 'так выглядит коктейль номер 2'),
+       ('https://ru.inshaker.com/uploads/cocktail/hires/698/1537730384-Parkside-Fizz__highres.jpg',
+        'Ингредиент номер 1', 'так выглядит ингредиент номер 1');
 
-INSERT INTO cocktail_image(Cocktail_id, image_id)
-VALUES (2, 2);
-INSERT INTO cocktail(id, title, announce, publicationDate, cookingTime, prepTimeMinute, author_id)
-VALUES (2, 'Eight Cocktail',
-        'Shake the ingredients vigorously with a few ice cubes for about 10 seconds and then strain into a martini glass or a shooter glass. Put an After Eight in the glass.','2019-03-04',
-         12, 5, 2);
+/* add user_info */
 
+insert into user_info
+values (1, 'Андрей', 'Подлубный');
 
-INSERT INTO USER(id, name)
-VALUES (3, 'cocktail-rezepte');
-INSERT INTO photo(id, patch)
-VALUES (3, 'https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg');
-insert INTO ingredient(id, TITLE, description)
-VALUES (9, 'Vodka', '3 cl of vodka'),
-       (10, 'Curacao', '1 cl Curacao Triple Sec'),
-       (11, ' Pineapple juice', '1 cl pineapple juice');
-INSERT INTO cocktail_ingredients(cocktail_ingredients.Cocktail_id, cocktail_ingredients.ingredients_id)
-VALUES (3, 9),
-       (3, 10),
-       (3, 11),
-       (3, 5);
-INSERT INTO cocktail_image(Cocktail_id, image_id)
-VALUES (3, 3);
-INSERT INTO cocktail(id, title, announce, publicationDate, cookingTime, prepTimeMinute, author_id)
-VALUES (3, 'Alfie cocktail',
-        'Add the vodka, triple sec and pineapple juice together with a few ice cubes to the shaker and shake vigorously. Strain the mixture through the strainer into a cocktail glass.',
-        '2019-03-04', 16, 15, 3);
+/* add ingredient */
+
+insert into ingredient (ingredient_title, description, fk_ingredient_photo_id)
+values ('Водка', 'Водка, один из самых популярных ингредиентов для коктейлей', 3),
+       ('Томатный сок', 'Томатный сок входит в состав многих алкогольных и безалкогольных коктейлей', 3),
+       ('Текила', 'Описание Текилы', 3),
+       ('Перец', 'Описание перца', 3),
+       ('Лёд', 'Описание видов льда', 3),
+       ('Шампанское', 'Шампанское в коктейлях - риск вспомнить или забыть всё', 3),
+       ('Апельсиновый сок', '', 3),
+       ('Яблочный сок', '', 3),
+       ('Персиковый сок', '', 3),
+       ('Молоко', '', 3),
+       ('Кофе', '', 3),
+       ('Чай', '', 3),
+       ('Красное вино', '', 3),
+       ('Ликёр', '', 3),
+       ('Коньяк', '', 3),
+       ('Соль', '', 3),
+       ('Сахар', '', 3),
+       ('Лимон', '', 3),
+       ('Лимете', '', 3),
+       ('Грейпфрут', '', 3),
+       ('Мороженное', '', 3);
+
+/* add cocktails */
+
+insert into cocktail (cocktail_title,
+                      cocktail_announce,
+                      cocktail_cooking_time,
+                      cocktail_prep_time_minute,
+                      cocktail_publication_date,
+                      fk_user_id,
+                      fk_photo_id)
+values ('Кровавая мери',
+        'Описание создания коктейля Кровавая мери',
+        '', '', '2019-03-10', 1, 1),
+       ('Sex on the beach',
+        'Описание создания коктейля Sex on the beach',
+        '', '', '2019-03-10', 2, 2),
+       ('Белый русский',
+        'Описание создания коктейля Белый русский',
+        '', '', '2019-03-10', 3, 1),
+       ('Виски с содовой',
+        'Описание создания коктейля Виски с содовой',
+        '', '', '2019-03-10', 4, 2),
+       ('Ромовый горячий шоколад',
+        'Описание создания коктейля Ромовый горячий шоколад',
+        '', '', '2019-03-10', 1, 1);
+
+/* add cocktail_ingredients */
+
+insert into cocktail_ingredients(fk_ingredient_id, fk_cocktail_id)
+values
+  /* add cocktail кровавая мери */
+  (1, 1),
+  (2, 1),
+  (4, 1),
+
+  /* add cocktail Sex on the beach */
+  (1, 2),
+  (2, 2),
+  (4, 2),
+
+  /* add cocktail Белый русский */
+
+  (1, 3),
+  (2, 3),
+  (4, 3);
