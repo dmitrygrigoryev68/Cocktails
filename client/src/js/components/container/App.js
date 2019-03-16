@@ -3,14 +3,18 @@ import Input from "../view/Input.js";
 import axios from "axios"
 import {BrowserRouter,Route} from "react-router-dom";
 import Home from "./Home";
+import Cocktails from "./Cocktails";
 
-class FormContainer extends Component {
+class App extends Component {
     constructor() {
         super();
 
         this.state = {
-            seo_title: "SEO Title",
-            cocktails: []
+            seo_title: "Search",
+            cocktails: [
+                {"name": "Wodka",
+                "description": "4 cl Wodka"}
+            ]
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,7 +29,7 @@ class FormContainer extends Component {
     handleClick(event) {
         event.preventDefault();
 
-        axios.get("http://localhost:63342/Recipes").then(res => {
+        axios.get("http://localhost:8082/recipeDB").then(res => {
             const cocktails = res.data;
             this.setState({cocktails});
         })
@@ -39,8 +43,16 @@ class FormContainer extends Component {
             <BrowserRouter>
 
              <div>
-                 <Route path="/" component={Home}/>
-                 <Route path="/FormContainer" component={FormContainer}/>
+                 <ul>
+                     <li>
+                         <Link to="/">Home</Link>
+                     </li>
+                     <li>
+                         <Link to="/cocktails">Cocktails</Link>
+                     </li>
+                  </ul>
+                 <Route exact path="/" component={Home}/>
+                 <Route path="/cocktails:id" component={Cocktails}/>
                 <form id="article-form">
                     <Input
                         text={seo_title}
@@ -59,4 +71,4 @@ class FormContainer extends Component {
 }
 
 
-export default FormContainer;
+export default App;
