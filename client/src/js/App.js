@@ -1,20 +1,14 @@
 import React, { Component } from "react";
-import Input from "../view/Input.js";
+import Input from "./components/view/Input.js";
 import axios from "axios"
-import {BrowserRouter,Route} from "react-router-dom";
-import Home from "./Home";
-import Cocktails from "./Cocktails";
 
-class App extends Component {
+class FormContainer extends Component {
     constructor() {
         super();
 
         this.state = {
-            seo_title: "Search",
-            cocktails: [
-                {"name": "Wodka",
-                "description": "4 cl Wodka"}
-            ]
+            seo_title: "SEO Title",
+            cocktails: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -29,7 +23,7 @@ class App extends Component {
     handleClick(event) {
         event.preventDefault();
 
-        axios.get("http://localhost:8082/recipeDB").then(res => {
+        axios.get("http://localhost:63342/Recipes").then(res => {
             const cocktails = res.data;
             this.setState({cocktails});
         })
@@ -40,19 +34,7 @@ class App extends Component {
         const { seo_title, cocktails } = this.state
         const listItems = cocktails.map((d) => <li key={d.name}>{d.name}</li>);
         return (
-            <BrowserRouter>
-
-             <div>
-                 <ul>
-                     <li>
-                         <Link to="/">Home</Link>
-                     </li>
-                     <li>
-                         <Link to="/cocktails">Cocktails</Link>
-                     </li>
-                  </ul>
-                 <Route exact path="/" component={Home}/>
-                 <Route path="/cocktails:id" component={Cocktails}/>
+            <div>
                 <form id="article-form">
                     <Input
                         text={seo_title}
@@ -65,10 +47,8 @@ class App extends Component {
                 </form>
                 <button onClick={this.handleClick} type="submit">Get Cocktail</button>
                 <ul style={listItems.length ? {} : { display: 'none' }}>{listItems}</ul>
-             </div>
-            </BrowserRouter>
+            </div>
         )}
 }
 
-
-export default App;
+export default FormContainer;
