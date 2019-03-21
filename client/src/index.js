@@ -1,7 +1,5 @@
-import FormContainer from "./js/components/container/FormContainer.js";
 import ReactDOM from "react-dom";
 import React from "react";
+import router from "./js/router/router.js"
 
-
-const wrapper = document.getElementById("create-article-form");
-wrapper ? ReactDOM.render(<FormContainer />, wrapper) : false;
+ReactDOM.render(router, document.getElementById('app'));
