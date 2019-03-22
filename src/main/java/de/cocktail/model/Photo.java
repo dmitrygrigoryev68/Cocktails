@@ -1,26 +1,31 @@
 package de.cocktail.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 
 @Entity
 @Data
-@Table
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@Table( name = "photo" )
 public class Photo {
 
     @Id
+    @Column( name = "photo_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
+    @Column( name = "photo_path" )
     private String patch;
 
-    public Photo() {
-    }
-   }
+    @Column( name = "photo_title" )
+    private String title;
+
+    @Column( name = "photo_alt" )
+    private String alt;
+}

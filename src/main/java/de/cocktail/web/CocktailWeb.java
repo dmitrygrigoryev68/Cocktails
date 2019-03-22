@@ -1,9 +1,14 @@
 package de.cocktail.web;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CocktailWeb {
 
     private String title;
@@ -19,15 +24,6 @@ public class CocktailWeb {
     private int cookingTime;
 
     private List <PhotoWeb> image;
-
-    public CocktailWeb() {
-    }
-
-
-
-    public String getTitle() {
-        return title;
-    }
 
 
 }

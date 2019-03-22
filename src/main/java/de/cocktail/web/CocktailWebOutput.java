@@ -1,10 +1,15 @@
 package de.cocktail.web;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 import java.util.List;
-import lombok.Data;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CocktailWebOutput {
 
     private Long id;
@@ -24,9 +29,6 @@ public class CocktailWebOutput {
     private int cookingTime;
 
     private List <PhotoWeb> image;
-
-    public CocktailWebOutput() {
-    }
 
 
 }

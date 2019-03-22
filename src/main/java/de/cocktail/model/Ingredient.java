@@ -1,35 +1,35 @@
 package de.cocktail.model;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Transactional
 @Entity
 @Data
 @EqualsAndHashCode
-@Table
+@AllArgsConstructor
+@NoArgsConstructor
+@Table( name = "ingredient" )
 public class Ingredient implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column(name = "ingredient_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-@Column(name = "TITLE")
+    @Column(name = "ingredient_title")
     private String title;
 
-
+    @Column(name = "ingredient_description")
     private String description;
 
-    public Ingredient() {
-    }
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_ingredient_photo_id", referencedColumnName = "photo_id")
+    private Photo ingredientPhoto;
 }

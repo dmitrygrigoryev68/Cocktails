@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:8082/recipeDB</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">validate</property>
+        <mapping class="de.cocktail.model.Cocktail"/>
+        <mapping class="de.cocktail.model.Ingredient"/>
+        <mapping class="de.cocktail.model.Cocktail"/>
+        <mapping class="de.cocktail.model.Photo"/>
+        <mapping class="de.cocktail.model.Cocktail"/>
+        <mapping class="de.cocktail.model.User"/>
+        <!--<mapping class="de.recipe.CocktailRecipe"/>-->
+        <!--<mapping resource="de/recipe/CocktailRecipe.hbm.xml"/>-->
+        <!--<mapping class="de.recipe.IngredientRecipe"/>-->
+        <!--<mapping resource="de/recipe/IngredientRecipe.hbm.xml"/>-->
+    </session-factory>
+</hibernate-configuration>
