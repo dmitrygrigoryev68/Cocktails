@@ -1,11 +1,14 @@
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import React from "react";
+import { createBrowserHistory } from "history";
 
 import Cocktail from "../components/container/Cocktail.js";
 import App from "../App";
 
+const hist = createBrowserHistory();
+
 const router = (
-    <Router>
+    <Router history={hist}>
         <div>
             <ul>
                 <li>
@@ -16,7 +19,7 @@ const router = (
                 </li>
             </ul>
             <Route exact path="/" component={App}/>
-            <Route path="/users" component={Cocktail}/>
+            <Route exact path="/cocktail" component={Cocktail}/>
         </div>
     </Router>
 )
