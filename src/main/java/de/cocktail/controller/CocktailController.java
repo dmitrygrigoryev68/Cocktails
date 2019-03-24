@@ -56,10 +56,8 @@ public class CocktailController {
     }
 
     @DeleteMapping( "/cocktails/{id}" )
-    public ResponseEntity deleteCocktailByID(@PathVariable Long id) {
-
+    public void deleteCocktailByID(@PathVariable Long id) {
         cocktailService.deleteCocktailById(id);
-        return ResponseEntity.ok().build();
     }
 
 
