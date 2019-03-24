@@ -28,8 +28,4 @@ public class Ingredient implements Serializable {
 
     @Column( name = "DESCRIPTION" )
     private String description;
-
-    @OneToOne
-    @JoinColumn( name = "PHOTO_ID" )
-    private Photo ingredientPhoto;
 }

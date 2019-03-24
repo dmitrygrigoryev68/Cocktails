@@ -74,7 +74,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
 
     public List <CocktailWebOutput> findbyAuthor(String name_author) {
         List <Cocktail> byAuthorName = cocktailRepository.findByAuthor_Name(name_author);
-        if (byAuthorName.isEmpty()) throw new NotFoundCocktailById("This  name does not exist");
+        if (byAuthorName.isEmpty()) throw new NotFoundCocktailById("This  author does not exist");
         return byAuthorName
                 .stream()
                 .map(this::creatCocktailWebOutputToCocktail)
@@ -91,7 +91,11 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     }
 
     public List <CocktailWebOutput> findByTitle(String title) {
-        return cocktailRepository.findByTitle(title)
+        List <Cocktail> byTitle = cocktailRepository.findByTitle(title);
+        if (byTitle.isEmpty()) {
+            throw new NotFoundCocktailById("This title does not exist");
+        }
+        return byTitle
                 .stream()
                 .map(this::creatCocktailWebOutputToCocktail)
                 .collect(Collectors.toList());

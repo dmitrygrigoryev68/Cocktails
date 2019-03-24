@@ -45,10 +45,11 @@ public class CocktailController {
     }
 
     @PostMapping( "cocktails/" )
-    public void saveCocktail(@RequestBody CocktailWeb cocktailWeb) {
+    public ResponseEntity saveCocktail(@RequestBody CocktailWeb cocktailWeb) {
         cocktailService.creatCocktail(cocktailWeb);
-        ResponseEntity
-                .ok().build();
+      return   ResponseEntity
+                .ok()
+              .build();
     }
 
     @GetMapping( "/cocktails/{id}" )
@@ -60,8 +61,11 @@ public class CocktailController {
     }
 
     @DeleteMapping( "/cocktails/{id}" )
-    public void deleteCocktailByID(@PathVariable Long id) {
+    public ResponseEntity deleteCocktailByID(@PathVariable Long id) {
+
         cocktailService.deleteCocktailById(id);
+      return   ResponseEntity
+                .ok().build();
     }
 
 

@@ -26,7 +26,7 @@ VALUES (1, 1),
 INSERT INTO USER(ID, NAME)
 VALUES (2, 'cocktail-rezepte-4u.de');
 INSERT INTO photo(ID,TITLE, PATH,ALT)
-VALUES (2, 'First Photo','https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg','200x400''https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg');
+VALUES (2, 'First Photo','https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg','200x400');
 insert INTO ingredient(ID, TITLE, DESCRIPTION)
 VALUES (6, 'Сreme de cacao', '2 cl creme de cacao brown'),
        (7, 'Creme de Menthe', '2 cl of Creme de Menthe green'),

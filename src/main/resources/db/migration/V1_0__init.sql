@@ -16,7 +16,6 @@ create table INGREDIENT
   ID          bigint       not null auto_increment,
   TITLE       varchar(255) not null,
   DESCRIPTION varchar(255) null,
-  PHOTO_ID    bigint,
   primary key (ID)
 );
 
@@ -46,9 +45,6 @@ alter table COCKTAIL
   add constraint USER_ID_USER_ID foreign key (USER_ID) references USER (ID);
 alter table COCKTAIL
   add constraint COCKTAIL_PHOTO_ID_PHOTO_ID foreign key (PHOTO_ID) references PHOTO (ID);
-
-alter table INGREDIENT
-  add constraint INGREDIENT_PHOTO_ID_PHOTO_ID foreign key (PHOTO_ID) references PHOTO (ID);
 
 alter table COCKTAIL_INGREDIENTS
   add constraint COCKTAIL_INGREDIENTS_COCKTAIL_ID_COCKTAIL_ID foreign key (COCKTAIL_ID) references COCKTAIL (ID);
