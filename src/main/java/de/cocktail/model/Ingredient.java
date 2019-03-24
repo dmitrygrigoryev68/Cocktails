@@ -15,21 +15,21 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Table( name = "ingredient" )
+@Table( name = "INGREDIENT" )
 public class Ingredient implements Serializable {
 
     @Id
-    @Column(name = "ingredient_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "ID" )
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
-    @Column(name = "ingredient_title")
+    @Column( name = "TITLE" )
     private String title;
 
-    @Column(name = "ingredient_description")
+    @Column( name = "DESCRIPTION" )
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_ingredient_photo_id", referencedColumnName = "photo_id")
+    @OneToOne
+    @JoinColumn( name = "PHOTO_ID" )
     private Photo ingredientPhoto;
 }

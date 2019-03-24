@@ -15,14 +15,14 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
+@Table( name = "USER" )
 public class User implements Serializable {
 
     @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "ID" )
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
-    @Column(name = "user_loginname")
+    @Column( name = "NAME" )
     private String name;
 }

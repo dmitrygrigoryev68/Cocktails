@@ -6,26 +6,27 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Table( name = "photo" )
-public class Photo {
+@Table( name = "PHOTO" )
+public class Photo implements Serializable {
 
     @Id
-    @Column( name = "photo_id" )
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column( name = "ID" )
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
-    @Column( name = "photo_path" )
+    @Column( name = "PATH" )
     private String patch;
 
-    @Column( name = "photo_title" )
+    @Column( name = "TITLE" )
     private String title;
 
-    @Column( name = "photo_alt" )
+    @Column( name = "ALT" )
     private String alt;
 }

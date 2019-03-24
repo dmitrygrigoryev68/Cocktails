@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface CocktailRepository extends JpaRepository <Cocktail, Long> {
 
-    List<Cocktail> findByTitle(String title);
+    List <Cocktail> findByTitle(String title);
 
-    List<Cocktail> findByIngredients_Title(String name);
+    List <Cocktail> findByIngredients_Title(String name);
 
     List <Cocktail> findByAuthor_Name(String name_author);
 

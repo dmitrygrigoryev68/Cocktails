@@ -21,35 +21,37 @@ public class CocktailController {
 
 
     @GetMapping( "/cocktails/ingredients/{name_ingredient}" )
-    public ResponseEntity<List <CocktailWebOutput>> findCocktailsByIngredient(@PathVariable String name_ingredient) {
+    public ResponseEntity <List <CocktailWebOutput>> findCocktailsByIngredient(@PathVariable String name_ingredient) {
         return ResponseEntity.ok()
                 .body(cocktailService.
-                        findByIngredientsContaining(name_ingredient));
+                findByIngredientsContaining(name_ingredient));
     }
 
-    @GetMapping("/cocktails/author/{name_author}")
-
-    public ResponseEntity<List<CocktailWebOutput>> findCocktailsBYAuthor(@PathVariable String name_author) {
-        return ResponseEntity.ok()
+    @GetMapping( "/cocktails/author/{name_author}" )
+    public ResponseEntity <List <CocktailWebOutput>> findCocktailsBYAuthor(@PathVariable String name_author) {
+        return ResponseEntity.
+                ok()
                 .body(cocktailService.
-                        findbyAuthor(name_author));
+                findbyAuthor(name_author));
     }
 
 
-    @GetMapping("/cocktails/")
-    public ResponseEntity<List<CocktailWebOutput>> getAllCocktails() {
-        return ResponseEntity.ok()
+    @GetMapping( "/cocktails/" )
+    public ResponseEntity <List <CocktailWebOutput>> getAllCocktails() {
+        return ResponseEntity.
+                ok()
                 .body(cocktailService.getAllCocktail());
 
     }
 
-    @PostMapping("cocktails/")
+    @PostMapping( "cocktails/" )
     public void saveCocktail(@RequestBody CocktailWeb cocktailWeb) {
         cocktailService.creatCocktail(cocktailWeb);
-        ResponseEntity.ok().build();
+        ResponseEntity
+                .ok().build();
     }
 
-    @GetMapping("/cocktails/{id}" )
+    @GetMapping( "/cocktails/{id}" )
     public ResponseEntity <CocktailWebOutput> getCocktailById(@PathVariable Long id) {
         return ResponseEntity.
                 ok().
@@ -64,16 +66,17 @@ public class CocktailController {
 
 
     @GetMapping( "/cocktails/title/{title}/" )
-    public ResponseEntity <List<CocktailWebOutput>> findCocktailByTitle(@PathVariable String title) {
-        return ResponseEntity.ok()
+    public ResponseEntity <List <CocktailWebOutput>> findCocktailByTitle(@PathVariable String title) {
+        return ResponseEntity
+                .ok()
                 .body(cocktailService.findByTitle(title));
     }
 
     @PutMapping( "/cocktails/{id}" )
-    public ResponseEntity<CocktailWebOutput>   updateCocktailById(@RequestBody CocktailWebOutput cocktailWebOutput,@PathVariable Long id) {
+    public ResponseEntity <CocktailWebOutput> updateCocktailById(@RequestBody CocktailWebOutput cocktailWebOutput, @PathVariable Long id) {
         cocktailService.updateCocktail(cocktailWebOutput, id);
-        return ResponseEntity.ok()
+        return ResponseEntity
+                .ok()
                 .body(cocktailService.getCocktailById(id));
     }
-
 }

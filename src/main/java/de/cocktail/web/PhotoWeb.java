@@ -10,4 +10,10 @@ import lombok.NoArgsConstructor;
 public class PhotoWeb {
 
     private String patch;
+
+
+    private String title;
+
+
+    private String alt;
 }

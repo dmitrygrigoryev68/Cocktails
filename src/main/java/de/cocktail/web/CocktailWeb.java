@@ -17,14 +17,11 @@ public class CocktailWeb {
 
     private Userweb author;
 
-    private  List<IngredientWeb >ingredients;
+    private List <IngredientWeb> ingredients;
 
     private int prepTimeMinute;
 
     private int cookingTime;
 
-    private List <PhotoWeb> image;
-
-
+    private PhotoWeb image;
 }
-

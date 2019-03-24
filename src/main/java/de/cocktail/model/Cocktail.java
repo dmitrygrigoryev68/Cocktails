@@ -1,9 +1,6 @@
 package de.cocktail.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -20,45 +17,43 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table( name = "cocktail" )
+@Getter
+@Setter
+@Table( name = "COCKTAIL" )
 public class Cocktail implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( name = "cocktail_id" )
+    @GeneratedValue( strategy = GenerationType.AUTO )
+    @Column( name = "ID" )
     private Long id;
 
-    @Column( name = "cocktail_title" )
+    @Column( name = "TITLE" )
     private String title;
 
-    @Column(name = "cocktail_announce")
+    @Column( name = "ANNOUNCE" )
     private String announce;
 
     @CreationTimestamp
-    @Column(name = "cocktail_publication_date")
+    @Column( name = "CREATED_DATE", nullable = false, updatable = false )
     @Temporal( TemporalType.TIMESTAMP )
     private Date publicationDate;
 
-    @Column(name = "cocktail_prep_time_minute")
-    private int prepTimeMinute;
+    @Column( name = "PREP_TIME" )
+    private int prepTime;
 
-    @Column(name = "cocktail_cooking_time")
+    @Column( name = "COOKING_TIME" )
     private int cookingTime;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id")
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "USER_ID" )
     private User author;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_photo_id", referencedColumnName = "photo_id")
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "PHOTO_ID" )
     private Photo image;
 
-    @ManyToMany( cascade = CascadeType.ALL, targetEntity = Ingredient.class )
+    @ManyToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
-    @JoinTable(
-            name = "cocktail_ingredients",
-            joinColumns = {@JoinColumn(name = "fk_cocktail_id")},
-            inverseJoinColumns = {@JoinColumn(name = "fk_ingredient_id")}
-    )
+    @JoinTable( name = "COCKTAIL_INGREDIENTS", joinColumns = {@JoinColumn( name = "COCKTAIL_ID" )}, inverseJoinColumns = {@JoinColumn( name = "INGREDIENT_ID" )} )
     private List <Ingredient> ingredients;
 }

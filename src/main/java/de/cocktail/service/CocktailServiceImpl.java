@@ -20,10 +20,10 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     private CocktailRepository cocktailRepository;
 
 
-
     public List <CocktailWebOutput> getAllCocktail() {
         List <Cocktail> outputList = cocktailRepository.findAll();
-        List <CocktailWebOutput> outputList1 = outputList.stream()
+        List <CocktailWebOutput> outputList1 = outputList
+                .stream()
                 .map(this::creatCocktailWebOutputToCocktail)
                 .collect(Collectors.toList());
         if (outputList.isEmpty()) throw new NotFoundCocktailById("Cocktail is NotFound");
@@ -49,8 +49,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     }
 
     public void deleteCocktailById(long id) {
-        if (!cocktailRepository.existsById(id))
-            throw new NotFoundCocktailById("This cocktail does not exist");
+        if (!cocktailRepository.existsById(id)) throw new NotFoundCocktailById("This cocktail does not exist");
         cocktailRepository.deleteById(id);
     }
 
@@ -64,8 +63,11 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
         return modelMapper.map(cocktail, CocktailWebOutput.class);
     }
 
-    public List<CocktailWebOutput> findByIngredientsContaining(String nameIngredient) {
-        List <CocktailWebOutput> outputList = cocktailRepository.findByIngredients_Title(nameIngredient).stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
+    public List <CocktailWebOutput> findByIngredientsContaining(String nameIngredient) {
+        List <CocktailWebOutput> outputList = cocktailRepository.findByIngredients_Title(nameIngredient)
+                .stream()
+                .map(this::creatCocktailWebOutputToCocktail)
+                .collect(Collectors.toList());
         if (outputList.isEmpty()) throw new NotFoundCocktailById("This Ingredients not exist");
         return outputList;
     }
@@ -85,8 +87,6 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
         if (byId.isPresent()) {
             cocktail1.setId(id);
             cocktailRepository.save(cocktail1);
-        } else {
-            cocktailRepository.save(cocktail1);
         }
     }
 
@@ -95,7 +95,5 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
                 .stream()
                 .map(this::creatCocktailWebOutputToCocktail)
                 .collect(Collectors.toList());
-
     }
 }
-
