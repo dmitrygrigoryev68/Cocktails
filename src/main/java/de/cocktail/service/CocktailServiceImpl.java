@@ -22,7 +22,10 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
 
     public List <CocktailWebOutput> getAllCocktail() {
         List <Cocktail> outputList = cocktailRepository.findAll();
-        List <CocktailWebOutput> outputList1 = outputList.stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
+        List <CocktailWebOutput> outputList1 = outputList
+                .stream()
+                .map(this::creatCocktailWebOutputToCocktail)
+                .collect(Collectors.toList());
         if (outputList.isEmpty()) throw new NotFoundCocktail("Cocktail is NotFound");
         return outputList1;
     }
@@ -61,15 +64,22 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     }
 
     public List <CocktailWebOutput> findByIngredientsContaining(String nameIngredient) {
-        List <CocktailWebOutput> outputList = cocktailRepository.findByIngredients_Title(nameIngredient).stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
+        List <CocktailWebOutput> outputList = cocktailRepository.findByIngredients_Title(nameIngredient)
+                .stream()
+                .map(this::creatCocktailWebOutputToCocktail)
+                .collect(Collectors.toList());
         if (outputList.isEmpty()) throw new NotFoundCocktail("This Ingredients not exist");
         return outputList;
     }
 
     public List <CocktailWebOutput> findbyAuthor(String name_author) {
-        List <Cocktail> byAuthorName = cocktailRepository.findByAuthor_Name(name_author);
+        List <Cocktail> byAuthorName = cocktailRepository
+                .findByAuthor_Name(name_author);
         if (byAuthorName.isEmpty()) throw new NotFoundCocktail("This  author does not exist");
-        return byAuthorName.stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
+        return byAuthorName
+        .stream()
+                .map(this::creatCocktailWebOutputToCocktail)
+                .collect(Collectors.toList());
     }
 
     public void updateCocktail(CocktailWebOutput cocktailWebOutput, Long id) {
@@ -86,6 +96,9 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
         if (byTitle.isEmpty()) {
             throw new NotFoundCocktail("This title does not exist");
         }
-        return byTitle.stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
+        return byTitle
+                .stream()
+                .map(this::creatCocktailWebOutputToCocktail)
+                .collect(Collectors.toList());
     }
 }
