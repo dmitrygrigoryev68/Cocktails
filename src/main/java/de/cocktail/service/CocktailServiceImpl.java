@@ -4,7 +4,7 @@ import de.cocktail.model.Cocktail;
 import de.cocktail.repository.CocktailRepository;
 import de.cocktail.web.CocktailWeb;
 import de.cocktail.web.CocktailWebOutput;
-import de.exeption.NotFoundCocktailById;
+import de.exeption.NotFoundCocktail;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,18 +22,15 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
 
     public List <CocktailWebOutput> getAllCocktail() {
         List <Cocktail> outputList = cocktailRepository.findAll();
-        List <CocktailWebOutput> outputList1 = outputList
-                .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
-                .collect(Collectors.toList());
-        if (outputList.isEmpty()) throw new NotFoundCocktailById("Cocktail is NotFound");
+        List <CocktailWebOutput> outputList1 = outputList.stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
+        if (outputList.isEmpty()) throw new NotFoundCocktail("Cocktail is NotFound");
         return outputList1;
     }
 
     public CocktailWebOutput getCocktailById(Long id) {
         Optional <Cocktail> optionalRecipe = cocktailRepository.findById(id);
         if (!optionalRecipe.isPresent()) {
-            throw new NotFoundCocktailById("This cocktail does not exist");
+            throw new NotFoundCocktail("This cocktail does not exist");
         } else return creatCocktailWebOutputToCocktail(optionalRecipe.get());
     }
 
@@ -49,7 +46,7 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     }
 
     public void deleteCocktailById(long id) {
-        if (!cocktailRepository.existsById(id)) throw new NotFoundCocktailById("This cocktail does not exist");
+        if (!cocktailRepository.existsById(id)) throw new NotFoundCocktail("This cocktail does not exist");
         cocktailRepository.deleteById(id);
     }
 
@@ -64,21 +61,15 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     }
 
     public List <CocktailWebOutput> findByIngredientsContaining(String nameIngredient) {
-        List <CocktailWebOutput> outputList = cocktailRepository.findByIngredients_Title(nameIngredient)
-                .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
-                .collect(Collectors.toList());
-        if (outputList.isEmpty()) throw new NotFoundCocktailById("This Ingredients not exist");
+        List <CocktailWebOutput> outputList = cocktailRepository.findByIngredients_Title(nameIngredient).stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
+        if (outputList.isEmpty()) throw new NotFoundCocktail("This Ingredients not exist");
         return outputList;
     }
 
     public List <CocktailWebOutput> findbyAuthor(String name_author) {
         List <Cocktail> byAuthorName = cocktailRepository.findByAuthor_Name(name_author);
-        if (byAuthorName.isEmpty()) throw new NotFoundCocktailById("This  author does not exist");
-        return byAuthorName
-                .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
-                .collect(Collectors.toList());
+        if (byAuthorName.isEmpty()) throw new NotFoundCocktail("This  author does not exist");
+        return byAuthorName.stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
     }
 
     public void updateCocktail(CocktailWebOutput cocktailWebOutput, Long id) {
@@ -93,11 +84,8 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     public List <CocktailWebOutput> findByTitle(String title) {
         List <Cocktail> byTitle = cocktailRepository.findByTitle(title);
         if (byTitle.isEmpty()) {
-            throw new NotFoundCocktailById("This title does not exist");
+            throw new NotFoundCocktail("This title does not exist");
         }
-        return byTitle
-                .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
-                .collect(Collectors.toList());
+        return byTitle.stream().map(this::creatCocktailWebOutputToCocktail).collect(Collectors.toList());
     }
 }
