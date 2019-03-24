@@ -1,30 +1,28 @@
 package de.cocktail.model;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Transactional
 @Entity
 @Data
-@Table
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@Table( name = "USER" )
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column( name = "ID" )
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
+    @Column( name = "NAME" )
     private String name;
-
-    public User() {
-    }
-
-
 }

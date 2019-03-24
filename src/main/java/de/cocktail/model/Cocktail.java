@@ -1,71 +1,59 @@
 package de.cocktail.model;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
 @Transactional
 @Entity
 @EqualsAndHashCode
 @Data
-@Table
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table( name = "COCKTAIL" )
 public class Cocktail implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-
+    @GeneratedValue( strategy = GenerationType.AUTO )
+    @Column( name = "ID" )
     private Long id;
 
+    @Column( name = "TITLE" )
     private String title;
 
-    @Column
+    @Column( name = "ANNOUNCE" )
     private String announce;
 
     @CreationTimestamp
-    @Column
+    @Column( name = "CREATED_DATE", nullable = false, updatable = false )
     @Temporal( TemporalType.TIMESTAMP )
     private Date publicationDate;
 
-    @OneToOne( cascade = CascadeType.ALL, targetEntity = User.class )
+    @Column( name = "PREP_TIME" )
+    private int prepTime;
 
+    @Column( name = "COOKING_TIME" )
+    private int cookingTime;
+
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "USER_ID" )
     private User author;
 
-    @ManyToMany( cascade = CascadeType.ALL, targetEntity = Ingredient.class )
-    @LazyCollection( LazyCollectionOption.FALSE )
-    private List <Ingredient> ingredients;
-
-    @Column
-    private int prepTimeMinute;
-
-    @Column
-    private int cookingTime;
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "PHOTO_ID" )
+    private Photo image;
 
     @ManyToMany( cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
-
-    private List <Photo> image;
-
-
-
-    public Cocktail() {
-    }
-
-
-    }
+    @JoinTable( name = "COCKTAIL_INGREDIENTS", joinColumns = {@JoinColumn( name = "COCKTAIL_ID" )}, inverseJoinColumns = {@JoinColumn( name = "INGREDIENT_ID" )} )
+    private List <Ingredient> ingredients;
+}

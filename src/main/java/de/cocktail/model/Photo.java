@@ -1,26 +1,32 @@
 package de.cocktail.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-@Table
 @EqualsAndHashCode
-public class Photo {
+@AllArgsConstructor
+@NoArgsConstructor
+@Table( name = "PHOTO" )
+public class Photo implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column( name = "ID" )
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
+    @Column( name = "PATH" )
     private String patch;
 
-    public Photo() {
-    }
-   }
+    @Column( name = "TITLE" )
+    private String title;
+
+    @Column( name = "ALT" )
+    private String alt;
+}

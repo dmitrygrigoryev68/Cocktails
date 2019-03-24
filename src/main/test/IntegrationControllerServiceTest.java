@@ -13,12 +13,12 @@ public class IntegrationControllerServiceTest {
     @MockBean
     CocktailService cocktailService;
 
-    private List <Ingredient> ingredientList = Arrays.asList(new Ingredient("Wodka", "4 cl Wodka"),new Ingredient("Pfirsich Likör","4 cl Pfirsich Likör"),new Ingredient("cranberry juice or Cranberry Rectal","8 cl cranberry juice or Cranberry Rectal"),new Ingredient("orange juice","8 cl of orange juice"),new Ingredient("ice","ice cubes"));
+    private List <Ingredient> ingredientList = Arrays.asList(new Ingredient(1L,"Wodka", "4 cl Wodka"),new Ingredient(2L,"Pfirsich Likör","4 cl Pfirsich Likör"),new Ingredient(3L,"cranberry juice or Cranberry Rectal","8 cl cranberry juice or Cranberry Rectal"),new Ingredient(4L,"orange juice","8 cl of orange juice"),new Ingredient(5L,"ice","ice cubes"));
 
 
-    private List <Photo> photoList = Arrays.asList(new Photo("http//google.com"));
+    private List <Photo> photoList = Arrays.asList(new Photo(1L,"http//google.com"));
 
-    private Cocktail cocktail = new Cocktail("Sex on the Beach Cocktail Recipe", "So I have to say one of the best drink's I've drunk so far has become my favorite drink as well",  new User("Iurie Railean"), ingredientList, 15, 112, photoList);
+    private Cocktail cocktail = new Cocktail(1L,"Sex on the Beach Cocktail Recipe", "So I have to say one of the best drink's I've drunk so far has become my favorite drink as well", new Date(), new User(1L,"Iurie Railean"), ingredientList, 15, 112, photoList);
 
     private ModelMapper modelMapper=new ModelMapper();
     private CocktailWebOutput cocktailWebOutput=modelMapper.map(cocktail,CocktailWebOutput.class);
@@ -32,7 +32,7 @@ public class IntegrationControllerServiceTest {
     }
     @Test
     public void testGetAllCocktails() throws Exception {
-        when(cocktailService.getAllCocktails()).thenReturn(cocktailWebOutputs);
+        when(cocktailService.getAllCocktail()).thenReturn(cocktailWebOutputs);
         mockMvc.perform(get("/cocktails/").contentType(MediaType.APPLICATION_JSON)).
                 andDo(print()).
                 andExpect(status().isOk())
@@ -40,7 +40,7 @@ public class IntegrationControllerServiceTest {
                         contentType("application/json;charset=UTF-8")).
                 andExpect(content()
                         .json(jasonArr));
-        verify(cocktailService, Mockito.times(1)).getAllCocktails();
+        verify(cocktailService, Mockito.times(1)).getAllCocktail();
     }
 
     @Test
@@ -56,7 +56,7 @@ public class IntegrationControllerServiceTest {
     public void getCocktailsByIdTest() throws Exception {
         when(cocktailService.getCocktailById(1L)).thenReturn(cocktailWebOutput);
 
-        mockMvc.perform(get("/cocktails//{id}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print()).
+        mockMvc.perform(get("/cocktails/{id}", 1L).contentType(MediaType.APPLICATION_JSON)).andDo(print()).
                 andExpect(status().isOk())
                 .andExpect(content()
                         .contentType("application/json;charset=UTF-8"))
@@ -75,21 +75,25 @@ public class IntegrationControllerServiceTest {
     @Test
     public void findByIngretientTest() throws Exception {
         when(cocktailService.findByIngredientsContaining(cocktailWebOutput.getIngredients().get(0).getTitle())).thenReturn(cocktailWebOutputs);
-        mockMvc.perform(get("/cocktails/ingredient/{name_ingredient}", cocktail.getIngredients().get(0).getTitle()).contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk()).andExpect(content().json(jasonArr));
+        mockMvc.perform(get("/cocktails/ingredients/{name_ingredient}}", cocktail.getIngredients().get(0).getTitle())
+                .contentType("application/json;charset=UTF-8")).andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .json(jasonArr));
         verify(cocktailService, Mockito.times(1)).findByIngredientsContaining(cocktail.getIngredients().get(0).getTitle());
 
     }
 
     @Test
     public void findBYAuthorTest() throws Exception {
-        when(cocktailService.findbyAuthor(cocktail.getName().getTitle())).thenReturn(cocktailWebOutputs);
-        mockMvc.perform(get("/cocktails/name/{name_author}" , "Iurie Railean").contentType("application/json;charset=UTF-8"))
+        when(cocktailService.findbyAuthor(cocktail.getAuthor().getName())).thenReturn(cocktailWebOutputs);
+        mockMvc.perform(get("/cocktails/author/{name_author}" , "Iurie Railean").contentType("application/json;charset=UTF-8"))
                 .andDo(print())
                 .andExpect(status()
                         .isOk()).
                 andExpect(content()
                         .json(jasonArr));
-        verify(cocktailService, Mockito.times(1)).findbyAuthor(cocktail.getName().getTitle());
+        verify(cocktailService, Mockito.times(1)).findbyAuthor(cocktail.getAuthor().getName());
     }
 
     @Test
