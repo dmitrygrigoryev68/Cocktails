@@ -42,12 +42,12 @@ create table USER
 );
 
 alter table COCKTAIL
-  add constraint USER_ID_USER_ID foreign key (USER_ID) references USER (ID);
+  add constraint USER_ID_USER_ID foreign key (USER_ID) references USER (ID)ON DELETE CASCADE;
 alter table COCKTAIL
-  add constraint COCKTAIL_PHOTO_ID_PHOTO_ID foreign key (PHOTO_ID) references PHOTO (ID);
+  add constraint COCKTAIL_PHOTO_ID_PHOTO_ID foreign key (PHOTO_ID) references PHOTO (ID)ON DELETE CASCADE;
 
 alter table COCKTAIL_INGREDIENTS
-  add constraint COCKTAIL_INGREDIENTS_COCKTAIL_ID_COCKTAIL_ID foreign key (COCKTAIL_ID) references COCKTAIL (ID);
+  add constraint COCKTAIL_INGREDIENTS_COCKTAIL_ID_COCKTAIL_ID foreign key (COCKTAIL_ID) references COCKTAIL (ID)ON DELETE CASCADE;
 
 alter table COCKTAIL_INGREDIENTS
-  add constraint COCKTAIL_INGREDIENTS_INGREDIENT_ID_INGREDIENT_ID foreign key (INGREDIENT_ID) references INGREDIENT (ID);
+  add constraint COCKTAIL_INGREDIENTS_INGREDIENT_ID_INGREDIENT_ID foreign key (INGREDIENT_ID) references INGREDIENT (ID)ON DELETE CASCADE;

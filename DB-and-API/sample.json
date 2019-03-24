@@ -1,70 +1,115 @@
-{
-  "title": "Sex on the Beach Cocktail Recipe",
-  "announce": "So I have to say one of the best drink's I've drunk so far has become my favorite drink as well",
-  "author": {
-    "name": "Iurie Railean"
-  },
-  "ingredients": [
-    {
-      "title": "Wodka",
-      "description": "4 cl Wodka"
+[
+  {
+
+    "title": "Sex on the Beach Cocktail Recipe",
+    "announce": "So I have to say one of the best drink's I've drunk so far has become my favorite drink as well",
+    "publicationDate": "2019-03-04T00:00:00.000+0000",
+    "author": {
+      "name": "https://www.cocktail-rezepte-4u.de/rezepte/Sex-on-the-Beach.html"
     },
-    {
-      "title": "Pfirsich Likör",
-      "description": "4 cl Pfirsich Likör"
-    },
-    {
-      "title": "cranberry juice or Cranberry Rectal",
-      "description": "8 cl cranberry juice or Cranberry Rectal"
-    },
-    {
-      "title": "orange juice",
-      "description": "8 cl of orange juice"
-    },
-    {
-      "title": "ice",
-      "description": "ice cubes"
+    "ingredients": [
+      {
+        "title": "Vodka",
+        "description": "4 cl Vodka"
+      },
+      {
+        "title": "Peach liqueur",
+        "description": "4 cl peach liqueur"
+      },
+      {
+        "title": " Cranberry",
+        "description": "8 cl cranberry juice or Cranberry Rectal"
+      },
+      {
+        "title": "Orange juice",
+        "description": "8 cl of orange juice"
+      },
+      {
+        "title": "Ice",
+        "description": "Ice cubes"
+      }
+    ],
+    "prepTimeMinute": 0,
+    "cookingTime": 112,
+    "image": {
+      "patch": "https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg",
+      "title": "First Photo",
+      "alt": "200x400"
     }
-  ],
-  "prepTimeMinute": 15,
-  "cookingTime": 112,
-  "image": [
-    {
-      "patch": "http//google.com"
+  }
+
+
+,
+
+  {
+    "id": 2,
+    "title": "Eight Cocktail",
+    "announce": "Shake the ingredients vigorously with a few ice cubes for about 10 seconds and then strain into a martini glass or a shooter glass. Put an After Eight in the glass.",
+    "publicationDate": "2019-03-04T00:00:00.000+0000",
+    "author": {
+      "name": "cocktail-rezepte-4u.de"
+    },
+    "ingredients": [
+      {
+        "title": "Сreme de cacao",
+        "description": "2 cl creme de cacao brown"
+      },
+      {
+        "title": "Creme de Menthe",
+        "description": "2 cl of Creme de Menthe green"
+      },
+      {
+        "title": " Vodka",
+        "description": "2 cl of vodka"
+      },
+      {
+        "title": "Ice",
+        "description": "Ice cubes"
+      }
+    ],
+    "prepTimeMinute": 0,
+    "cookingTime": 12,
+    "image": {
+      "patch": "https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg",
+      "title": "First Photo",
+      "alt": "200x400"
     }
-  ]
-}
-;
+  }
 
-2---------------------------------------------------------------------------------------------
 
-{
-
-"title": "Eight Cocktail",
-"announce": "Shake the ingredients vigorously with a few ice cubes for about 10 seconds and then strain into a martini glass or a shooter glass. Put an After Eight in the glass.",
-
-"author": {
-"name": "cocktail-rezepte-4u.de"
-},
-"ingredients": [
-{
-"title": "Сreme de cacao",
-"description": "2 cl creme de cacao brown"
-},
-{
-"title": "Creme de Menthe",
-"description": "2 cl of Creme de Menthe green"
-},
-{
-"title": " Vodka",
-"description": "2 cl of vodka"
-}
-],
-"prepTimeMinute": 5,
-"cookingTime": 12,
-"image": [
-{
-"patch": "https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg"
-}
+,
+  {
+    "id": 3,
+    "title": "Alfie cocktail",
+    "announce": "Add the vodka, triple sec and pineapple juice together with a few ice cubes to the shaker and shake vigorously. Strain the mixture through the strainer into a cocktail glass.",
+    "publicationDate": "2019-03-04T00:00:00.000+0000",
+    "author": {
+      "name": "cocktail-rezepte"
+    },
+    "ingredients": [
+      {
+        "title": "Vodka",
+        "description": "3 cl of vodka"
+      },
+      {
+        "title": "Curacao",
+        "description": "1 cl Curacao Triple Sec"
+      },
+      {
+        "title": " Pineapple juice",
+        "description": "1 cl pineapple juice"
+      },
+      {
+        "title": "Ice",
+        "description": "Ice cubes"
+      }
+    ],
+    "prepTimeMinute": 0,
+    "cookingTime": 16,
+    "image": {
+      "patch": "https://cdn.liquor.com/wp-content/uploads/2013/04/ward-eight.jpg",
+      "title": "Second Photo",
+      "alt": "500x400"
+    }
+  }
 ]
-}
