@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Userweb {
+public class UserWeb {
 
     private String name;
 
 }
+

@@ -22,7 +22,7 @@ public class Photo implements Serializable {
     private Long id;
 
     @Column( name = "PATH" )
-    private String patch;
+    private String path;
 
     @Column( name = "TITLE" )
     private String title;

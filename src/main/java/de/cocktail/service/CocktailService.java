@@ -9,27 +9,27 @@ import java.util.List;
 
 @Service
 public interface CocktailService<Y, T> {
-    List <CocktailWebOutput> getAllCocktail();
+    List <CocktailWebOutput> getAllCocktails();
 
     CocktailWebOutput getCocktailById(Long id);
 
-    void creatCocktail(CocktailWeb cocktailWeb);
+    void createCocktail(CocktailWeb cocktailWeb);
 
     void deleteCocktailById(long id);
 
-    Cocktail creatCocktailToCocktailWeb(CocktailWeb cocktailWeb);
+    Cocktail createCocktailToCocktailWeb(CocktailWeb cocktailWeb);
 
-    CocktailWebOutput creatCocktailWebOutputToCocktail(Cocktail cocktail);
+    CocktailWebOutput createCocktailWebOutputToCocktail(Cocktail cocktail);
 
-    List <CocktailWebOutput> findByIngredientsContaining(String nameIngredient);
+    List <CocktailWebOutput> getCocktailByIngredient(String nameIngredient);
 
-    List <CocktailWebOutput> findbyAuthor(String nameauthor);
+    List <CocktailWebOutput> getCocktailByAuthor(String nameauthor);
 
     void updateCocktail(CocktailWebOutput recipe, Long id);
 
-    List <CocktailWebOutput> findByTitle(String title);
+    List <CocktailWebOutput> getCocktailByTitle(String title);
 
-    Y convertTheeCoctailsIntoAnotherEmbodiment(T t, Class <Y> refactoryclass);
+    Y convertTheeCocktailsIntoAnotherEmbodiment(T t, Class <Y> refactoryclass);
 
 
 }

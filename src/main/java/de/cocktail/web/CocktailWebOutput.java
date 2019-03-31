@@ -20,7 +20,7 @@ public class CocktailWebOutput {
 
     private Date publicationDate;
 
-    private Userweb author;
+    private UserWeb author;
 
     private List <IngredientWeb> ingredients;
 

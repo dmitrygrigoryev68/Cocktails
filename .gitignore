@@ -10,7 +10,7 @@ indexpath/
 /client/node_modules/
 /client/package-lock.json
 
-
+application.properties
 *.class
 *.jar
 *.war
