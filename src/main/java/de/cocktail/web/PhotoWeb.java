@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PhotoWeb {
 
-    private String patch;
+    private String path;
 
 
     private String title;

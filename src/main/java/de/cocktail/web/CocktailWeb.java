@@ -15,7 +15,7 @@ public class CocktailWeb {
 
     private String announce;
 
-    private Userweb author;
+    private UserWeb author;
 
     private List <IngredientWeb> ingredients;
 

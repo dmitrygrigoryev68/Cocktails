@@ -20,11 +20,11 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
     private CocktailRepository cocktailRepository;
 
 
-    public List <CocktailWebOutput> getAllCocktail() {
+    public List <CocktailWebOutput> getAllCocktails() {
         List <Cocktail> outputList = cocktailRepository.findAll();
         List <CocktailWebOutput> outputList1 = outputList
                 .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
+                .map(this::createCocktailWebOutputToCocktail)
                 .collect(Collectors.toList());
         if (outputList.isEmpty()) throw new NotFoundCocktail("Cocktail is NotFound");
         return outputList1;
@@ -34,17 +34,17 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
         Optional <Cocktail> optionalRecipe = cocktailRepository.findById(id);
         if (!optionalRecipe.isPresent()) {
             throw new NotFoundCocktail("This cocktail does not exist");
-        } else return creatCocktailWebOutputToCocktail(optionalRecipe.get());
+        } else return createCocktailWebOutputToCocktail(optionalRecipe.get());
     }
 
-    public Object convertTheeCoctailsIntoAnotherEmbodiment(Object t, Class refactoryclass) {
+    public Object convertTheeCocktailsIntoAnotherEmbodiment(Object t, Class refactoryClass) {
         ModelMapper modelMapper = new ModelMapper();
-        Y y = (Y) modelMapper.map(t, refactoryclass);
+        Y y = (Y) modelMapper.map(t, refactoryClass);
         return y;
     }
 
-    public void creatCocktail(CocktailWeb cocktailWeb) {
-        Cocktail cocktail = creatCocktailToCocktailWeb(cocktailWeb);
+    public void createCocktail(CocktailWeb cocktailWeb) {
+        Cocktail cocktail = createCocktailToCocktailWeb(cocktailWeb);
         cocktailRepository.save(cocktail);
     }
 
@@ -53,52 +53,52 @@ public class CocktailServiceImpl<Y, T> implements CocktailService {
         cocktailRepository.deleteById(id);
     }
 
-    public Cocktail creatCocktailToCocktailWeb(CocktailWeb cocktailWeb) {
+    public Cocktail createCocktailToCocktailWeb(CocktailWeb cocktailWeb) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(cocktailWeb, Cocktail.class);
     }
 
-    public CocktailWebOutput creatCocktailWebOutputToCocktail(Cocktail cocktail) {
+    public CocktailWebOutput createCocktailWebOutputToCocktail(Cocktail cocktail) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(cocktail, CocktailWebOutput.class);
     }
 
-    public List <CocktailWebOutput> findByIngredientsContaining(String nameIngredient) {
+    public List <CocktailWebOutput> getCocktailByIngredient(String nameIngredient) {
         List <CocktailWebOutput> outputList = cocktailRepository.findByIngredients_Title(nameIngredient)
                 .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
+                .map(this::createCocktailWebOutputToCocktail)
                 .collect(Collectors.toList());
-        if (outputList.isEmpty()) throw new NotFoundCocktail("This Ingredients not exist");
+        if (outputList.isEmpty()) throw new NotFoundCocktail("This Ingredient not exist");
         return outputList;
     }
 
-    public List <CocktailWebOutput> findbyAuthor(String name_author) {
+    public List <CocktailWebOutput> getCocktailByAuthor(String name_author) {
         List <Cocktail> byAuthorName = cocktailRepository
                 .findByAuthor_Name(name_author);
         if (byAuthorName.isEmpty()) throw new NotFoundCocktail("This  author does not exist");
         return byAuthorName
         .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
+                .map(this::createCocktailWebOutputToCocktail)
                 .collect(Collectors.toList());
     }
 
     public void updateCocktail(CocktailWebOutput cocktailWebOutput, Long id) {
         Optional <Cocktail> byId = cocktailRepository.findById(id);
-        Cocktail cocktail1 = (Cocktail) convertTheeCoctailsIntoAnotherEmbodiment(cocktailWebOutput, Cocktail.class);
+        Cocktail cocktail1 = (Cocktail) convertTheeCocktailsIntoAnotherEmbodiment(cocktailWebOutput, Cocktail.class);
         if (byId.isPresent()) {
             cocktail1.setId(id);
             cocktailRepository.save(cocktail1);
         }
     }
 
-    public List <CocktailWebOutput> findByTitle(String title) {
+    public List <CocktailWebOutput> getCocktailByTitle(String title) {
         List <Cocktail> byTitle = cocktailRepository.findByTitle(title);
         if (byTitle.isEmpty()) {
             throw new NotFoundCocktail("This title does not exist");
         }
         return byTitle
                 .stream()
-                .map(this::creatCocktailWebOutputToCocktail)
+                .map(this::createCocktailWebOutputToCocktail)
                 .collect(Collectors.toList());
     }
 }
