@@ -106,7 +106,7 @@ public class IntegrationControllerServiceTest {
         mockMvc.perform(get("/cocktails/{id}", 1L).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content()
-                        .contentType("application/json;charset=UTF-8"))
+                        .contentType("application/json;charset=UTF-8")).andDo(print())
                 .andExpect(content().json(json));
         verify(cocktailService, Mockito.times(1)).getCocktailById(1L);
 
@@ -115,7 +115,7 @@ public class IntegrationControllerServiceTest {
     @Test
     public void deleteCocktailByIdTest() throws Exception {
         mockMvc.perform(delete("/cocktails/{id}", 1L)
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk());
         verify(cocktailService, Mockito.times(1)).deleteCocktailById(1L);
     }
